@@ -7,5 +7,13 @@ export const user={
     wddd:require('../image/user/Icon_wddd.png'),
     wdzc:require('../image/user/Icon_wdzc.png'),
     line:require('../image/user/line.png'),
-    banner:require('../image/user/img_banner.png')
+    banner:require('../image/user/img_banner.png'),
+    wdsc:require('../image/user/Icon_sc.png'),
+    yjfk:require('../image/user/Icon_yjfk.png'),
+    cjwt:require('../image/user/Icon_cjwt.png'),
+    kfzx:require('../image/user/Icon_kfzx.png'),
+    jfrw:require('../image/user/Icon_jfrw.png'),
+    qdwb:require('../image/user/Icon_yljl.png'),
+    yqyj:require('../image/user/Icon_yqyj.png'),
+    gfylb:require('../image/user/Icon_gfylb.png'),
 }
