@@ -1,4 +1,4 @@
-import {color} from './common'
+import {common,deviceWidth} from './common.js'
 
 const commonCSS={
     li:{
@@ -8,6 +8,8 @@ const commonCSS={
 
 
 export {
-    color,
+    common,
+    deviceWidth,
+
     commonCSS
 }

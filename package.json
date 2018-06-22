@@ -20,14 +20,17 @@
   },
   "dependencies": {
     "antd-mobile": "^2.2.0",
+    "antd-mobile-rn": "^2.2.0",
     "axios": "^0.18.0",
+    "babel-plugin-import": "^1.8.0",
     "dva": "^2.3.1",
+    "rc-form": "^2.2.0",
     "react": "16.3.1",
     "react-dom": "^16.4.1",
     "react-native": "~0.55.2",
     "react-native-axios": "^0.17.1",
     "react-native-vector-icons": "^4.6.0",
-    "react-navigation": "1.1.0",
+    "react-navigation": "1.5.2",
     "react-redux": "5.0.6"
   }
 }

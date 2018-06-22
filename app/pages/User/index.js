@@ -7,13 +7,15 @@ import {
     ImageBackground,
     TouchableOpacity,
     TouchableHighlight,
-    ScrollView
+    RefreshControl,
+    ScrollView,
+    SafeAreaView
 } from 'react-native';
 
 import {deviceWidth} from '../../styles/common'
 import {user} from '../../config/image'
 import {px2dp} from "../../utils";
-import {color} from '../../styles'
+import {common} from '../../styles'
 const orderlist=[
     {img:user.dfk, text:'待付款'},
     {img:user.dsh,text:'待收货'},
@@ -37,27 +39,58 @@ const h5list=[
     {img:user.gfylb,text:'瓜分娱乐宝'},
 ]
 export default class App extends React.Component {
+    state={
+        isRefreshing:false,
 
+    }
+    onRefresh(){
+        this.setState({isRefreshing: true});
+        console.log("开始新的刷新方法");
+        setTimeout(() => {
+            //你的刷新逻辑
+            //逻辑执行完之后，修改刷新状态为false
+            this.setState({isRefreshing: false});
+        }, 2000);
+    }
     _onPressButton(){
         console.log(1)
     }
     render() {
         return (
-            <ScrollView style = {{flex:1,backgroundColor:'#fff'}}>
+            <ScrollView style = {{flex:1,backgroundColor:'#000'}}
+                        refreshControl={  //设置下拉刷新组件
+                            <RefreshControl
+                                refreshing={this.state.isRefreshing}
+                                onRefresh={this.onRefresh.bind(this)}  //(()=>this.onRefresh)或者通过bind来绑定this引用来调用方法
+                                tintColor='white'
+                                titleColor="white"
+                                title= {this.state.isRefreshing? '刷新中....':'下拉刷新'}
+                            />
+                        }
+            >
                 <View style={styles.container}>
                     <ImageBackground
-                        style={{width:deviceWidth,height:px2dp(157)}}
-                        source={require('../../image/user/img_bj.png')}
+                        style={[{width:deviceWidth,height:px2dp(157),paddingTop:px2dp(50)}]}
+                        source={user.topbanner}
                     >
                         <Image
-                            source={require('../../image/user/Icon_sz.png')}
+                            style={styles.User_top_img}
+                            source={user.sz}
                         />
-                        <View>
-                            <View>
-                                <Text>
+                        <View style={styles.User_top}>
+                            <TouchableOpacity
+                                activeOpacity={0.9}
+                            >
+                                <Image
+                                    style={{width:px2dp(60),height:px2dp(60),marginRight:px2dp(20)}}
+                                    source={user.tx}
+                                />
+                            </TouchableOpacity>
+                            <View style={styles.User_top_view}>
+                                <Text style={[common.font_h1,{color:common.fff}]}>
                                     点击登录
                                 </Text>
-                                <Text>
+                                <Text style={[common.font_h3,{color:common.fff}]}>
                                     欢迎来到小娱商城
                                 </Text>
                             </View>
@@ -71,7 +104,7 @@ export default class App extends React.Component {
                                     return (
                                         <TouchableHighlight
                                             onPress={this._onPressButton}
-                                            underlayColor={color.f1}
+                                            underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
                                             <View style={styles.User_mon_li}>
@@ -85,7 +118,7 @@ export default class App extends React.Component {
                             <Image style={{height:px2dp(42),width:px2dp(3)}} source={user.line}/>
                             <TouchableHighlight
                                 onPress={this._onPressButton}
-                                underlayColor={color.f1}
+                                underlayColor={common.f1}
                                 activeOpacity={0.9}
                             >
                                 <View style={styles.User_mon_li}>
@@ -101,7 +134,7 @@ export default class App extends React.Component {
                                     return (
                                         <TouchableHighlight
                                             onPress={this._onPressButton}
-                                            underlayColor={color.f1}
+                                            underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
                                             <View style={styles.User_mon_li}>
@@ -115,7 +148,7 @@ export default class App extends React.Component {
                             <Image style={{height:px2dp(42),width:px2dp(3)}} source={user.line}/>
                             <TouchableHighlight
                                 onPress={this._onPressButton}
-                                underlayColor={color.f1}
+                                underlayColor={common.f1}
                                 activeOpacity={0.9}
                             >
                                 <View style={styles.User_mon_li}>
@@ -139,7 +172,7 @@ export default class App extends React.Component {
                                     return (
                                         <TouchableHighlight
                                             onPress={this._onPressButton}
-                                            underlayColor={color.f1}
+                                            underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
                                             <View style={styles.User_mon_li}>
@@ -158,7 +191,7 @@ export default class App extends React.Component {
                                     return (
                                         <TouchableHighlight
                                             onPress={this._onPressButton}
-                                            underlayColor={color.f1}
+                                            underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
                                             <View style={styles.User_mon_li}>
@@ -188,8 +221,8 @@ const styles = StyleSheet.create({
         paddingVertical:px2dp(10),
         paddingHorizontal:px2dp(10),
         width:deviceWidth-px2dp(20),
-        backgroundColor:color.fff,
-        shadowColor:color.gary_e,
+        backgroundColor:common.fff,
+        shadowColor:common.gary_e,
         shadowOffset:{h:10,w:10},
         shadowOpacity:1
     },
@@ -205,5 +238,19 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         width:(deviceWidth-px2dp(40))/4,
         height:px2dp(80)
+    },
+    User_top_img:{
+        position:'absolute',
+        right:px2dp(27),
+        top:px2dp(25),
+        width:px2dp(18),
+        height:px2dp(18),
+    },
+    User_top:{
+        marginLeft:px2dp(25),
+        flexDirection:'row',
+    },
+    User_top_view:{
+        justifyContent:'space-around',
     }
 });

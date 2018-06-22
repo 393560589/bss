@@ -13,7 +13,7 @@ import {
 
 import {connect} from '../../utils/dva'
 //import { tabs } from '../../config/image'
-import {color} from '../../styles'
+import {common} from '../../styles'
 import {px2dp} from '../../utils'
 import Cart from '../Cart'   // 购物车
 import Recommend from '../Recommend'   // 推荐
@@ -37,7 +37,7 @@ const YuTab = TabNavigator(
                     <Image
                         style={{width:px2dp(17),height:px2dp(17)}}
                         source={
-                            tintColor !== color.theme ?
+                            tintColor !== common.theme ?
                                 require("../../image/tab/Icon_sy.png")
                                 : require("../../image/tab/Icon_sy_mr.png")
                         }
@@ -56,7 +56,7 @@ const YuTab = TabNavigator(
                      <Image
                          style={{width:px2dp(14),height:px2dp(17)}}
                          source={
-                             tintColor !== color.theme ?
+                             tintColor !== common.theme ?
                             require('../../image/tab/Icon_tj.png'):
                              require('../../image/tab/Icon_tj_mr.png')
                          }
@@ -75,7 +75,7 @@ const YuTab = TabNavigator(
                      <Image
                          style={{width:px2dp(25),height:px2dp(25)}}
                          source={
-                             tintColor !== color.theme ?
+                             tintColor !== common.theme ?
                                  require("../../image/tab/Icon_yyjf.png")
                                  : require("../../image/tab/Icon_yyjf.png")
                          }
@@ -94,7 +94,7 @@ const YuTab = TabNavigator(
                      <Image
                          style={{width:px2dp(18),height:px2dp(17)}}
                          source={
-                             tintColor !== color.theme ? require("../../image/tab/Icon_gwc.png")
+                             tintColor !== common.theme ? require("../../image/tab/Icon_gwc.png")
                                  : require("../../image/tab/Icon_gwc_mr.png")
                          }
                      />
@@ -112,7 +112,7 @@ const YuTab = TabNavigator(
                     <Image
                         style={{width:px2dp(17),height:px2dp(17)}}
                         source={
-                            tintColor !== color.theme ? require("../../image/tab/Icon_wd.png")
+                            tintColor !== common.theme ? require("../../image/tab/Icon_wd.png")
                                 : require("../../image/tab/Icon_wd_mr.png")
                         }
                     />
@@ -128,17 +128,17 @@ const YuTab = TabNavigator(
         lazy:true , // 懒加载  默认false
 
         tabBarOptions:{
-            activeTintColor:color.theme, // label和icon的前景色
-            activeBackgroundColor:color.fff, // label和icon活跃下的背景色,
-            inactiveTintColor:color.gary_3, // 不活跃颜色，
+            activeTintColor:common.theme, // label和icon的前景色
+            activeBackgroundColor:common.fff, // label和icon活跃下的背景色,
+            inactiveTintColor:common.gary_3, // 不活跃颜色，
             showLabel:true, // 默认显示
             showIcon:true, // android默认不显示。主动开启icon显示
             style:{
                 height:px2dp(50),
-                backgroundColor:color.fff,
+                backgroundColor:common.fff,
                 paddingBottom:px2dp(4),
                 borderTopWidth:1,
-                borderTopColor:color.gary_e,
+                borderTopColor:common.gary_e,
             }, // tabbar的颜色样式
             labelStyle:{
                 fontSize:px2dp(10)

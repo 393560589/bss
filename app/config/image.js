@@ -1,6 +1,9 @@
 
 
 export const user={
+    tx:require('../image/user/img_tx.png'),
+    topbanner:require('../image/user/img_bj.png'),
+    sz:require('../image/user/Icon_sz.png'),
     dfk:require('../image/user/Icon_dfk.png'),
     dsh:require('../image/user/Icon_dsh.png'),
     ywc:require('../image/user/Icon_ywc.png'),
