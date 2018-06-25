@@ -16,6 +16,7 @@ import {deviceWidth} from '../../styles/common'
 import {user} from '../../config/image'
 import {px2dp} from "../../utils";
 import {common} from '../../styles'
+
 const orderlist=[
     {img:user.dfk, text:'待付款'},
     {img:user.dsh,text:'待收货'},
@@ -57,7 +58,7 @@ export default class App extends React.Component {
     }
     render() {
         return (
-            <ScrollView style = {{flex:1,backgroundColor:'#000'}}
+            <ScrollView style = {{flex:1,backgroundColor:'#fff'}}
                         refreshControl={  //设置下拉刷新组件
                             <RefreshControl
                                 refreshing={this.state.isRefreshing}
