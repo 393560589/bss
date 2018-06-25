@@ -10,7 +10,8 @@
     "react-test-renderer": "16.3.1"
   },
   "scripts": {
-    "start": "react-native start",
+    "rn-start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "node scripts/custom-rn-theme && node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "test": "jest"
@@ -18,6 +19,7 @@
   "jest": {
     "preset": "react-native"
   },
+
   "dependencies": {
     "antd-mobile": "^2.2.0",
     "antd-mobile-rn": "^2.2.0",
