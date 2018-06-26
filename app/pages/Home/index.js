@@ -19,6 +19,7 @@ class Home extends PureComponent {
         return (
             <View style={styles.container}>
                 <Text onPress={this.goLogin}>首页</Text>
+                <Text onPress={() => this.props.navigation.navigate('Collection')}>myl</Text>
             </View>
         );
     }
