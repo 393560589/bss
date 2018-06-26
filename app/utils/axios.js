@@ -3,9 +3,6 @@
  * http通用工具函数
  */
 import axios from 'axios';
-import Cookies from 'js-cookie'
-
-import { Infos,co } from './keyword'
 
 
 /**
@@ -28,19 +25,8 @@ Tool.ua = Tool.projectName + ';'+ Tool.projectVersion +';'+ Tool.bundleVersion +
 
 
 axios.defaults.headers.common['ua'] = Tool.ua;
-/*
-console.log(Cookie.get(Infos.webbase));
-if(Cookie.get(Infos.webbase)!=undefined){
-    axios.defaults.headers.common['Authorization'] = 'Basic '+Cookie.get(Infos.webbase);
-}
-
-*/
-const base = localStorage.getItem(Infos.webbase);
 
 
-if(base != undefined){
-    axios.defaults.headers.common['Authorization'] = 'Basic '+base;
-}
 
 
 export const get = (url, data) =>
@@ -73,11 +59,7 @@ export const put = (url,data)=>
         const xrh = res.data;
 
         switch (parseFloat(xrh.code)){
-            case 400:
-            case 401:
-                localStorage.removeItem(Infos.webbase)
-                window.location.href = '/';
-                break;
+
             default:
                 return xrh;
                 break

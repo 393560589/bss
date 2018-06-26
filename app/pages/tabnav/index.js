@@ -11,7 +11,8 @@ import {
     StackNavigator,TabNavigator,TabBarBottom
 } from 'react-navigation'
 
-import {connect} from '../../utils/dva'
+import {connect} from 'react-redux'
+import Loading from '../../components/loading'
 //import { tabs } from '../../config/image'
 import {common} from '../../styles'
 import {px2dp} from '../../utils'
@@ -162,16 +163,18 @@ export const AppNavigator = StackNavigator(
         }
     }
 )
+
+@connect(({ app, router }) => ({ app, router }))
+
 class Main extends PureComponent {
     render() {
+        const { app, dispatch, router } = this.props;
+        console.log(this.props);
+        //if (app.loading) return <Loading />;
         return (
-            <AppNavigator />
+            <AppNavigator dispatch={dispatch} state={router}/>
         );
     }
 }
-function mapStateToProps(state) {
-    return {
 
-    };
-}
-export default connect(mapStateToProps)(Main)
+export default Main

@@ -1,14 +1,15 @@
 export default {
-    namespace: 'home',
+    namespace: 'Home',
     state: {
-        name: 'wy', // 名字
+        name: 'homeplay', // 名字
+        play:'ffff',
     },
     reducers: {
         /**
          * 处理同步的action
          */
-        play(state, { payload: { name } }) {
-            return { ...state, name };
+        play(state) {
+            return { ...state }
         }
     },
     effects: {

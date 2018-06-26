@@ -19,10 +19,11 @@ class Login extends PureComponent{
         super(props)
     }
     componentDidMount(){
-        console.log(this.props);
+        console.log(this.props)
     }
     onlogin(){
        const {dispatch} = this.props;
+       console.log(123)
        dispatch({
            type:'login/play'
        })
@@ -96,8 +97,8 @@ class Login extends PureComponent{
                             <View style={styles.lg_btn_wrap}>
                                 <Button
                                     onClick={()=>this.onlogin()}
-                                    style={styles.lg_btn} type={'primary'}>登录</Button>
-                                <Text style={styles.lg_forget}>忘记密码</Text>
+                                    style={styles.lg_btn} type={'primary'}>{this.props.name}</Button>
+                                <Text style={styles.lg_forget}>{this.props.play}</Text>
                             </View>
                         </View>
 
@@ -165,11 +166,13 @@ const styles = StyleSheet.create({
     }
 });
 
+/*
 function mapStateToProps(state) {
     return {
         name:state.name
     };
 }
+*/
 
 
-export default connect(mapStateToProps)(createForm()(Login))
+export default createForm()(Login)

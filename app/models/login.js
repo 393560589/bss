@@ -1,14 +1,17 @@
+
+
 export default {
     namespace: 'login',
     state: {
-        name: 'wy', // 名字
+        name: 'logins', // 名字
+        play:'plays'
     },
     reducers: {
         /**
          * 处理同步的action
          */
-        play() {
-          return {a:111}
+        play(state) {
+          //return state.name = 111
         }
     },
     effects: {
