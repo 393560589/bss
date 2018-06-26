@@ -1,15 +1,17 @@
+
+
 export default {
-    namespace: 'Home',
+    namespace: 'login',
     state: {
-        name: 'homeplay', // 名字
-        play:'ffff',
+        name: 'logins', // 名字
+        play:'plays'
     },
     reducers: {
         /**
          * 处理同步的action
          */
         play(state) {
-            return { ...state }
+          //return state.name = 111
         }
     },
     effects: {
@@ -24,11 +26,11 @@ export default {
              * put 发起action
              * select 选择某个namespace的state
              */
-            //const name = yield call(fetchHomeName);
+                //const name = yield call(fetchHomeName);
             const name =1;
             console.log(name);
             yield put({
-               // type: SET_HOME_NAME,
+                // type: SET_HOME_NAME,
                 payload: { name },
             })
         }

@@ -6,14 +6,19 @@ import {
 } from 'react-native';
 import { connect } from '../../utils/dva';
 
+@connect(({Home})=>({...Home}))
 class Home extends PureComponent {
     constructor(props) {
         super(props);
         this.goLogin = this.goLogin.bind(this);
     }
+    componentDidMount(){
+        console.log(this.props);
+    }
     goLogin(){
         const { navigation } = this.props;
         navigation.navigate('Login', { name: '我是下一页' });
+
     }
     render() {
         return (
@@ -34,9 +39,11 @@ const styles = StyleSheet.create({
     },
 });
 
-function mapStateToProps(state) {
+/*function mapStateToProps(state) {
     return {
-        // state 映射到 props
+        name:state.name
     };
-}
-export default connect(mapStateToProps)(Home)
+}*/
+
+
+export default Home

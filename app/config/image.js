@@ -20,3 +20,12 @@ export const user={
     yqyj:require('../image/user/Icon_yqyj.png'),
     gfylb:require('../image/user/Icon_gfylb.png'),
 }
+export const lg={
+    banner:require('../image/login/img_login.png'),
+    phone:require('../image/login/Icon_user.png'),
+    code:require('../image/login/Icon_code.png'),
+    password:require('../image/login/Icon_password.png'),
+};
+export const img={
+    arrow:require('../image/common/reture.png')
+}
