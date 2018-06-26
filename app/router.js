@@ -1,6 +1,7 @@
 import React from 'react'
 import {TouchableOpacity,Text} from 'react-native'
 import Login from './pages/Login'
+import Collection from './pages/Collection'
 import {common} from "./styles";
 import {px2dp} from "./utils";
 export default {
@@ -16,6 +17,16 @@ export default {
             headerTitleStyle:{
                 color:common.gary_3,
                 backgroundColor:common.gary_3
+            }
+        }
+    },
+    Collection: {
+        screen: Collection,
+        navigationOptions: {
+            title: '我的收藏',
+            headerTintColor: '#313131',
+            headerStyle: {
+                backgroundColor: '#fff'
             }
         }
     }
