@@ -3,7 +3,8 @@ import {
     StyleSheet,
     Text,
     View,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native';
 import {connect} from 'react-redux'
 import {px2dp} from "../../utils";
@@ -21,12 +22,44 @@ class Login extends PureComponent{
     componentDidMount(){
         console.log(this.props)
     }
-    onlogin(){
-       const {dispatch} = this.props;
-       console.log(123)
-       dispatch({
-           type:'login/play'
-       })
+    getCode(){
+        const {dispatch} = this.props;
+        dispatch({
+            type:'login/getcode',
+            payload:this.props.data
+        })
+    }
+    checkTab(types){
+        const {dispatch} = this.props;
+        dispatch({
+            type:'login/updateState',
+            payload:{
+                isPassword: types === 'code' ? false:true
+            }
+        })
+    }
+    codeLogin(){
+        const {dispatch} = this.props;
+        let data = {
+            phone:this.props.data.phone,
+            code:this.props.form.getFieldsValue().number
+        }
+
+        dispatch({
+            type:'login/dologin',
+            payload:data
+        })
+    }
+    dataChange(text){
+        const {dispatch} = this.props;
+        dispatch({
+            type:'login/updateState',
+            payload:{
+                data:{
+                    phone:text
+                }
+            }
+        })
     }
     render() {
         const { getFieldProps } = this.props.form;
@@ -35,46 +68,54 @@ class Login extends PureComponent{
                 <Image source={lg.banner} style={{height:px2dp(253),width:deviceWidth}}/>
                 <View style={styles.lg_ct}>
                         <View style={styles.lg_tab}>
-                            <View style={[styles.lg_tab_view]}>
-                                <View style={styles.lg_tab_check}>
-                                    <Text style={styles.lg_tab_textcheck}>验证码登录</Text>
+                            <TouchableOpacity
+                                activeOpacity={1}
+                                onPress={()=>this.checkTab('password')}
+                                style={[styles.lg_tab_view]} >
+                                <View style={this.props.isPassword ? styles.lg_tab_check :''}>
+                                    <Text style={this.props.isPassword ?styles.lg_tab_textcheck :''}>密码登录</Text>
                                 </View>
-                            </View>
-                            <View style={[styles.lg_tab_view]}>
-                                <View>
-                                    <Text>密码登录</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                activeOpacity={1}
+                                style={[styles.lg_tab_view]}
+                                              onPress={()=>this.checkTab('code')}>
+                                <View style={!this.props.isPassword ? styles.lg_tab_check :''}>
+                                    <Text style={!this.props.isPassword ?styles.lg_tab_textcheck :''}>验证码登录</Text>
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         </View>
-                        <View style={styles.lg_code}>
+                        <View style={[styles.lg_code,{display:this.props.isPassword ? 'none':'flex'}]}>
                             <List styles={{borderTopWidth:0}}>
                                 <InputItem
-                                    {...getFieldProps('phone')}
-                                    type="phone"
+                                    {...getFieldProps('tel')}
+                                    type="tel"
                                     clear
                                     labelNumber={2}
                                     style={{borderBottomColor:common.gary_e,borderBottomWidth:1}}
-                                    placeholder="186 1234 1234"
+                                    placeholder="请输入11位手机号"
+                                    onChange={(text)=>this.dataChange(text)}
                                 ><Image source={lg.phone} style={{width:px2dp(16),height:px2dp(16)}}/></InputItem>
 
                                 <InputItem
                                     {...getFieldProps('number')}
                                     type="number"
                                     labelNumber={2}
-                                    placeholder="****"
-                                    extra="请输入验证码"
+                                    placeholder="输入四位数字验证码"
+                                    extra="获取验证码"
+                                    onExtraClick={()=>this.getCode()}
                                     style={{borderBottomColor:common.gary_e,borderBottomWidth:1}}
                                 ><Image source={lg.code} style={{width:px2dp(16),height:px2dp(16)}}/></InputItem>
 
                             </List>
                             <View style={styles.lg_btn_wrap}>
-                                <Button disabled={true} style={styles.lg_btn} type={'primary'}>登录</Button>
+                                <Button
+                                    onClick={()=>this.codeLogin()}
+                                    style={styles.lg_btn} type={'primary'}>登录</Button>
                             </View>
 
                         </View>
-
-
-                        <View style={styles.lg_acc}>
+                        <View style={[styles.lg_acc,{display:!this.props.isPassword ? 'none':'flex'}]}>
                             <List styles={{borderTopWidth:0}}>
                                 <InputItem
                                     {...getFieldProps('phone')}
@@ -82,7 +123,7 @@ class Login extends PureComponent{
                                     clear
                                     labelNumber={2}
                                     style={{borderBottomColor:common.gary_e,borderBottomWidth:1}}
-                                    placeholder="186 1234 1234"
+                                    placeholder="输入11位手机号"
                                 ><Image source={lg.phone} style={{width:px2dp(16),height:px2dp(16)}}/></InputItem>
 
                                 <InputItem
@@ -97,8 +138,8 @@ class Login extends PureComponent{
                             <View style={styles.lg_btn_wrap}>
                                 <Button
                                     onClick={()=>this.onlogin()}
-                                    style={styles.lg_btn} type={'primary'}>{this.props.name}</Button>
-                                <Text style={styles.lg_forget}>{this.props.play}</Text>
+                                    style={styles.lg_btn} type={'primary'}>登录</Button>
+                                <Text style={styles.lg_forget}>忘记密码</Text>
                             </View>
                         </View>
 
@@ -114,6 +155,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems:'center'
     },
+
     lg_tab:{
         flexDirection:'row',
         justifyContent:'space-between',
@@ -143,7 +185,6 @@ const styles = StyleSheet.create({
         paddingBottom:px2dp(20)
     },
     lg_code:{
-        display:'none',
         width:px2dp(deviceWidth-20),
     },
     lg_acc:{
@@ -166,13 +207,6 @@ const styles = StyleSheet.create({
     }
 });
 
-/*
-function mapStateToProps(state) {
-    return {
-        name:state.name
-    };
-}
-*/
 
 
 export default createForm()(Login)
