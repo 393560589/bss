@@ -1,5 +1,5 @@
-import {px2dp} from "./px2dp";
-
+import {px2dp, px2p} from "./px2dp";
 export {
-    px2dp
+    px2dp,
+    px2p
 }

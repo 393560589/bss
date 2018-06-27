@@ -22,3 +22,7 @@ export function px2dp(size) {
     size = Math.round(size * scale + 0.5);
     return size / defaultPixel;
 }
+
+export function px2p(size) {
+    return size * deviceWidth / 375
+}

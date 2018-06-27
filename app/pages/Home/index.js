@@ -23,7 +23,8 @@ class Home extends PureComponent {
     render() {
         return (
             <View style={styles.container}>
-                <Text onPress={this.goLogin}>{this.props.name+'111'}</Text>
+                <Text onPress={this.goLogin}>首页</Text>
+                <Text onPress={() => this.props.navigation.navigate('Points')}>myl</Text>
             </View>
         );
     }

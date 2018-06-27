@@ -1,8 +1,12 @@
 import React from 'react'
 import {TouchableOpacity,Text,Image} from 'react-native'
 import Login from './pages/Login'
+import Collection from './pages/Collection'
+import MyAsset from './pages/MyAsset'
+import MyYlb from './pages/MyYlb'
+import Points from './pages/Points'
 import {common} from "./styles";
-import {px2dp} from "./utils";
+import {px2dp, px2p} from "./utils";
 import {img} from './config/image'
 
 export default {
@@ -22,6 +26,30 @@ export default {
                 backgroundColor:common.gary_3
             }
         }
+    },
+    Collection: {
+        screen: Collection,
+        navigationOptions: Object.assign(common.defaultHeader, {title: '我的收藏'})
+    },
+    MyAsset: {
+        screen: MyAsset,
+        navigationOptions: Object.assign(common.defaultHeader, {title: '我的资产'})
+    },
+    MyYlb: {
+        screen: MyYlb,
+        navigationOptions: Object.assign(common.defaultHeader, {title: '我的娱乐宝'})
+    },
+    Points: {
+        screen: Points,
+        navigationOptions: (navigation) => ({
+            headerTransparent: true,
+            title: '我的积分',
+            headerStyle: {
+                borderBottomWidth: 0
+            },
+            headerTintColor: '#fff',
+            headerRight: (<TouchableOpacity><Text style={{color: '#fff', marginRight: px2p(13), fontSize: px2p(14)}}>积分介绍</Text></TouchableOpacity>)
+        })
     }
 }
 /*
