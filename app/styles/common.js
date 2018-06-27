@@ -30,6 +30,12 @@ export const common={
         fontSize:px2dp(12),
         fontWeight:'100',
     },
+    defaultHeader: {
+        headerTintColor: '#313131',
+        headerStyle: {
+            backgroundColor: '#fff'
+        }
+    }
 
 };
 
