@@ -24,7 +24,7 @@ class Home extends PureComponent {
         return (
             <View style={styles.container}>
                 <Text onPress={this.goLogin}>首页</Text>
-                <Text onPress={() => this.props.navigation.navigate('Points')}>myl</Text>
+                <Text onPress={() => this.props.navigation.navigate('Feedback')}>myl</Text>
             </View>
         );
     }

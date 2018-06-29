@@ -5,6 +5,7 @@ import Collection from './pages/Collection'
 import MyAsset from './pages/MyAsset'
 import MyYlb from './pages/MyYlb'
 import Points from './pages/Points'
+import Feedback from './pages/Feedback'
 import {common} from "./styles";
 import {px2dp, px2p} from "./utils";
 import {img} from './config/image'
@@ -29,15 +30,15 @@ export default {
     },
     Collection: {
         screen: Collection,
-        navigationOptions: Object.assign(common.defaultHeader, {title: '我的收藏'})
+        navigationOptions: Object.assign({}, common.defaultHeader, {title: '我的收藏'})
     },
     MyAsset: {
         screen: MyAsset,
-        navigationOptions: Object.assign(common.defaultHeader, {title: '我的资产'})
+        navigationOptions: Object.assign({}, common.defaultHeader, {title: '我的资产'})
     },
     MyYlb: {
         screen: MyYlb,
-        navigationOptions: Object.assign(common.defaultHeader, {title: '我的娱乐宝'})
+        navigationOptions: Object.assign({}, common.defaultHeader, {title: '我的娱乐宝'})
     },
     Points: {
         screen: Points,
@@ -50,6 +51,10 @@ export default {
             headerTintColor: '#fff',
             headerRight: (<TouchableOpacity><Text style={{color: '#fff', marginRight: px2p(13), fontSize: px2p(14)}}>积分介绍</Text></TouchableOpacity>)
         })
+    },
+    Feedback: {
+        screen: Feedback,
+        navigationOptions: Object.assign({}, common.defaultHeader, {title: '意见反馈'})
     }
 }
 /*
