@@ -34,7 +34,7 @@ export default class Accordion extends Component {
     return (
       <View style={styles.container}>
         {
-          props.data.map((item, index) => {
+          this.props.data.map((item, index) => {
             const right = index !== 0
               ? px2p(24 * index - (0.2 * index * 24))
               : 0

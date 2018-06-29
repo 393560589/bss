@@ -18,7 +18,7 @@ import { common } from '../../styles';
 class Home extends PureComponent {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.testHomeData = [
       {
         name: '签到挖宝'
