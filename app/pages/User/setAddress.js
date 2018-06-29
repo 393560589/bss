@@ -7,17 +7,18 @@ import {
     Image,
     ScrollView
 } from 'react-native'
-import { List,Button } from 'antd-mobile-rn'
+import { List,Button,Modal } from 'antd-mobile-rn'
 import {connect} from "../../utils/dva";
 import {px2dp} from "../../utils";
 import {set} from "../../config/image";
 import {common,deviceWidth} from "../../styles";
 import {commonStyle} from "../../styles/common";
+const alert = Modal.alert;
 
-const Item = List.Item;
 @connect()
 export default class SetAddress extends PureComponent{
     onPushPage(page){
+        console.log(this.props)
         this.props.navigation.navigate(page)
     }
     render(){
@@ -69,6 +70,13 @@ export default class SetAddress extends PureComponent{
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     style={[commonStyle.row,{marginLeft:px2dp(14)}]}
+                                    onPress={() =>
+                                        alert('地址删除', '确认删除该地址？', [
+                                            { text: <Text style={{color:common.gary_6}}>取消</Text> , onPress: () => console.log('cancel') },
+                                            { text: <Text style={{color:common.theme_2}}>确定</Text>, onPress: () => console.log('ok') },
+                                        ])
+                                    }
+
                                 >
                                     <Image source={set.sc} style={{width:px2dp(14),height:px2dp(14)}}/>
                                     <Text style={styles.as_item_btn_text}>删除</Text>
@@ -79,7 +87,9 @@ export default class SetAddress extends PureComponent{
                 </ScrollView>
 
                 <View style={{height:45}}>
-                    <Button type={'primary'}>新增地址</Button>
+                    <Button
+                        onClick={()=>this.onPushPage('AddAddress')}
+                        type={'primary'}>新增地址</Button>
                 </View>
             </View>
         )

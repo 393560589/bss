@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "antd-mobile": "^2.2.0",
+    "antd-mobile-area-data": "^1.1.0",
     "antd-mobile-rn": "^2.2.0",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.8.0",
@@ -33,6 +34,7 @@
     "react-native": "~0.55.2",
     "react-native-axios": "^0.17.1",
     "react-native-device-info": "^0.21.5",
+    "react-native-simple-radio-button": "^2.7.2",
     "react-native-storage": "^0.2.2",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "1.5.2",

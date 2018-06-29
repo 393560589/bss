@@ -38,7 +38,7 @@ export default class SetUser extends PureComponent{
                                       }
                                   })
                               }}>
-                            头像
+                            <Text style={common.font_h2}>头像</Text>
                         </Item>
                     </List>
                     <Animated.View
@@ -52,17 +52,17 @@ export default class SetUser extends PureComponent{
                     </Animated.View>
                     <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
                         <Item arrow="horizontal"
-                              extra={'180****889'}
+                              extra={ <Text style={common.font_h2}>180****889</Text>}
                               multipleLine onClick={() => prompt('设置', '修改绑定手机号', [
                             { text: <Text style={{color:common.gary_6}}>取消</Text> },
                             { text: <Text style={{color:common.theme}}>确认</Text>, onPress: value => console.log(`输入的内容:${value}`) },
                         ], 'default', '180****990')}>
-                            手机号
+                            <Text style={common.font_h2}>手机号</Text>
                         </Item>
                     </List>
                     <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
                         <Item arrow="horizontal"
-                              extra={'保密'}
+                              extra={ <Text style={common.font_h2}>保密</Text>}
                               onClick={() =>
                                   alert(<Text>设置</Text>,'修改性别' , [
                                       { text: <Text style={{color:common.gary_3}}>男</Text>, onPress: () => console.log('第0个按钮被点击了') },
@@ -70,15 +70,15 @@ export default class SetUser extends PureComponent{
                                       { text: <Text style={{color:common.gary_3}}>保密</Text>, onPress: () => console.log('第2个按钮被点击了') },
                                   ])
                               }>
-                            性别
+                            <Text style={common.font_h2}>性别</Text>
                         </Item>
                         <Item
-                            extra={'无'}
+                            extra={ <Text style={common.font_h2}>无</Text>}
                             arrow="horizontal" onClick={() => prompt('设置', '修改用户昵称', [
                             { text: <Text style={{color:common.gary_6}}>取消</Text> },
                             { text: <Text style={{color:common.theme}}>确认</Text>, onPress: value => console.log(`输入的内容:${value}`) },
                         ], 'default', '无')}>
-                            昵称
+                            <Text style={common.font_h2}>昵称</Text>
                         </Item>
                     </List>
                 </View>

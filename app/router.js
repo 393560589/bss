@@ -15,6 +15,9 @@ import Settings from './pages/User/setting'
 import SetUser from "./pages/User/setuser";
 import Setpwd from "./pages/User/setpassword";
 import SetAddress from "./pages/User/setAddress";
+import AddAddress from './pages/User/addaddress'
+import AboutUS from "./pages/User/aboutus";
+import Invoice from "./pages/User/invoice";
 export default {
     Login:{
         screen:Login,
@@ -22,17 +25,19 @@ export default {
             return {
                 headerTitle:null,
                 headerTransparent:true,
-
                 headerRight:(<TouchableOpacity
                     onPress={()=>{navigator.navigation.navigate('Sign')}}
                     style={{marginRight:px2dp(20)}}><Text style={common.font_h2}>注册</Text></TouchableOpacity>),
                 headerStyle:{
-                    backgroundColor:'transparent'
+                    backgroundColor:'transparent',
+                    elevation: 0,
+                    shadowOpacity: 0
                 },
                 headerTintColor:common.gray_back,
                 headerTitleStyle:{
-                    color:common.gary_3,
-                    backgroundColor:common.gary_3
+                    //color:common.gary_3,
+                    backgroundColor:'transparent',
+
                 }
             }
 
@@ -90,6 +95,18 @@ export default {
     SetAddress:{
         screen:SetAddress,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '地址管理',mode:'card'})
+    },
+    AddAddress:{
+        screen:AddAddress,
+        navigationOptions:Object.assign({},common.defaultHeader, {title: '新增地址',mode:'card'})
+    },
+    AboutUS:{
+        screen:AboutUS,
+        navigationOptions:Object.assign({},common.defaultHeader, {title: '关于我们',mode:'card'})
+    },
+    Invoice:{
+        screen:Invoice,
+        navigationOptions:Object.assign({},common.defaultHeader, {title: '发票助手',mode:'card'})
     }
 }
 /*

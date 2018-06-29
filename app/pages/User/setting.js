@@ -11,6 +11,9 @@ import {connect} from "../../utils/dva";
 import {px2dp} from "../../utils";
 import {user} from "../../config/image";
 import {common} from "../../styles";
+import {commonStyle} from "../../styles/common";
+import AboutUS from "./aboutus";
+import Invoice from "./invoice";
 
 const Item = List.Item;
 @connect()
@@ -27,28 +30,26 @@ export default class Setting extends PureComponent{
                             <Item arrow="horizontal" multipleLine onClick={() => {this.onPushPage('SetUser')}}>
                                 <Image style={{width:px2dp(46),height:px2dp(46)}} source={user.tx}/>
                             </Item>
-
                         </List>
                         <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
                             <Item arrow="horizontal" multipleLine onClick={() => {this.onPushPage('Setpwd')}}>
-                                密码管理
+                                <Text style={common.font_h2}>密码管理</Text>
                             </Item>
                         </List>
                         <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
                             <Item arrow="horizontal" onClick={() => {this.onPushPage('SetAddress')}}>
-                                地址管理
+                                <Text style={common.font_h2}>地址管理</Text>
                             </Item>
-                            <Item arrow="horizontal" onClick={() => {}}>
-                                发票助手
+                            <Item arrow="horizontal" onClick={() => {this.onPushPage('Invoice')}}>
+                                <Text style={common.font_h2}>发票助手</Text>
                             </Item>
                         </List>
                         <List renderHeader={()=>null}>
-                            <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                                关于我们
+                            <Item arrow="horizontal" multipleLine onClick={() => {this.onPushPage('AboutUS')}}>
+                                <Text style={common.font_h2}>关于我们</Text>
                             </Item>
                         </List>
-                    </View>
-
+                </View>
                 <View style={{height:45}}>
                     <Button type={'primary'}>退出登录</Button>
                 </View>

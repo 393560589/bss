@@ -5,6 +5,8 @@ const primary_tap='#d30016';
 const line= '#e5e5e5';
 
 module.exports = {
+    font_size_heading:14,
+    font_size_base:14,
     input_font_size:14,
     button_font_size:16,
     color_link:line,

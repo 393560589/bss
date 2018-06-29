@@ -13,7 +13,7 @@ Below you'll find information about performing common tasks. The most recent ver
   * [npm run eject](#npm-run-eject)
 * [Writing and Running Tests](#writing-and-running-tests)
 * [Environment Variables](#environment-variables)
-  * [Configuring Packager IP Address](#configuring-packager-ip-address)
+  * [Configuring Packager IP Addaddress](#configuring-packager-ip-address)
 * [Customizing App Display Name and Icon](#customizing-app-display-name-and-icon)
 * [Sharing and Deployment](#sharing-and-deployment)
   * [Publishing to Expo's React Native Community](#publishing-to-expos-react-native-community)
@@ -97,7 +97,7 @@ This project is set up to use [jest](https://facebook.github.io/jest/) for tests
 
 You can configure some of Create React Native App's behavior using environment variables.
 
-### Configuring Packager IP Address
+### Configuring Packager IP Addaddress
 
 When starting your project, you'll see something like this for your project URL:
 

@@ -34,7 +34,7 @@ const YuTab = TabNavigator(
                 header:null,
                 tabBarLabel: "首页",
                 headerBackTitle: null,
-               /* tabBarIcon: ({ tintColor }) => (
+                tabBarIcon: ({ tintColor }) => (
                     <Image
                         style={{width:px2dp(17),height:px2dp(17)}}
                         source={
@@ -43,7 +43,7 @@ const YuTab = TabNavigator(
                                 : require("../../image/tab/Icon_sy_mr.png")
                         }
                     />
-                )*/
+                )
             })
         },
         Recommend:{
@@ -53,7 +53,7 @@ const YuTab = TabNavigator(
                 header:null,
                 tabBarLabel: "推荐",
                 headerBackTitle: null,
-                /* tabBarIcon: ({ tintColor }) => (
+                 tabBarIcon: ({ tintColor }) => (
                      <Image
                          style={{width:px2dp(14),height:px2dp(17)}}
                          source={
@@ -62,7 +62,7 @@ const YuTab = TabNavigator(
                              require('../../image/tab/Icon_tj_mr.png')
                          }
                      />
-                 )*/
+                 )
             })
         },
         Integral:{
@@ -73,7 +73,7 @@ const YuTab = TabNavigator(
                 tabBarLabel: "积分应用",
                 headerBackTitle: null,
                 headerPressColorAndroid:true,
-               /*  tabBarIcon: ({ tintColor }) => (
+                 tabBarIcon: ({ tintColor }) => (
                      <Image
                          style={{width:px2dp(25),height:px2dp(25)}}
                          source={
@@ -82,7 +82,7 @@ const YuTab = TabNavigator(
                                  : require("../../image/tab/Icon_yyjf.png")
                          }
                      />
-                 )*/
+                 )
             })
         },
         Cart:{
@@ -92,7 +92,7 @@ const YuTab = TabNavigator(
                 headerTitle: "购物车",
                 tabBarLabel: "购物车",
                 headerBackTitle: null,
-                /* tabBarIcon: ({ tintColor }) => (
+                 tabBarIcon: ({ tintColor }) => (
                      <Image
                          style={{width:px2dp(18),height:px2dp(17)}}
                          source={
@@ -100,7 +100,7 @@ const YuTab = TabNavigator(
                                  : require("../../image/tab/Icon_gwc_mr.png")
                          }
                      />
-                 )*/
+                 )
             })
         },
         user:{
@@ -110,7 +110,7 @@ const YuTab = TabNavigator(
                 headerTitle: "账户中心",
                 tabBarLabel: "账户中心",
                 headerBackTitle: null,
-               /* tabBarIcon: ({ tintColor }) => (
+                tabBarIcon: ({ tintColor }) => (
                     <Image
                         style={{width:px2dp(17),height:px2dp(17)}}
                         source={
@@ -118,7 +118,7 @@ const YuTab = TabNavigator(
                                 : require("../../image/tab/Icon_wd_mr.png")
                         }
                     />
-                )*/
+                )
             })
         },
     },{

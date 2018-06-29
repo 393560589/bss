@@ -669,6 +669,10 @@ ansi@^0.3.0, ansi@~0.3.1:
   version "0.3.1"
   resolved "http://registry.npm.taobao.org/ansi/download/ansi-0.3.1.tgz#0c42d4fb17160d5a9af1e484bace1c66922c1b21"
 
+antd-mobile-area-data@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/antd-mobile-area-data/download/antd-mobile-area-data-1.1.0.tgz#9c255b951d3d513f5fa8aca31d68dfe41c09b247"
+
 antd-mobile-rn@^2.2.0:
   version "2.2.0"
   resolved "http://registry.npm.taobao.org/antd-mobile-rn/download/antd-mobile-rn-2.2.0.tgz#347946cfce9ca01d668db1756f0663f607f7d29c"
@@ -4799,6 +4803,10 @@ react-native-safe-area-view@^0.7.0:
   resolved "http://registry.npm.taobao.org/react-native-safe-area-view/download/react-native-safe-area-view-0.7.0.tgz#38f5ab9368d6ef9e5d18ab64212938af3ec39421"
   dependencies:
     hoist-non-react-statics "^2.3.1"
+
+react-native-simple-radio-button@^2.7.2:
+  version "2.7.2"
+  resolved "http://registry.npm.taobao.org/react-native-simple-radio-button/download/react-native-simple-radio-button-2.7.2.tgz#295a7baf8b36295e36778a58b75cacf6a53d48df"
 
 react-native-storage@^0.2.2:
   version "0.2.2"
