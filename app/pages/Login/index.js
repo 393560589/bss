@@ -92,9 +92,9 @@ class Login extends PureComponent{
                                     type="tel"
                                     clear
                                     labelNumber={2}
-                                    style={{borderBottomColor:common.gary_e,borderBottomWidth:1}}
                                     placeholder="请输入11位手机号"
                                     onChange={(text)=>this.dataChange(text)}
+                                 /*   style={{borderBottomColor:common.gary_e,borderBottomWidth:1}}*/
                                 ><Image source={lg.phone} style={{width:px2dp(16),height:px2dp(16)}}/></InputItem>
 
                                 <InputItem
@@ -102,9 +102,8 @@ class Login extends PureComponent{
                                     type="number"
                                     labelNumber={2}
                                     placeholder="输入四位数字验证码"
-                                    extra="获取验证码"
+                                    extra={<Text style={{fontSize:px2dp(12),color:common.theme}}>获取验证码</Text>}
                                     onExtraClick={()=>this.getCode()}
-                                    style={{borderBottomColor:common.gary_e,borderBottomWidth:1}}
                                 ><Image source={lg.code} style={{width:px2dp(16),height:px2dp(16)}}/></InputItem>
 
                             </List>
@@ -139,7 +138,9 @@ class Login extends PureComponent{
                                 <Button
                                     onClick={()=>this.onlogin()}
                                     style={styles.lg_btn} type={'primary'}>登录</Button>
-                                <Text style={styles.lg_forget}>忘记密码</Text>
+                                <Text
+                                    onPress={()=>this.props.navigation.navigate('Fpassword')}
+                                    style={styles.lg_forget}>忘记密码</Text>
                             </View>
                         </View>
 

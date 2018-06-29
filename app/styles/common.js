@@ -33,11 +33,25 @@ export const common={
     defaultHeader: {
         headerTintColor: '#313131',
         headerStyle: {
-            backgroundColor: '#fff'
+            backgroundColor: '#fff',
+            elevation: 0,
+            shadowOpacity: 0
         }
     }
-
 };
 
 export const deviceWidth = Dimensions.get('window').width; // 设备的宽度
 export const deviceHeight = Dimensions.get('window').height;// 设备的高度
+
+export const commonStyle={
+    row:{
+      flexDirection:'row',
+      alignItems:'center'
+    },
+    btn_wrap:{
+       alignItems:'center',
+    },
+    btn:{
+        width:deviceWidth-20,
+    }
+}

@@ -17,7 +17,7 @@ class Home extends PureComponent {
     }
     goLogin(){
         const { navigation } = this.props;
-        navigation.navigate('Login', { name: '我是下一页' });
+        navigation.navigate('Settings', { name: '我是下一页' });
 
     }
     render() {
