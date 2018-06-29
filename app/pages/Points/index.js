@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, ScrollView } from 'react-native'
 import { px2p } from '../../utils'
 import { common } from '../../styles'
 
@@ -23,23 +23,45 @@ export default class MyYlb extends Component {
         subTitle: '完成活动任务',
         content: '赢取娱乐宝奖励'
       }
+    ],
+    this.testData1 = [
+      {
+        title: '签到挖宝',
+        subTitle: '每日签到 提升挖宝算力'
+      },
+      {
+        title: '积分任务',
+        subTitle: '做任务 领积分奖励'
+      }
     ]
   }
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.header}>
-          <Text style={[styles.headerText, {fontSize: px2p(14)}]}>我的娱乐宝余额</Text>
-          <Text style={[styles.headerText, {fontSize: px2p(42), marginTop: px2p(11), marginBottom: px2p(11), lineHeight: px2p(30), textAlignVertical: 'center'}]}>1000000</Text>
+          <ImageBackground style={styles.headerTextBg}>
+            <Text style={[styles.headerText, {fontSize: px2p(12), lineHeight: px2p(23), color: common.theme}]}>积分明细</Text>
+          </ImageBackground>
+          <Text style={[styles.headerText, {fontSize: px2p(42), marginTop: px2p(11), marginBottom: px2p(1), lineHeight: px2p(42)}]}>1000000</Text>
           <Text style={[styles.headerText, {fontSize: px2p(14)}]}>可用积分</Text>
         </View>
         <View style={{top: px2p(-10)}}>
           <View style={styles.mid}>
-            <View style={styles.midButton}><TouchableOpacity style={styles.convert}><Text style={styles.midBtnText}>娱乐宝兑换</Text></TouchableOpacity></View>
+            <View style={[styles.midButton, { borderRightWidth: StyleSheet.hairlineWidth, borderRightColor: '#eee'}]}><TouchableOpacity style={styles.convert}><Text style={styles.midBtnText}>娱乐宝兑换</Text></TouchableOpacity></View>
             <View style={styles.midButton}><TouchableOpacity style={styles.convert}><Text style={styles.midBtnText}>口令码兑换</Text></TouchableOpacity></View>
           </View>
           <View style={styles.main}>
-            <Text style={styles.mainTitle}>娱乐宝获取</Text>
+            <View style={styles.mainTop}>
+              {
+                this.testData1.map(item => (
+                  <View style={styles.mainTopItem} key={item.title}>
+                    <Text style={styles.title}>{item.title}</Text>
+                    <Text style={styles.subTitle}>{item.subTitle}</Text>
+                    <Image style={styles.mainTopItemImg}/>
+                  </View>
+                ))
+              }
+            </View>
             <View style={styles.mainContent}>
               {
                 this.testData.map((item, index) => {
@@ -50,18 +72,19 @@ export default class MyYlb extends Component {
                   return (
                     <View key={item.title} style={[styles.item, midItemStyle]}>
                       <Image style={styles.itemImg}/>
-                      <Text style={styles.itemTitle}>{item.title}</Text>
-                      <Text style={styles.itemSubTitle}>{item.subTitle}</Text>
-                      <Text style={styles.itemContent}>{item.content}</Text>
+                      <View>
+                        <Text style={styles.itemTitle}>{item.title}</Text>
+                        <Text style={styles.itemSubTitle}>{item.subTitle}</Text>
+                      </View>
+                      {/* <Text style={styles.itemContent}>{item.content}</Text> */}
                     </View>
                   )
                 })
               }
             </View>
           </View>
-          <TouchableOpacity style={styles.button}><Text style={styles.btnText}>转让娱乐宝</Text></TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -74,12 +97,19 @@ const styles = StyleSheet.create({
     height: px2p(225),
     backgroundColor: 'red',
     justifyContent: 'flex-end',
-    paddingBottom: px2p(42)
+    paddingBottom: px2p(42),
+    alignItems: 'center'
   },
   headerText: {
     color: '#FFF6DA',
     fontWeight: '500',
     textAlign: 'center'
+  },
+  headerTextBg: {
+    width: px2p(82),
+    borderRadius: px2p(12),
+    borderBottomLeftRadius: 0,
+    backgroundColor: '#FFEBB5'
   },
   mid: {
     height: px2p(60),
@@ -116,8 +146,37 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   main: {
-    marginTop: px2p(6),
-    // top: px2p(-10)
+    flex: 1,
+    marginTop: px2p(8),
+  },
+  mainTop: {
+    flexDirection: 'row',
+    // height: px2p(152),
+    paddingTop: px2p(23),
+    paddingBottom: px2p(17),
+    backgroundColor: '#fff',
+  },
+  mainTopItem: {
+    flex: 1,
+    alignItems: 'center'
+  },
+  title: {
+    color: '#222',
+    fontSize: px2p(15),
+    fontWeight: '900'
+  },
+  subTitle: {
+    fontSize: px2p(10),
+    fontWeight: '500',
+    color: '#999',
+    marginTop: px2p(12),
+    marginBottom: px2p(17)
+  },
+  mainTopItemImg: {
+    width: px2p(60),
+    height: px2p(60),
+    borderRadius: px2p(30),
+    backgroundColor: 'gray'
   },
   mainTitle: {
     color: '#222',
@@ -128,35 +187,37 @@ const styles = StyleSheet.create({
     marginBottom: StyleSheet.hairlineWidth
   },
   mainContent: {
-    flexDirection: 'row',
+    alignItems: 'stretch',
+    marginTop: px2p(8)
   },
   item: {
-    width: px2p(124),
-    height: px2p(170),
-    // justifyContent: 'space-between',
-    // paddingTop: px2p(19),
-    // paddingBottom: px2p(24),
-    // marginBottom: px2p(2),
-    alignItems: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    marginBottom: px2p(6),
+    flexDirection: 'row',
+    paddingTop: px2p(14),
+    paddingBottom: px2p(14),
+    alignItems: 'center'
   },
   itemImg: {
-    width: px2p(124),
-    height: px2p(95),
-    backgroundColor: '#333'
+    width: px2p(47),
+    height: px2p(47),
+    backgroundColor: '#333',
+    borderRadius: px2p(24),
+    marginRight: px2p(15),
+    marginLeft: px2p(15)
   },
   itemTitle: {
-    fontWeight: '900',
-    fontSize: px2p(15),
+    fontWeight: '500',
+    fontSize: px2p(14),
     color: '#222',
-    marginTop: px2p(7),
-    marginBottom: px2p(10)
+    marginTop: px2p(6),
+    marginBottom: px2p(12),
+    lineHeight: px2p(13)
   },
   itemSubTitle: {
     fontWeight: '500',
     color: '#999',
-    fontSize: px2p(10),
-    marginBottom: px2p(5)
+    fontSize: px2p(11),
   },
   itemContent: {
     fontWeight: '500',

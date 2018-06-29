@@ -5,6 +5,7 @@ import Collection from './pages/Collection'
 import MyAsset from './pages/MyAsset'
 import MyYlb from './pages/MyYlb'
 import Points from './pages/Points'
+import Feedback from './pages/Feedback'
 import {common} from "./styles";
 import {px2dp, px2p} from "./utils";
 import {img} from './config/image'
@@ -56,6 +57,7 @@ export default {
         screen: MyYlb,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '我的娱乐宝'})
     },
+
     Points: {
         screen: Points,
         navigationOptions: (navigation) => ({
@@ -68,6 +70,7 @@ export default {
             headerRight: (<TouchableOpacity><Text style={{color: '#fff', marginRight: px2p(13), fontSize: px2p(14)}}>积分介绍</Text></TouchableOpacity>)
         })
     },
+
     Sign:{
         screen:Sign,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '注册'})
@@ -107,6 +110,11 @@ export default {
     Invoice:{
         screen:Invoice,
         navigationOptions:Object.assign({},common.defaultHeader, {title: '发票助手',mode:'card'})
+    },
+    Feedback: {
+        screen: Feedback,
+        navigationOptions: Object.assign({}, common.defaultHeader, {title: '意见反馈'})
+
     }
 }
 /*
