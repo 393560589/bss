@@ -14,14 +14,13 @@ const styles = StyleSheet.create({
     marginBottom: px2p(6)
   },
   goodImage: {
-    backgroundColor: common.gary_9,
-    height: px2p(175)
+    height: px2p(175),
+    width: px2p(375)
   },
   activityImage: {
     position: 'absolute',
     top: px2p(17),
     left: px2p(25),
-    backgroundColor: 'red',
     width: px2p(33),
     height: px2p(33)
   },
@@ -51,7 +50,6 @@ const styles = StyleSheet.create({
   goodAmount: {
     color: common.gary_9,
     fontSize: px2p(11),
-    // textAlignVertical: 'center'
   },
   button: {
     height: px2p(32),
@@ -77,27 +75,10 @@ const styles = StyleSheet.create({
 })
 
 export default function({ item }) {
-  const testData = [
-    {
-      key: 1,
-      style: {
-        backgroundColor: 'red'
-      }
-    },
-    {
-      key: 2
-    },
-    {
-      key: 3,
-      style: {
-        backgroundColor: 'green'
-      }
-    }
-  ]
   return (
     <View style={styles.container}>
-      <Image style={styles.goodImage}/>
-      <Image style={styles.activityImage}/>
+      <Image style={styles.goodImage} source={item.goodImage}/>
+      <Image style={styles.activityImage} source={item.activityImage}/>
       <Text style={styles.goodName}>{item.name}</Text>
       <View style={styles.bottomContainer}>
         <View style={styles.bottomItem}>
@@ -105,7 +86,7 @@ export default function({ item }) {
           <Text style={styles.goodAmount}>已售{item.sold}</Text>
         </View>
         <View style={styles.bottomItem}>
-          <WhoBought data={testData}/>
+          <WhoBought data={item.people}/>
           <Button
             style={[styles.button, styles.bottomItem]}
             onClick={item.onBtnPress}>
