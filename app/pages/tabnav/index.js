@@ -8,7 +8,7 @@ import {
 
 
 import {
-    StackNavigator,TabBarBottom,TabNavigator,NavigationActions,addNavigationHelpers
+    createStackNavigator, createBottomTabNavigator
 } from 'react-navigation'
 
 import {connect} from 'react-redux'
@@ -25,14 +25,16 @@ import User from '../User' // 用户
 import Page from '../../router'
 
 
-const YuTab = TabNavigator(
+const YuTab = createBottomTabNavigator(
     {
 
         Home:{
             screen:Home,
-            navigationOptions:({navigation})=>({
-                header:null,
-                tabBarLabel: "首页",
+            navigationOptions: {
+                header: {
+                    visible: false
+                },
+                title: "首页",
                 headerBackTitle: null,
                 tabBarIcon: ({ tintColor }) => (
                     <Image
@@ -44,12 +46,12 @@ const YuTab = TabNavigator(
                         }
                     />
                 )
-            })
+            }
         },
         Recommend:{
             screen:Recommend,
             navigationOptions:({navigation})=>({
-                headerTitle: "推荐",
+                // headerTitle: "推荐",
                 header:null,
                 tabBarLabel: "推荐",
                 headerBackTitle: null,
@@ -123,8 +125,8 @@ const YuTab = TabNavigator(
         },
     },{
         initailRouteName:'User',
-        tabBarComponent:TabBarBottom,
-        tabBarPosition:'bottom',  // 位置 底部
+        // tabBarComponent:TabBarBottom,
+        // tabBarPosition:'bottom',  // 位置 底部
         swipeEnabled:true,  //  是否允许在标签页之间滑动
         animationEnabled:true, // 是否在更改标签时显示动画
         lazy:true , // 懒加载  默认false
@@ -148,9 +150,14 @@ const YuTab = TabNavigator(
         }
     }
 )
-export const AppNavigator = StackNavigator(
+export const AppNavigator = createStackNavigator(
     {
-        Main:{screen:YuTab},
+        Main:{
+            screen:YuTab,
+            navigationOptions: {
+                header: null
+            }
+        },
         ...Page
     },
     {
@@ -177,9 +184,6 @@ class Main extends PureComponent {
         );
     }
 }
-export function routerReducer(state, action = {}) {
-    console.log(state,action)
-    return AppNavigator.router.getStateForAction(action, state)
-}
+
 
 export default Main

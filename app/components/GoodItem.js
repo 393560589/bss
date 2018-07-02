@@ -1,20 +1,20 @@
 import React from 'react'
 import { StyleSheet, View, Text, Image } from 'react-native'
-import Accordion from './Accordion';
+import WhoBought from './WhoBought';
 import { Button } from 'antd-mobile-rn'
-import { px2p } from '../../../utils';
-import { common } from '../../../styles';
+import { px2p } from '../utils';
+import { common } from '../styles';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: common.fff,
     paddingLeft: px2p(10),
     paddingRight: px2p(10),
     paddingBottom: px2p(10),
     marginBottom: px2p(6)
   },
   goodImage: {
-    backgroundColor: '#999',
+    backgroundColor: common.gary_9,
     height: px2p(175)
   },
   activityImage: {
@@ -49,8 +49,9 @@ const styles = StyleSheet.create({
     marginRight: px2p(20)
   },
   goodAmount: {
-    color: '#999',
-    fontSize: px2p(11)
+    color: common.gary_9,
+    fontSize: px2p(11),
+    // textAlignVertical: 'center'
   },
   button: {
     height: px2p(32),
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     marginLeft: px2p(15)
   },
   btnText: {
-    color: '#fff'
+    color: common.fff
   },
   users: {
     flexDirection: 'row',
@@ -104,11 +105,12 @@ export default function({ item }) {
           <Text style={styles.goodAmount}>已售{item.sold}</Text>
         </View>
         <View style={styles.bottomItem}>
-          {/* <View style={styles.users}>
-            <Image style={styles.user}/>
-          </View> */}
-          <Accordion data={testData}/>
-          <Button style={[styles.button, styles.bottomItem]}><Text style={styles.btnText}>去购买</Text></Button>
+          <WhoBought data={testData}/>
+          <Button
+            style={[styles.button, styles.bottomItem]}
+            onClick={item.onBtnPress}>
+            <Text style={styles.btnText}>{item.btnText}</Text>
+          </Button>
         </View>
       </View>
     </View>

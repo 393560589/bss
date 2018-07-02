@@ -8,7 +8,7 @@ import SetUser from '../../models/setuser'
 import routerModel from '../../models/router'
 
 const app = dva({
-    models:[routerModel,Home,Login,SetUser],
+    models:[Home,Login,SetUser],
     onError(e){
         console.log('Error',e)
     }
