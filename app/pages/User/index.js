@@ -58,12 +58,12 @@ export default class App extends PureComponent {
             this.setState({isRefreshing: false});
         }, 2000);
     }
-    _onPressButton(){
+    onPushPage(){
         console.log(1)
     }
-    onPushPage(type){
+    onPushPage(page){
 
-        this.props.navigation.navigate(type)
+        this.props.navigation.navigate(page)
     }
     render() {
         return (
@@ -122,7 +122,7 @@ export default class App extends PureComponent {
                                 orderlist.map((item,index)=>{
                                     return (
                                         <TouchableHighlight
-                                            onPress={this._onPressButton}
+                                            onPress={()=>this.onPushPage(item.page)}
                                             underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
@@ -136,7 +136,7 @@ export default class App extends PureComponent {
                             }
                             <Image style={{height:px2dp(42),width:px2dp(3)}} source={user.line}/>
                             <TouchableHighlight
-                                onPress={this._onPressButton}
+                                onPress={this.onPushPage}
                                 underlayColor={common.f1}
                                 activeOpacity={0.9}
                             >
@@ -152,7 +152,7 @@ export default class App extends PureComponent {
                                 zclist.map((item,index)=>{
                                     return (
                                         <TouchableHighlight
-                                            onPress={this._onPressButton}
+                                            onPress={()=>this.onPushPage(item.page)}
                                             underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
@@ -166,7 +166,7 @@ export default class App extends PureComponent {
                             }
                             <Image style={{height:px2dp(42),width:px2dp(3)}} source={user.line}/>
                             <TouchableHighlight
-                                onPress={this._onPressButton}
+                                onPress={()=>this.onPushPage('MyAsset')}
                                 underlayColor={common.f1}
                                 activeOpacity={0.9}
                             >
@@ -190,7 +190,7 @@ export default class App extends PureComponent {
                                 yslist.map((item,index)=>{
                                     return (
                                         <TouchableHighlight
-                                            onPress={this._onPressButton}
+                                            onPress={this.onPushPage}
                                             underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
@@ -209,7 +209,7 @@ export default class App extends PureComponent {
                                 h5list.map((item,index)=>{
                                     return (
                                         <TouchableHighlight
-                                            onPress={this._onPressButton}
+                                            onPress={this.onPushPage}
                                             underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
