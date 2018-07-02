@@ -28,4 +28,11 @@ export const lg={
 };
 export const img={
     arrow:require('../image/common/reture.png')
+};
+export const set={
+    bj:require('../image/set/Icon_bj.png'),
+    sc:require('../image/set/Icon_sc.png'),
+    checked:require('../image/set/Icon_gx.png'),
+    nocheck:require('../image/set/Icon_wgx.png'),
+    Icons:require('../image/set/Icon_xy.png')
 }

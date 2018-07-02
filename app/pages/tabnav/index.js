@@ -72,6 +72,7 @@ const YuTab = TabNavigator(
                 headerTitle: "积分应用",
                 tabBarLabel: "积分应用",
                 headerBackTitle: null,
+                headerPressColorAndroid:true,
                  tabBarIcon: ({ tintColor }) => (
                      <Image
                          style={{width:px2dp(25),height:px2dp(25)}}
@@ -156,6 +157,7 @@ export const AppNavigator = StackNavigator(
         initialRouteName:'Main',
         headerMode:'screen',
         mode:'card',
+
         navigationOptions:{
             cardStack:{
                 gestruesEnabled:false  // ios 上为true， 安卓 false 手势关此屏幕

@@ -16,6 +16,7 @@ import { common } from '../../styles';
 
 @connect(({ Home }) => ({ ...Home }))
 class Home extends PureComponent {
+
   constructor(props) {
     super(props)
     this.testHomeData = [
@@ -62,7 +63,6 @@ class Home extends PureComponent {
       }
     ]
   }
-
   componentDidMount() {
     console.log(this.props)
   }

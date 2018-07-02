@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{PureComponent} from 'react';
 import {
     StyleSheet,
     Text,
@@ -9,13 +9,13 @@ import {
     TouchableHighlight,
     RefreshControl,
     ScrollView,
-    SafeAreaView
 } from 'react-native';
 
 import {deviceWidth} from '../../styles/common'
 import {user} from '../../config/image'
 import {px2dp} from "../../utils";
 import {common} from '../../styles'
+import {connect} from "../../utils/dva";
 
 const orderlist=[
     {img:user.dfk, text:'待付款'},
@@ -39,10 +39,15 @@ const h5list=[
     {img:user.yqyj,text:'邀请有奖'},
     {img:user.gfylb,text:'瓜分娱乐宝'},
 ]
-export default class App extends React.Component {
+
+
+@connect()
+export default class App extends PureComponent {
+    constructor(props){
+        super(props)
+    }
     state={
         isRefreshing:false,
-
     }
     onRefresh(){
         this.setState({isRefreshing: true});
@@ -53,8 +58,8 @@ export default class App extends React.Component {
             this.setState({isRefreshing: false});
         }, 2000);
     }
-    _onPressButton(){
-        console.log(1)
+    onPushPage(page){
+        this.props.navigation.navigate(page)
     }
     render() {
         return (
@@ -63,8 +68,8 @@ export default class App extends React.Component {
                             <RefreshControl
                                 refreshing={this.state.isRefreshing}
                                 onRefresh={this.onRefresh.bind(this)}  //(()=>this.onRefresh)或者通过bind来绑定this引用来调用方法
-                                tintColor='white'
-                                titleColor="white"
+                                tintColor='#333'
+                                titleColor="#333"
                                 title= {this.state.isRefreshing? '刷新中....':'下拉刷新'}
                             />
                         }
@@ -74,12 +79,21 @@ export default class App extends React.Component {
                         style={[{width:deviceWidth,height:px2dp(157),paddingTop:px2dp(50)}]}
                         source={user.topbanner}
                     >
-                        <Image
+                        <TouchableOpacity
+                            activeOpacity={0.9}
                             style={styles.User_top_img}
-                            source={user.sz}
-                        />
+                            onPress={()=>this.onPushPage('Settings')}
+                        >
+                            <Image
+                                style={{width:px2dp(18),
+                                    height:px2dp(18),}}
+                                source={user.sz}
+                            />
+                        </TouchableOpacity>
+
                         <View style={styles.User_top}>
                             <TouchableOpacity
+                                onPress={()=>this.onPushPage('Login')}
                                 activeOpacity={0.9}
                             >
                                 <Image
@@ -88,7 +102,7 @@ export default class App extends React.Component {
                                 />
                             </TouchableOpacity>
                             <View style={styles.User_top_view}>
-                                <Text style={[common.font_h1,{color:common.fff}]}>
+                                <Text onPress={()=>this.onPushPage('Login')} style={[common.font_h1,{color:common.fff}]}>
                                     点击登录
                                 </Text>
                                 <Text style={[common.font_h3,{color:common.fff}]}>
@@ -104,7 +118,7 @@ export default class App extends React.Component {
                                 orderlist.map((item,index)=>{
                                     return (
                                         <TouchableHighlight
-                                            onPress={this._onPressButton}
+                                            onPress={()=>this.onPushPage(item.page)}
                                             underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
@@ -118,7 +132,7 @@ export default class App extends React.Component {
                             }
                             <Image style={{height:px2dp(42),width:px2dp(3)}} source={user.line}/>
                             <TouchableHighlight
-                                onPress={this._onPressButton}
+                                onPress={this.onPushPage}
                                 underlayColor={common.f1}
                                 activeOpacity={0.9}
                             >
@@ -134,7 +148,7 @@ export default class App extends React.Component {
                                 zclist.map((item,index)=>{
                                     return (
                                         <TouchableHighlight
-                                            onPress={this._onPressButton}
+                                            onPress={()=>this.onPushPage(item.page)}
                                             underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
@@ -148,7 +162,7 @@ export default class App extends React.Component {
                             }
                             <Image style={{height:px2dp(42),width:px2dp(3)}} source={user.line}/>
                             <TouchableHighlight
-                                onPress={this._onPressButton}
+                                onPress={()=>this.onPushPage('MyAsset')}
                                 underlayColor={common.f1}
                                 activeOpacity={0.9}
                             >
@@ -172,7 +186,7 @@ export default class App extends React.Component {
                                 yslist.map((item,index)=>{
                                     return (
                                         <TouchableHighlight
-                                            onPress={this._onPressButton}
+                                            onPress={this.onPushPage}
                                             underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
@@ -191,7 +205,7 @@ export default class App extends React.Component {
                                 h5list.map((item,index)=>{
                                     return (
                                         <TouchableHighlight
-                                            onPress={this._onPressButton}
+                                            onPress={this.onPushPage}
                                             underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>
@@ -244,8 +258,7 @@ const styles = StyleSheet.create({
         position:'absolute',
         right:px2dp(27),
         top:px2dp(25),
-        width:px2dp(18),
-        height:px2dp(18),
+
     },
     User_top:{
         marginLeft:px2dp(25),
