@@ -43,7 +43,9 @@ class Home extends PureComponent {
         price: 14.5,
         sold: 1000,
         people: ['1', '2'],
-        name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞'
+        name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞',
+        btnText: '去购买',
+        onBtnPress: () => { console.log(this.testHomeData) }
       },
       {
         key: 2,
@@ -51,7 +53,9 @@ class Home extends PureComponent {
         price: 14.5,
         sold: 1000,
         people: ['1', '2'],
-        name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞'
+        name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞',
+        btnText: '去购买',
+        onBtnPress: () => {console.log(123)}
       },
       {
         key: 3,
@@ -59,7 +63,9 @@ class Home extends PureComponent {
         price: 14.5,
         sold: 1000,
         people: ['1', '2'],
-        name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞'
+        name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞',
+        btnText: '去购买',
+        onBtnPress: () => {console.log(1233)}
       }
     ]
   }
