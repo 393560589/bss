@@ -2,8 +2,8 @@ import React from 'react'
 import { StyleSheet, View, Text, Image } from 'react-native'
 import WhoBought from './WhoBought';
 import { Button } from 'antd-mobile-rn'
-import { px2p } from '../../../utils';
-import { common } from '../../../styles';
+import { px2p } from '../utils';
+import { common } from '../styles';
 
 const styles = StyleSheet.create({
   container: {
