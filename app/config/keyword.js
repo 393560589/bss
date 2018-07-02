@@ -29,4 +29,7 @@ export const API = {
     detaillist:'goods/detaillist', // 购买记录
     jifen:'papers/paperlist', // 积分列表
     take:'order/takeover' // 确定收货
+};
+export const StringName={
+    USER_INFO:'USERINFO'  //储存登录字段，加密用
 }

@@ -1,10 +1,14 @@
 import * as servers from '../servers'
+import { StorageUtil } from '../utils/storage'
+import {StringName} from '../config/keyword'
+import { NavigationActions } from 'react-navigation'
 
 export default {
     namespace: 'login',
     state: {
         data:{},
-        isPassword:true
+        isPassword:true,
+        islogin:false,
     },
     reducers: {
         /**
@@ -24,7 +28,14 @@ export default {
        *dologin({payload},{call,put}){
            const res = yield call(servers.login,payload);
            if (!res) return;
+           if(res.code === 0){
+               StorageUtil.save(StringName.USER_INFO,res.data);
+               put(NavigationActions.back())
+           }
+
            console.log(res);
+           console.log(NavigationActions);
+
        }
     },
 }

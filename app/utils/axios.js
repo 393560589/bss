@@ -9,8 +9,9 @@ import {
 var DeviceInfo = require('react-native-device-info');
 
 import axios from 'axios';
-
-
+import { StorageUtil } from "./storage";
+import { StringName } from '../config/keyword'
+var Buffer = require('buffer').Buffer;
 /**
  * 公用get请求
  * @param url       接口地址
@@ -38,16 +39,21 @@ const instance = axios.create({
 })
 
 //添加请求拦截器
-/*instance.interceptors.request.use(
-    config => {
-        if (instance.Authorization != '') {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-            config.headers.Authorization = '';
-        }
+
+instance.interceptors.request.use(
+    async config => {
+        let data = await StorageUtil.get(StringName.USER_INFO);
+        if(!data) return config;
+        console.log(data);
+        let base = new Buffer(data.tokenId+':'+data.token).toString('base64');
+        config.headers.Authorization ='Basic ' + base;
         return config;
     },
     err => {
         return Promise.reject(err);
-    });*/
+    });
+
+
 
 
 

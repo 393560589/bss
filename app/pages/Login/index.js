@@ -44,7 +44,6 @@ class Login extends PureComponent{
             phone:this.props.data.phone,
             code:this.props.form.getFieldsValue().number
         }
-
         dispatch({
             type:'login/dologin',
             payload:data
