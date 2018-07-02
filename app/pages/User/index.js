@@ -58,11 +58,7 @@ export default class App extends PureComponent {
             this.setState({isRefreshing: false});
         }, 2000);
     }
-    onPushPage(){
-        console.log(1)
-    }
     onPushPage(page){
-
         this.props.navigation.navigate(page)
     }
     render() {
