@@ -1,5 +1,6 @@
 import Storage from 'react-native-storage'
 import {AsyncStorage} from 'react-native'
+//修改原来的异步储存方式改写成同步储存
 
 let storage = new Storage({
     size:1000,
@@ -14,62 +15,47 @@ let storage = new Storage({
     // 或是写到另一个文件里，这里require引入
 
 });
-function empty(){}
 
-export default AsyncStorageUtil = {
+export class StorageUtil{
+    static get(key){
+       return storage.getItem(key).then(value=>{
+           if(value && value != ''){
+               const jsonValue = JSON.parse(value);
+               return jsonValue
+           }else{
+               return null
+           }
+       }).catch(()=>{
+           return null
+       })
+    }//读
+    static save(key,value){
+        return storage.setItem(key,JSON.stringify(value))
+    }//存
+    static update(key,value){
+        return storage.get(key).then(item=>{
+            value = typeof value === 'string' ? value: Object.assign({},item,value);
+            return storage.setItem(key,JSON.stringify(value))
+        })
+    }//更新
+    static delete(key){
+        return storage.removeItem(key)
+    }  // 删除key 对应json值
+    static clear(){
+        return storage.clear()
+    }//删除所有数据  一般用作清除缓存
+}
 
-    /**
-     * 读取本地数据
-     * @params key 保存关键字
-     * @params callback 成功获取数据后的回调函数
-     * @params toLoginFunc 获取用户登录信息没存在或失效时，执行的回调函数
-     */
-    load(key, callback, toLoginFunc = empty){
-        let that = this;
 
-        storage.load({
-            key: key
-        }).then(ret => {
-            callback(ret);
-        }).catch(err => {
-            switch (err.name) {
-                case 'NotFoundError':
-                    console.log('未找到数据');
-                    toLoginFunc();
-                    break;
-                case 'ExpiredError':
-                    console.log('数据过期');
-                    toLoginFunc();
-                    break;
-            }
-        });
-    },
-
-    /**
-     * 保存值
-     * @param key 关键字
-     * @param data 要保存的数据data => {city: ''}
-     */
-    save(key, data){
-        storage.save({
-            key: key,
-            data: data
-        });
-    },
-
-    /**
-     * 删除本地数据
-     * @params key 保存关键字
-     */
-    remove(key){
-        storage.remove({
-            key: key
-        });
+// 同步储存使用方法案例
+/*
+async getStorage() {
+    let logic = await super.get(logic);
+    if (!logic) {
+        // 如果是首次登录， 跳转到引导界面
+        name = 'Guide';
+        component = Guide
     }
+}
+*/
 
-};
-
-
-
-
-global.storage = storage;

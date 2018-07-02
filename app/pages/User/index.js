@@ -102,9 +102,13 @@ export default class App extends PureComponent {
                                 />
                             </TouchableOpacity>
                             <View style={styles.User_top_view}>
-                                <Text onPress={()=>this.onPushPage('Login')} style={[common.font_h1,{color:common.fff}]}>
-                                    点击登录
-                                </Text>
+                                <TouchableOpacity
+                                    onPress={()=>this.onPushPage('Login')}
+                                >
+                                    <Text style={[common.font_h1,{color:common.fff}]}>
+                                        点击登录
+                                    </Text>
+                                </TouchableOpacity>
                                 <Text style={[common.font_h3,{color:common.fff}]}>
                                     欢迎来到小娱商城
                                 </Text>
