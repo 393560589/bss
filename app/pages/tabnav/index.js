@@ -11,6 +11,12 @@ import {
     createStackNavigator, createBottomTabNavigator
 } from 'react-navigation'
 
+import {
+    reduxifyNavigator,
+    createReactNavigationReduxMiddleware,
+    createNavigationReducer,
+} from 'react-navigation-redux-helpers'
+
 import {connect} from 'react-redux'
 import Loading from '../../components/loading'
 //import { tabs } from '../../config/image'
@@ -173,14 +179,29 @@ export const AppNavigator = createStackNavigator(
     }
 )
 
+
 @connect(({ router }) => ({ router }))
+
+
+export const routerReducer = createNavigationReducer(AppNavigator)
+
+export const routerMiddleware = createReactNavigationReduxMiddleware(
+  'root',
+  state => state.router
+)
+
+const App = reduxifyNavigator(AppNavigator, 'root')
+
+@connect(({ app, router }) => ({ app, router }))
+
 
 class Main extends PureComponent {
     render() {
         const { app, dispatch, router } = this.props;
         //if (app.loading) return <Loading />;
         return (
-            <AppNavigator dispatch={dispatch} state={router} />
+            <App dispatch={dispatch} state={router}/>
+
         );
     }
 }

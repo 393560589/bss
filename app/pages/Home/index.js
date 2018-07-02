@@ -16,7 +16,7 @@ import { common } from '../../styles';
 
 @connect(({ Home }) => ({ ...Home }))
 class Home extends PureComponent {
-
+  static navigationOptions = { header: null };
   constructor(props) {
     super(props)
     this.testHomeData = [
@@ -45,7 +45,7 @@ class Home extends PureComponent {
         people: ['1', '2'],
         name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞',
         btnText: '去购买',
-        onBtnPress: () => { console.log(this.testHomeData) }
+        onBtnPress: () => { this.props.navigation.navigate('MyYlb') }
       },
       {
         key: 2,
@@ -55,7 +55,7 @@ class Home extends PureComponent {
         people: ['1', '2'],
         name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞',
         btnText: '去购买',
-        onBtnPress: () => {console.log(123)}
+        onBtnPress: () => {this.test()}
       },
       {
         key: 3,
@@ -71,6 +71,17 @@ class Home extends PureComponent {
   }
   componentDidMount() {
     console.log(this.props)
+  }
+
+  test() {
+    const { dispatch, navigation } = this.props
+    dispatch({
+      type: 'login/test',
+      payload: {
+        navigation,
+        params: 1
+      }
+    })
   }
 
   render() {
