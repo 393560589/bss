@@ -7,7 +7,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import {connect} from 'react-redux'
-import {px2dp} from "../../utils";
+import {px2dp,NavigationActions} from "../../utils";
 import {common,deviceWidth} from "../../styles";
 import { List,InputItem,Button } from 'antd-mobile-rn'
 import { createForm } from 'rc-form'
@@ -19,9 +19,7 @@ class Login extends PureComponent{
     constructor(props){
         super(props)
     }
-    componentDidMount(){
-        console.log(this.props)
-    }
+
     getCode(){
         const {dispatch} = this.props;
         dispatch({
@@ -135,7 +133,6 @@ class Login extends PureComponent{
                             </List>
                             <View style={styles.lg_btn_wrap}>
                                 <Button
-                                    onClick={()=>this.onlogin()}
                                     style={styles.lg_btn} type={'primary'}>登录</Button>
                                 <Text
                                     onPress={()=>this.props.navigation.navigate('Fpassword')}

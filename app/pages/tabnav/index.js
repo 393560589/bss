@@ -8,7 +8,7 @@ import {
 
 
 import {
-    StackNavigator,TabNavigator,TabBarBottom
+    StackNavigator,TabBarBottom,TabNavigator,NavigationActions,addNavigationHelpers
 } from 'react-navigation'
 
 import {connect} from 'react-redux'
@@ -166,17 +166,20 @@ export const AppNavigator = StackNavigator(
     }
 )
 
-@connect(({ app, router }) => ({ app, router }))
+@connect(({ router }) => ({ router }))
 
 class Main extends PureComponent {
     render() {
         const { app, dispatch, router } = this.props;
-        console.log(this.props);
         //if (app.loading) return <Loading />;
         return (
-            <AppNavigator dispatch={dispatch} state={router}/>
+            <AppNavigator dispatch={dispatch} state={router} />
         );
     }
+}
+export function routerReducer(state, action = {}) {
+    console.log(state,action)
+    return AppNavigator.router.getStateForAction(action, state)
 }
 
 export default Main

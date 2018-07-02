@@ -1,7 +1,18 @@
 import * as servers from '../servers'
 import { StorageUtil } from '../utils/storage'
 import {StringName} from '../config/keyword'
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions } from '../utils'
+
+
+const actions = [
+    NavigationActions.BACK,
+    NavigationActions.INIT,
+    NavigationActions.NAVIGATE,
+    NavigationActions.RESET,
+    NavigationActions.SET_PARAMS,
+    NavigationActions.URI
+]
+
 
 export default {
     namespace: 'login',
@@ -30,11 +41,9 @@ export default {
            if (!res) return;
            if(res.code === 0){
                StorageUtil.save(StringName.USER_INFO,res.data);
-               put(NavigationActions.back())
-           }
 
-           console.log(res);
-           console.log(NavigationActions);
+               yield put(NavigationActions.back())
+           }
 
        }
     },

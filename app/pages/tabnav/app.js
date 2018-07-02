@@ -5,10 +5,10 @@ import createLoading from 'dva-loading'
 import Home from '../../models/Home'
 import Login from '../../models/login'
 import SetUser from '../../models/setuser'
-
+import routerModel from '../../models/router'
 
 const app = dva({
-    models:[Home,Login,SetUser],
+    models:[routerModel,Home,Login,SetUser],
     onError(e){
         console.log('Error',e)
     }
