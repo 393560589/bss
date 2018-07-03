@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { px2p } from '../../../utils'
+import { common } from '../../../styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
     paddingRight: px2p(17),
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: common.fff
   },
   entry: {
     alignItems: 'center'
@@ -20,12 +21,18 @@ const styles = StyleSheet.create({
     width: px2p(30),
     height: px2p(30),
     marginBottom: px2p(13),
-    backgroundColor: 'gray'
+  },
+  tag: {
+    width: px2p(28),
+    height: px2p(16),
+    position: 'absolute',
+    right: px2p(-14),
+    top: px2p(-8)
   },
   text: {
     textAlign: 'center',
     fontWeight: '500',
-    color: '#666',
+    color: common.gary_6,
     fontSize: px2p(12)
   }
 })
@@ -36,7 +43,10 @@ export default function Entries(props) {
       {
         props.data.map(entry => (
           <View style={styles.entry} key={entry.name}>
-            <Image style={styles.image}/>
+            <View>
+              <Image style={styles.image} source={entry.image} resizeMode='contain'/>
+              <Image style={styles.tag} source={entry.tag} resizeMode='contain'/>
+            </View>
             <Text style={styles.text}>{entry.name}</Text>
           </View>
         ))

@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     width: px2p(24),
     height: px2p(24),
     borderRadius: px2p(12),
-    backgroundColor: 'blue'
   }
 })
 
@@ -39,7 +38,11 @@ export default class Accordion extends Component {
               ? px2p(24 * index - (0.2 * index * 24))
               : 0
             return (
-              <Image key={item.key} style={[styles.item, item.style, {right}]}/>
+              <Image
+                key={item.key}
+                style={[styles.item, item.style, {right}]}
+                source={item.image}
+              />
             )
           })
         }
