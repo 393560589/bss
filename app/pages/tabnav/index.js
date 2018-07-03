@@ -180,7 +180,6 @@ export const AppNavigator = createStackNavigator(
 )
 
 
-@connect(({ router }) => ({ router }))
 
 
 export const routerReducer = createNavigationReducer(AppNavigator)

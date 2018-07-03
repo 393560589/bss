@@ -23,15 +23,15 @@ const orderlist=[
     {img:user.ywc,text:'已完成'},
 ];
 const zclist=[
-    {data:1000.00,text:'娱乐宝'},
-    {data:10000.02,text:'积分'},
-    {data:200.09,text:'好友'},
+    {data:1000.00,text:'娱乐宝',page:'MyYlb'},
+    {data:10000.02,text:'积分',page:'Points'},
+    {data:200.09,text:'好友',page:'Points'},
 ]
 const yslist=[
-    {img:user.wdsc,text:'我的收藏'},
-    {img:user.yjfk,text:'意见反馈'},
-    {img:user.cjwt,text:'常见问题'},
-    {img:user.kfzx,text:'客服中心'},
+    {img:user.wdsc,text:'我的收藏',page:'Collection'},
+    {img:user.yjfk,text:'意见反馈',page:'Feedback'},
+    {img:user.cjwt,text:'常见问题',page:'Collection'},
+    {img:user.kfzx,text:'客服中心',page:'Collection'},
 ];
 const h5list=[
     {img:user.jfrw,text:'积分任务'},
@@ -48,6 +48,10 @@ export default class App extends PureComponent {
     }
     state={
         isRefreshing:false,
+    }
+
+    componentDidMount(){
+        console.log(1)
     }
     onRefresh(){
         this.setState({isRefreshing: true});
@@ -190,7 +194,7 @@ export default class App extends PureComponent {
                                 yslist.map((item,index)=>{
                                     return (
                                         <TouchableHighlight
-                                            onPress={this.onPushPage}
+                                            onPress={()=>this.onPushPage(item.page)}
                                             underlayColor={common.f1}
                                             activeOpacity={0.9}
                                             key={index}>

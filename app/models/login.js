@@ -1,17 +1,9 @@
 import * as servers from '../servers'
 import { StorageUtil } from '../utils/storage'
 import {StringName} from '../config/keyword'
-import { NavigationActions } from '../utils'
+import { NavigationActions,StackActions } from '../utils'
 
 
-const actions = [
-    NavigationActions.BACK,
-    NavigationActions.INIT,
-    NavigationActions.NAVIGATE,
-    NavigationActions.RESET,
-    NavigationActions.SET_PARAMS,
-    NavigationActions.URI
-]
 
 
 export default {
@@ -41,8 +33,10 @@ export default {
            if (!res) return;
            if(res.code === 0){
                StorageUtil.save(StringName.USER_INFO,res.data);
-
-               yield put(NavigationActions.back())
+               console.log(NavigationActions)
+               yield put(StackActions.pop({
+                  n:1
+               }))
            }
 
        }

@@ -5,8 +5,6 @@ import Home from '../../models/Home'
 import Login from '../../models/login'
 import SetUser from '../../models/setuser'
 
-import routerModel from '../../models/router'
-
 import Router, { routerMiddleware, routerReducer } from './'
 
 

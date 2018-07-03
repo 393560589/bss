@@ -55,7 +55,7 @@ export default class Collection extends Component {
         <Image style={styles.img}/>>
         <View style={styles.itemRight}>
           <Text style={styles.name}>{name}</Text>
-          <View style={{flexDirection: '·row', justifyContent: 'space-between', alignItems: 'flex-end'}}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end'}}>
             <Text style={styles.price}>¥{price}</Text>
             <TouchableOpacity style={styles.cancelBtn}><Text style={styles.btnText}>取消关注</Text></TouchableOpacity>
           </View>
