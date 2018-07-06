@@ -6,11 +6,13 @@ import {px2dp} from "../utils";
 export const common={
     f1:'#f1f1f1',
     fff:'#fff',
+    gray_bg: '#E6E6ED',
     gary_e:'#e5e5e5',
     gary_9:'#999',
     gary_6:'#666',
     gary_3:'#333',
     gary_2:'#222',
+    gray_1: '#111',
     gray_back:'#313131',
     theme:'#E02521',
     theme_2: '#DE0E23',
@@ -35,7 +37,8 @@ export const common={
         headerStyle: {
             backgroundColor: '#fff',
             elevation: 0,
-            shadowOpacity: 0
+            shadowOpacity: 0,
+            borderBottomWidth: 0
         }
     }
 };
