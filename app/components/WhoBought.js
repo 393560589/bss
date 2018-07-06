@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Image, Animated, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native'
 import { px2p } from '../utils'
 
 const styles = StyleSheet.create({

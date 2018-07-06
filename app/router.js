@@ -19,6 +19,26 @@ import SetAddress from "./pages/User/setAddress";
 import AddAddress from './pages/User/addaddress'
 import AboutUS from "./pages/User/aboutus";
 import Invoice from "./pages/User/invoice";
+import GoodItem from './pages/GoodDetail'
+import ImageViewer from './pages/GoodDetail/components/ImageViewer';
+import GoodDetailInfo from './pages/GoodDetailInfo';
+
+
+function onHeaderRightClick() {
+    let isMenuVisible = false
+    return function (navigation, key) {
+        isMenuVisible = !isMenuVisible
+        navigation.navigation.setParams({
+            isMenuVisible,
+            key
+        })
+    }
+}
+
+const click = onHeaderRightClick()
+
+const headerRightDot = (navigation, key) => (<TouchableOpacity onPress={() => click(navigation)} style={{padding: px2p(15)}}><Image source={require('./image/headerRight/Icon_more.png')} style={{width: px2p(24), height: px2p(5)}}/></TouchableOpacity>)
+
 export default {
     Login:{
         screen:Login,
@@ -114,7 +134,37 @@ export default {
     Feedback: {
         screen: Feedback,
         navigationOptions: Object.assign({}, common.defaultHeader, {title: '意见反馈'})
-
+    },
+    GoodItem: {
+        screen: GoodItem,
+        navigationOptions: (navigation) => ({
+            headerTransparent: true,
+            headerStyle: {
+                borderBottomWidth: 0,
+            },
+            headerTintColor: '#313131',
+            shadowOpacity: 0,
+            headerRight: headerRightDot(navigation, 'GoodItem')
+        })
+    },
+    ImageViewer: {
+        screen: ImageViewer,
+        navigationOptions: {
+            header: null
+        }
+    },
+    GoodDetailInfo: {
+        screen: GoodDetailInfo,
+        navigationOptions: (navigation) => ({
+            headerTransparent: true,
+            title: '商品详情',
+            headerStyle: {
+                backgroundColor: common.fff
+            },
+            headerTintColor: '#313131',
+            shadowOpacity: 0,
+            headerRight: headerRightDot(navigation, 'GoodDetailInfo')
+        })
     }
 }
 /*
