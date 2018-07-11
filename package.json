@@ -43,5 +43,6 @@
     "react-navigation": "^2.5.5",
     "react-navigation-redux-helpers": "^2.0.2",
     "react-redux": "5.0.7"
-  }
+  },
+  "proxy":"http://api.xiaoyu518.com/api/"
 }

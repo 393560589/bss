@@ -30,6 +30,7 @@ export default {
                     imageheight:payload.imageheight
                 }
             })
-        }
+        },
     },
+
 }

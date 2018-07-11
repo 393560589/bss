@@ -30,10 +30,11 @@ export default {
        },
        *dologin({payload},{call,put}){
            const res = yield call(servers.login,payload);
+           console.log(res)
            if (!res) return;
-           if(res.code === 0){
+
+           if(res.code == 0){
                StorageUtil.save(StringName.USER_INFO,res.data);
-               console.log(NavigationActions)
                yield put(StackActions.pop({
                   n:1
                }))

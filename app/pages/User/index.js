@@ -41,8 +41,8 @@ const h5list=[
 ]
 
 
-@connect()
-export default class App extends PureComponent {
+@connect(({User})=>({User}))
+export default class Users extends PureComponent {
     constructor(props){
         super(props)
     }
@@ -51,7 +51,10 @@ export default class App extends PureComponent {
     }
 
     componentDidMount(){
-        console.log(1)
+        const {dispatch} = this.props
+        dispatch({
+            type:'User/userInfo'
+        })
     }
     onRefresh(){
         this.setState({isRefreshing: true});
