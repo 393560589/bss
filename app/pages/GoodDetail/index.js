@@ -8,40 +8,14 @@ import AddToCart from '../../components/AddToCart'
 import { common } from '../../styles';
 import { px2p } from '../../utils'
 import { connect } from '../../utils/dva';
+import { deviceWidth, deviceHeight } from '../../styles/common';
+import HeaderRightDot from '../../components/HeaderRight';
 
 const styles = StyleSheet.create({
   swiperImage: {
     width: '100%',
     height: '100%',
     resizeMode: Image.resizeMode.contain
-  },
-  headerRight: {
-    position: 'absolute',
-    top: px2p(34),
-    right: px2p(15),
-    width: px2p(125),
-    // height: px2p(217),
-    paddingLeft: px2p(8),
-    paddingRight: px2p(8),
-    paddingTop: px2p(5)
-  },
-  headerRightItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderColor: common.gary_6
-  },
-  headerIcon: {
-    width: px2p(15),
-    height: px2p(15),
-    resizeMode: Image.resizeMode.contain,
-    marginLeft: px2p(14),
-    marginRight: px2p(11)
-  },
-  headerItemText: {
-    lineHeight: px2p(37),
-    color: common.fff,
-    fontSize: px2p(14)
   },
   goodBaseInfo: {
     padding: px2p(10),
@@ -213,111 +187,84 @@ function GoodDetail(props) {
     }
   }
 
-  const data = [
-    {
-      icon: require('../../image/headerRight/Icon_sy.png'),
-      name: '首页',
-      onPress: () => {
-        props.navigation.navigate('Home')
-      }
-    },
-    {
-      icon: require('../../image/headerRight/Icon_spsc.png'),
-      name: '商品收藏'
-    },
-    {
-      icon: require('../../image/headerRight/Icon_yljl.png'),
-      name: '游览记录'
-    }
-  ]
-  
   return (
     <SafeAreaView
       style={{flex: 1}}
       backgroundColor={common.fff}>
-      <ScrollView
-        // height={px2p(600)}
-        backgroundColor={common.gray_bg}
-        onScroll={onScroll}
-        scrollEventThrottle={60}
-        style={{paddingBottom: px2p(30)}}>
-        <Swiper
-          style={{backgroundColor: common.fff}}
-          autoplay
-          height={px2p(375)}
-          paginationStyle={{bottom: px2p(7)}}
-          renderPagination={Pagination}>
-          <TouchableWithoutFeedback onPress={() => props.navigation.navigate('ImageViewer')}>
-            <Image source={require('../../image/home/img_cp1.png')} style={styles.swiperImage}/>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => props.navigation.navigate('ImageViewer')}>
-            <Image source={require('../../image/home/img_cp1.png')} style={styles.swiperImage}/>
-          </TouchableWithoutFeedback>
-        </Swiper>
-        {
-          props.navigation.getParam('isMenuVisible', false)
-            ? <ImageBackground source={require('../../image/headerRight/bg_pptc.png')} style={styles.headerRight} resizeMode='cover'>
-                <View>
-                  {
-                    data.map((item, index) => (
-                      <TouchableOpacity style={styles.headerRightItem} onPress={item.onPress} key={item.name}>
-                        <Image source={item.icon} style={styles.headerIcon}/>
-                        <Text style={styles.headerItemText}>{item.name}</Text>
-                      </TouchableOpacity>
-                    ))
-                  }
-                </View>
-              </ImageBackground>
-            : ''
-        }
-        <View style={styles.goodBaseInfo}>
-          <View style={styles.priceInfoWrapper}>
-            <Text style={styles.price}>$11.22</Text>
-            <Text style={styles.originalPrice}>15.22</Text>
-            <Text style={styles.soldAmount}>已售2000件</Text>
+      {
+        props.navigation.getParam('isMenuVisible', false)
+          ? <HeaderRightDot navigation={props.navigation}/>
+          : ''
+      }
+      <View style={{position: 'absolute', height: deviceHeight, paddingBottom: px2p(30)}}>
+        <ScrollView
+          // height={px2p(600)}
+          backgroundColor={common.gray_bg}
+          onScroll={onScroll}
+          scrollEventThrottle={60}
+          style={{paddingBottom: px2p(30)}}>
+          <Swiper
+            style={{backgroundColor: common.fff}}
+            autoplay
+            height={px2p(375)}
+            paginationStyle={{bottom: px2p(7)}}
+            renderPagination={Pagination}>
+            <TouchableWithoutFeedback onPress={() => props.navigation.navigate('ImageViewer')}>
+              <Image source={require('../../image/home/img_cp1.png')} style={styles.swiperImage}/>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={() => props.navigation.navigate('ImageViewer')}>
+              <Image source={require('../../image/home/img_cp1.png')} style={styles.swiperImage}/>
+            </TouchableWithoutFeedback>
+          </Swiper>
+          <View style={styles.goodBaseInfo}>
+            <View style={styles.priceInfoWrapper}>
+              <Text style={styles.price}>$11.22</Text>
+              <Text style={styles.originalPrice}>15.22</Text>
+              <Text style={styles.soldAmount}>已售2000件</Text>
+            </View>
+            <Text style={styles.goodDesc}>莆田冰清 青梅果酒12度梅子酒350ml(低度甜酒 清爽淡雅 发酵酒 男女皆宜)</Text>
           </View>
-          <Text style={styles.goodDesc}>莆田冰清 青梅果酒12度梅子酒350ml(低度甜酒 清爽淡雅 发酵酒 男女皆宜)</Text>
-        </View>
-        <View style={styles.goodActivityWrapper}>
-          <Text style={styles.goodActivityTitle}>活动</Text>
-          <View style={styles.goodActivityMain}>
-            {
-              props.goodActivity.map((item, index) => (
-                <View style={styles.goodActivity} key={item.name}>
-                  <Text style={styles.activityName}>{item.name}</Text>
-                  <Text style={styles.activityDetail}>{item.detail}</Text>
-                </View>
-              ))
-            }
-          </View>
-        </View>
-        <View style={styles.buyList}>
-          <View style={styles.buyListTitle}>
-            <View style={styles.titleDot}></View>
-            <Text style={styles.goodActivityTitle}>购买记录(233)</Text>
-            <View>iconright</View>
-          </View>
-          <View style={styles.buyListMain}>
-            {
-              props.buyList.map(item => (
-                <View style={styles.buyListItem} key={item.user}>
-                  <View style={styles.buyListUser}>
-                    <Image style={styles.userAvatar}/>
-                    <Text style={styles.userName}>{item.user}</Text>
-                    <Text style={styles.userTime}>{item.time}</Text>
+          <View style={styles.goodActivityWrapper}>
+            <Text style={styles.goodActivityTitle}>活动</Text>
+            <View style={styles.goodActivityMain}>
+              {
+                props.goodActivity.map((item, index) => (
+                  <View style={styles.goodActivity} key={item.name}>
+                    <Text style={styles.activityName}>{item.name}</Text>
+                    <Text style={styles.activityDetail}>{item.detail}</Text>
                   </View>
-                  <Text style={styles.userText}>{item.text}</Text>
-                </View>
-              ))
-            }
+                ))
+              }
+            </View>
           </View>
-          <TouchableOpacity style={styles.checkAll}>
-            <Text style={styles.checkAllText}>查看全部记录</Text>
-          </TouchableOpacity>
-        </View>
-        <Text style={styles.pullUpText}>上拉查看图文详情</Text>
-      </ScrollView>
-      <AddToCart/>
+          <View style={styles.buyList}>
+            <View style={styles.buyListTitle}>
+              <View style={styles.titleDot}></View>
+              <Text style={styles.goodActivityTitle}>购买记录(233)</Text>
+              <View>iconright</View>
+            </View>
+            <View style={styles.buyListMain}>
+              {
+                props.buyList.map(item => (
+                  <View style={styles.buyListItem} key={item.user}>
+                    <View style={styles.buyListUser}>
+                      <Image style={styles.userAvatar}/>
+                      <Text style={styles.userName}>{item.user}</Text>
+                      <Text style={styles.userTime}>{item.time}</Text>
+                    </View>
+                    <Text style={styles.userText}>{item.text}</Text>
+                  </View>
+                ))
+              }
+            </View>
+            <TouchableOpacity style={styles.checkAll}>
+              <Text style={styles.checkAllText}>查看全部记录</Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.pullUpText}>上拉查看图文详情</Text>
+        </ScrollView>
+        <AddToCart style={{position: 'absolute', bottom: 0, top: 30}}/>
+      </View>
     </SafeAreaView>
   )
 }

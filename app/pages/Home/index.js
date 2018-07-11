@@ -16,7 +16,7 @@ import { connect } from '../../utils/dva';
 import { px2p } from '../../utils';
 import { common } from '../../styles';
 
-@connect(({ Home }) => ({ ...Home }))
+@connect(({ home }) => ({ ...home }))
 class Home extends Component {
   constructor(props) {
     super(props)

@@ -24,7 +24,7 @@ import ImageViewer from './pages/GoodDetail/components/ImageViewer';
 import GoodDetailInfo from './pages/GoodDetailInfo';
 
 
-function onHeaderRightClick() {
+function clickListenerCreater() {
     let isMenuVisible = false
     return function (navigation, key) {
         isMenuVisible = !isMenuVisible
@@ -35,9 +35,9 @@ function onHeaderRightClick() {
     }
 }
 
-const click = onHeaderRightClick()
+const onHeaderRightClick = clickListenerCreater()
 
-const headerRightDot = (navigation, key) => (<TouchableOpacity onPress={() => click(navigation)} style={{padding: px2p(15)}}><Image source={require('./image/headerRight/Icon_more.png')} style={{width: px2p(24), height: px2p(5)}}/></TouchableOpacity>)
+const headerRightDot = (navigation, key) => (<TouchableOpacity onPress={() => onHeaderRightClick(navigation)} style={{padding: px2p(15)}}><Image source={require('./image/headerRight/Icon_more.png')} style={{width: px2p(24), height: px2p(5)}}/></TouchableOpacity>)
 
 export default {
     Login:{
@@ -156,7 +156,7 @@ export default {
     GoodDetailInfo: {
         screen: GoodDetailInfo,
         navigationOptions: (navigation) => ({
-            headerTransparent: true,
+            // headerTransparent: true, 
             title: '商品详情',
             headerStyle: {
                 backgroundColor: common.fff

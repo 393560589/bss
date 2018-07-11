@@ -2,44 +2,26 @@ import React, { PureComponent } from 'react'
 import { 
   View,
   Image,
-  ScrollView,
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
   Text,
-  Modal,
-  SafeAreaView } from 'react-native'
+  SafeAreaView,
+  ScrollView } from 'react-native'
 import { px2p } from '../../utils';
 import { common } from '../../styles';
+import { deviceWidth, deviceHeight } from '../../styles/common';
+import HeaderRightDot from '../../components/HeaderRight';
 
 const styles = StyleSheet.create({
-  headerRight: {
-    position: 'absolute',
-    top: px2p(34),
-    right: px2p(15),
-    width: px2p(125),
-    paddingLeft: px2p(8),
-    paddingRight: px2p(8),
-    paddingTop: px2p(5),
-    zIndex: 10000
+  container: {
   },
-  headerRightItem: {
+  header: {
     flexDirection: 'row',
-    alignItems: 'center',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderColor: common.gary_6
+    // flexWrap: 'nowrap'
   },
-  headerIcon: {
-    width: px2p(15),
-    height: px2p(15),
-    resizeMode: Image.resizeMode.contain,
-    marginLeft: px2p(14),
-    marginRight: px2p(11)
-  },
-  headerItemText: {
-    lineHeight: px2p(37),
-    color: common.fff,
-    fontSize: px2p(14)
+  header1: {
+    height: 500
   },
   text: {
     flex: 1,
@@ -47,65 +29,50 @@ const styles = StyleSheet.create({
     color: common.gary_6,
     textAlign: 'center',
     lineHeight: px2p(44),
-    backgroundColor: common.fff
+    backgroundColor: common.fff,
+    // flexWrap: 'nowrap'
   },
   divider: {
     alignSelf: 'center',
-    width: StyleSheet.hairlineWidth,
+    width: px2p(1),
     height: px2p(15),
     backgroundColor: common.gary_e
   }
 })
 
 export default class GoodDetailInfo extends PureComponent {
-  constructor() {
-    super()
-    this.state = {
-      currentView: ''
-    }
-    this.data = [
-      {
-        icon: require('../../image/headerRight/Icon_sy.png'),
-        name: '首页',
-        onPress: () => {
-          this.props.navigation.navigate('Home')
-        }
-      },
-      {
-        icon: require('../../image/headerRight/Icon_spsc.png'),
-        name: '商品收藏'
-      },
-      {
-        icon: require('../../image/headerRight/Icon_yljl.png'),
-        name: '游览记录'
-      }
-    ]
-  }
+  // constructor(props) {
+  //   super(props)
+  // }
 
   render() {
     return (
-      <SafeAreaView backgroundColor={common.fff}>
+      <SafeAreaView backgroundColor={common.fff} style={{flex: 1}}>
         {
           this.props.navigation.getParam('isMenuVisible', false)
-            ? <ImageBackground source={require('../../image/headerRight/bg_pptc.png')} style={styles.headerRight} resizeMode='cover'>
-                <View>
-                  {
-                    this.data.map((item, index) => (
-                      <TouchableOpacity style={styles.headerRightItem} onPress={item.onPress} key={item.name}>
-                        <Image source={item.icon} style={styles.headerIcon}/>
-                        <Text style={styles.headerItemText}>{item.name}</Text>
-                      </TouchableOpacity>
-                    ))
-                  }
-                </View>
-              </ImageBackground>
+            ? <HeaderRightDot navigation={this.props.navigation} style={{top: 0}}/>
             : ''
-          }
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.text}>商品介绍</Text>
-            <View style={styles.divider}></View>
-            <Text style={styles.text}>规格参数</Text>
-          </View>
+        }
+        <View style={{position: 'absolute', width: deviceWidth, height: deviceHeight}}>
+          <ScrollView
+            stickyHeaderIndices={[0]}>
+            
+            {/* <View></View> */}
+            <View>
+              <View style={styles.header}>
+                <Text style={styles.text}>商品介绍</Text>
+                <View style={styles.divider}></View>
+                <Text style={styles.text}>规格参数</Text>
+              </View>
+            </View>
+            <View style={styles.header1}><Text>123123123123</Text><Text>12312</Text></View>
+            <View style={styles.header1}><Text>123123123123</Text><Text>12312</Text></View>
+            <View style={styles.header1}><Text>123123123123</Text><Text>12312</Text></View>
+            <View style={styles.header1}><Text>123123123123</Text><Text>12312</Text></View>
+            <View style={styles.header1}><Text>123123123123</Text><Text>12312</Text></View>
+            <View style={styles.header1}><Text>123123123123</Text><Text>12312</Text></View>
+          </ScrollView>
+        </View>
       </SafeAreaView>
     )
   }

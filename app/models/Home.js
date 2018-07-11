@@ -1,5 +1,5 @@
 export default {
-    namespace: 'Home',
+    namespace: 'home',
     state: {
         name: 'homeplay', // 名字
         play:'ffff',
