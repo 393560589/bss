@@ -33,7 +33,6 @@ import Page from '../../router'
 
 const YuTab = createBottomTabNavigator(
     {
-
         Home:{
             screen:Home,
             navigationOptions: {
@@ -94,9 +93,15 @@ const YuTab = createBottomTabNavigator(
             })
         },
         Cart:{
-            screen:Cart,
+            screen: createStackNavigator({
+                Cart: {
+                    screen: Cart,
+                    navigationOptions: Object.assign({},common.defaultHeader, {title: '购物车'})
+                }
+            }),
             navigationOptions:({navigation})=>({
-                header:null,
+                // header:null,
+                title: '购物车',
                 headerTitle: "购物车",
                 tabBarLabel: "购物车",
                 headerBackTitle: null,

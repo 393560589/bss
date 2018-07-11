@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 import WhoBought from './WhoBought';
 import { Button } from 'antd-mobile-rn'
 import { px2p } from '../utils';
@@ -77,7 +77,9 @@ const styles = StyleSheet.create({
 export default function({ item }) {
   return (
     <View style={styles.container}>
-      <Image style={styles.goodImage} source={item.goodImage}/>
+      <TouchableOpacity onPress={item.onBtnPress}>
+        <Image style={styles.goodImage} source={item.goodImage}/>
+      </TouchableOpacity>
       <Image style={styles.activityImage} source={item.activityImage}/>
       <Text style={styles.goodName}>{item.name}</Text>
       <View style={styles.bottomContainer}>

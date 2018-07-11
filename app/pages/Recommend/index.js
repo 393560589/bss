@@ -4,7 +4,8 @@ import {
   ScrollView,
   View,
   Image,
-  FlatList
+  FlatList,
+  SafeAreaView
 } from 'react-native';
 import GoodItem from '../../components/GoodItem';
 import { px2p } from '../../utils';
@@ -76,16 +77,18 @@ export default class Recommend extends React.Component {
 
   render() {
     return (
-      <ScrollView>
-        <Image style={styles.banner} source={require('../../image/recommend/img_banner.png')}/>
-        <View style={styles.title}>
-          <Image style={styles.titleImg} source={require('../../image/recommend/img_wntj.png')}/>
-        </View>
-        <FlatList
-          data={this.testData}
-          renderItem={GoodItem}>
-        </FlatList>
-      </ScrollView>
+      <SafeAreaView backgroundColor='#fff'>
+        <ScrollView backgroundColor={common.gray_bg}>
+          <Image style={styles.banner} source={require('../../image/recommend/img_banner.png')}/>
+          <View style={styles.title}>
+            <Image style={styles.titleImg} source={require('../../image/recommend/img_wntj.png')}/>
+          </View>
+          <FlatList
+            data={this.testData}
+            renderItem={GoodItem}>
+          </FlatList>
+        </ScrollView>
+      </SafeAreaView>
     )
   }
 }

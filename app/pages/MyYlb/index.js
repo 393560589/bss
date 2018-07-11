@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
 import { px2p } from '../../utils'
 import { common } from '../../styles'
+import {connect} from 'react-redux'
 
-
+@connect(({ MyYlb }) => ({ ...MyYlb }))
 export default class MyYlb extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.testData = [
       {
         title: '邀请好友',
@@ -25,6 +26,17 @@ export default class MyYlb extends Component {
       }
     ]
   }
+
+  test = () => {
+    const { navigation } = this.props
+    this.props.dispatch({
+      type: 'login/test',
+      payload: {
+        navigation
+      }
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -57,7 +69,7 @@ export default class MyYlb extends Component {
             }
           </View>
         </View>
-        <TouchableOpacity style={styles.button}><Text style={styles.btnText}>转让娱乐宝</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={this.test}><Text style={styles.btnText}>转让娱乐宝</Text></TouchableOpacity>
       </View>
     )
   }

@@ -5,7 +5,8 @@ import {
   View,
   ScrollView,
   Image,
-  FlatList
+  FlatList,
+  SafeAreaView
 } from 'react-native';
 import Swiper from 'react-native-swiper'
 import Entires from './components/Entries'
@@ -15,7 +16,7 @@ import { connect } from '../../utils/dva';
 import { px2p } from '../../utils';
 import { common } from '../../styles';
 
-@connect(({ Home }) => ({ ...Home }))
+@connect(({ home }) => ({ ...home }))
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -77,7 +78,7 @@ class Home extends Component {
         ],
         name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞',
         btnText: '去购买',
-        onBtnPress: () => { this.props.navigation.navigate('MyYlb') },
+        onBtnPress: () => { this.props.navigation.navigate('GoodItem') },
       },
       {
         key: '2',
@@ -117,36 +118,39 @@ class Home extends Component {
       }
     ]
   }
-
+  
   render() {
     return (
-      <ScrollView stickyHeaderIndices={[1]}>
-        <View>
-          <Swiper
-            height={px2p(150)}
-            style={styles.swiper}
-            activeDotColor={common.theme}
-            paginationStyle={{bottom: px2p(7)}}>
-            {
-              this.swipers.map(swiper => (
-                <Image source={swiper} style={{height: px2p(150), width: px2p(375)}} key={swiper} resizeMode={'contain'}/>
-              ))
-            }
-          </Swiper>
-          <Entires data={this.testHomeData}/>
-          <Image style={styles.banner} source={require('../../image/home/img_banner_gg.png')} resizeMode={'contain'}/>
-        </View>
-        <Tabs
-          tabs={this.tabs}
-          tabBarUnderlineStyle={{backgroundColor: common.theme}}
-          tabBarActiveTextColor={common.theme}
-          onChange={(a, b, c) => console.log(a, b, c)}
-        />
-        <FlatList
-          data={this.testGood}
-          renderItem={GoodItem}
-        />
-      </ScrollView>
+      <SafeAreaView backgroundColor='#fff'>
+        <ScrollView stickyHeaderIndices={[1]} backgroundColor={common.gray_bg}>
+          <View>
+            <Swiper
+              autoplay
+              height={px2p(150)}
+              style={styles.swiper}
+              activeDotColor={common.theme}
+              paginationStyle={{bottom: px2p(7)}}>
+              {
+                this.swipers.map(swiper => (
+                  <Image source={swiper} style={{height: px2p(150), width: px2p(375)}} key={swiper} resizeMode={'contain'}/>
+                ))
+              }
+            </Swiper>
+            <Entires data={this.testHomeData}/>
+            <Image style={styles.banner} source={require('../../image/home/img_banner_gg.png')} resizeMode={'contain'}/>
+          </View>
+          <Tabs
+            tabs={this.tabs}
+            tabBarUnderlineStyle={{backgroundColor: common.theme}}
+            tabBarActiveTextColor={common.theme}
+            onChange={(a, b, c) => console.log(a, b, c)}
+          />
+          <FlatList
+            data={this.testGood}
+            renderItem={GoodItem}
+          />
+        </ScrollView>
+      </SafeAreaView>
     )
   }
 }
