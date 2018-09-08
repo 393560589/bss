@@ -1,7 +1,7 @@
 
 
-const primary='#E5021A';
-const primary_tap='#d30016';
+const primary='#4E8CEE';
+const primary_tap='#4E8CEE';
 const line= '#e5e5e5';
 
 module.exports = {

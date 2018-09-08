@@ -1,38 +1,110 @@
-import React,{PureComponent} from 'react'
+import React,{PureComponent} from 'react';
 import {
-    View,
-    Text,
     StyleSheet,
-    Image
-} from 'react-native'
-import { List } from 'antd-mobile-rn'
-import {connect} from "../../utils/dva";
+    Text,
+    View
+} from 'react-native';
+import { InputItem,Button,WhiteSpace } from 'antd-mobile-rn'
+import {List } from '../../components/ListItem'
+import { createForm } from 'rc-form'
+import {common,deviceWidth} from "../../styles";
 import {px2dp} from "../../utils";
-import {user} from "../../config/image";
+import {commonStyle} from "../../styles/common";
 
-const Item = List.Item;
-@connect()
-export default class Setpwd extends PureComponent{
-    onPushPage(page){
-        this.props.navigation.navigate(page)
+class SetPassword extends PureComponent {
+    componentDidMount(){
+        console.log(deviceWidth)
     }
-    render(){
+    render() {
+        const { getFieldProps } = this.props.form;
         return (
-            <View>
-                <List style={{marginTop:px2dp(6)}} renderHeader={()=>null}>
-                    <Item arrow="horizontal" onClick={() => {this.onPushPage('Cpassword')}}>
-                        修改登录密码
-                    </Item>
-                    <Item arrow="horizontal" onClick={() => {this.onPushPage('Fpassword')}}>
-                        忘记登录密码
-                    </Item>
-                </List>
+            <View style={styles.container}>
+                <View style={styles.f_input_wrap}>
+                    <View style={styles.f_tip_wrap}>
+                        <Text style={styles.f_tip}><Text style={{fontWeight:'bold'}}>温馨提示：</Text>
+                            请设置密码,密码长度至少为6个字符,最长为19个字符,为了您的密码安全,建议使用数字字母组合排列,区分大小写。</Text>
+                    </View>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+
+                    <List border={false}>
+                        <InputItem
+                            {...getFieldProps('phone')}
+                            type="phone"
+                            clear
+                            labelNumber={3}
+                            placeholder="输入手机号"
+                        ><Text style={{color:'#666'}}>+86 |</Text> </InputItem>
+                        <WhiteSpace/>
+                        <InputItem
+                            {...getFieldProps('code')}
+                            type="number"
+                            placeholder="输入四位数字验证码"
+                            extra={<Text style={{fontSize:px2dp(12),color:'#666'}}>| 获取验证码</Text>}
+                            onExtraClick={()=>this.getCode()}
+
+                        />
+                        <WhiteSpace/>
+                        <InputItem
+                            {...getFieldProps('pwd')}
+                            type="password"
+                            clear
+                            placeholder="输入登录密码"
+                        />
+                        <WhiteSpace/>
+                        <InputItem
+                            {...getFieldProps('pwdt')}
+                            type="password"
+                            clear
+
+                            placeholder="输入登录密码"
+                        />
+                    </List>
+                    <View style={commonStyle.btn_wrap}>
+                        <Button style={styles.setbtn}>
+                            <Text style={{color:'#fff',fontSize:px2dp(18)}}>
+                                确认
+                            </Text>
+                        </Button>
+                    </View>
+                </View>
+
             </View>
-        )
+        );
     }
 }
+
 const styles = StyleSheet.create({
-    container:{
-        flex:1
+    container: {
+        flex: 1,
+        //
+
+    },
+    f_input_wrap:{
+        flex:1,
+        backgroundColor:'#fff',
+        paddingLeft:px2dp(20),
+        paddingRight:px2dp(20),
+        marginTop:px2dp(6),
+    },
+    f_tip_wrap:{
+        alignItems:'flex-start',
+        marginVertical:px2dp(8)
+    },
+    f_tip:{
+        paddingLeft:px2dp(10),
+        paddingRight:px2dp(10),
+        lineHeight:px2dp(15),
+        color:'#333',
+        fontSize:px2dp(13),
+    },
+    setbtn:{
+        borderWidth:0,
+        backgroundColor:'#F29600',
+        color:'#fff',
+        marginTop:px2dp(40),
+        width:deviceWidth-180
     }
-})
+});
+export default createForm()(SetPassword)

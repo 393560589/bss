@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "antd-mobile-rn": "^2.2.1",
     "babel-preset-react-native-stage-0": "^1.0.1",
     "dva-core": "^1.1.0",
     "jest": "^23.1.0",
@@ -22,7 +23,7 @@
   "dependencies": {
     "antd-mobile": "^2.2.0",
     "antd-mobile-area-data": "^1.1.0",
-    "antd-mobile-rn": "^2.2.0",
+    "antd-mobile-rn": "^2.2.1",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.8.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
@@ -44,5 +45,5 @@
     "react-navigation-redux-helpers": "^2.0.2",
     "react-redux": "5.0.7"
   },
-  "proxy":"http://api.xiaoyu518.com/api/"
+  "proxy": "http://api.xiaoyu518.com/api/"
 }

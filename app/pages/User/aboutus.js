@@ -6,14 +6,14 @@ import {
     Image,
     ScrollView
 } from 'react-native'
-import { List,Button } from 'antd-mobile-rn'
+
 import {connect} from "../../utils/dva";
 import {px2dp} from "../../utils";
 import {set, user} from "../../config/image";
 import {common} from "../../styles";
-import {commonStyle} from "../../styles/common";
+import {commonStyle,deviceWidth} from "../../styles/common";
+import { List,ListItem } from '../../components/ListItem'
 
-const Item = List.Item;
 @connect()
 export default class AboutUS extends PureComponent{
     onPushPage(page){
@@ -22,19 +22,31 @@ export default class AboutUS extends PureComponent{
     render(){
         return (
             <View style={{flex:1}}>
-                <View style={styles.Icon_wrap}>
-                    <Image source={set.Icons} style={{height:px2dp(70),width:px2dp(70)}}/>
-                    <Text style={[styles.yutext,common.font_h2]}>小娱商城</Text>
-                    <Text style={{color:common.gary_9,fontSize:px2dp(12)}}>购物之后更娱乐</Text>
-                </View>
-                <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
-                    <Item arrow="horizontal" onClick={() => {this.onPushPage('SetAddress')}}>
-                        <Text style={common.font_h2}>版本信息</Text>
-                    </Item>
-                    <Item arrow="horizontal" onClick={() => {}}>
-                        <Text style={common.font_h2}>检查更新</Text>
-                    </Item>
+                <List
+                    border={false}
+                    styles={{marginBottom:px2dp(6),marginTop:px2dp(6)}}>
+                    <ListItem extra={'qukexingqiu888'} onClick={() => {this.onPushPage('SetAddress')}}>
+                       商务合作微信号
+                    </ListItem>
                 </List>
+                <List
+                    border={false}
+                    styles={{marginBottom:px2dp(6)}}>
+                    <ListItem extra={'coinsousuo'} onClick={() => {this.onPushPage('SetAddress')}}>
+                        官方客服微信号
+                    </ListItem>
+                </List>
+                <List
+                    border={false}
+                    styles={{marginBottom:px2dp(6)}}>
+                    <ListItem extra={'bitsszx'} onClick={() => {this.onPushPage('SetAddress')}}>
+                        官方微信公众号
+                    </ListItem>
+                </List>
+                <View style={styles.Icon_wrap}>
+                    <Image source={set.Icons} style={{height:px2dp(160),width:px2dp(160)}}/>
+                    <Text style={[styles.yutext,common.font_h2]}>进社区群扫管理员二维码</Text>
+                </View>
             </View>
         )
     }
@@ -44,7 +56,10 @@ const styles = StyleSheet.create({
         flex:1
     },
     Icon_wrap:{
-        paddingVertical:px2dp(15),
+        width:deviceWidth,
+        backgroundColor:'#fff',
+        flex:1,
+        justifyContent:'center',
         alignItems:'center'
     },
     yutext:{

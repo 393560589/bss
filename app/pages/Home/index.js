@@ -34,28 +34,28 @@ class Home extends Component {
     ]
     this.testHomeData = [
       {
-        name: '签到挖宝',
-        image: require('../../image/home/Icon_qdwb.png'),
+        name: '路印协议',
+          image: require('../../image/home/Icon_jfrw.png'),
         tag: require('../../image/home/img_bq_hot.png')
       },
       {
-        name: '积分任务',
+        name: '比特币',
         image: require('../../image/home/Icon_jfrw.png'),
         // tag: require('../../image/home/img_bq_hot.png')
       },
       {
-        name: '邀请好友',
-        image: require('../../image/home/Icon_yqhy.png'),
+        name: 'Achcin',
+          image: require('../../image/home/Icon_jfrw.png'),
         // tag: require('../../image/home/img_bq_hot.png')
       },
       {
-        name: '拼团抢购',
-        image: require('../../image/home/Icon_ptqg.png'),
+        name: 'CoinMeet',
+          image: require('../../image/home/Icon_jfrw.png'),
         // tag: require('../../image/home/img_bq_hot.png')
       },
       {
-        name: '积分夺宝',
-        image: require('../../image/home/Icon_jfdb.png'),
+        name: 'ANT',
+          image: require('../../image/home/Icon_jfrw.png'),
         tag: require('../../image/home/img_bq_new.png')
       }
     ],
@@ -137,18 +137,18 @@ class Home extends Component {
               }
             </Swiper>
             <Entires data={this.testHomeData}/>
-            <Image style={styles.banner} source={require('../../image/home/img_banner_gg.png')} resizeMode={'contain'}/>
+
           </View>
-          <Tabs
+          {/*<Tabs
             tabs={this.tabs}
             tabBarUnderlineStyle={{backgroundColor: common.theme}}
             tabBarActiveTextColor={common.theme}
             onChange={(a, b, c) => console.log(a, b, c)}
-          />
-          <FlatList
+          />*/}
+         {/* <FlatList
             data={this.testGood}
             renderItem={GoodItem}
-          />
+          />*/}
         </ScrollView>
       </SafeAreaView>
     )

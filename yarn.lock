@@ -673,12 +673,13 @@ antd-mobile-area-data@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/antd-mobile-area-data/download/antd-mobile-area-data-1.1.0.tgz#9c255b951d3d513f5fa8aca31d68dfe41c09b247"
 
-antd-mobile-rn@^2.2.0:
-  version "2.2.0"
-  resolved "http://registry.npm.taobao.org/antd-mobile-rn/download/antd-mobile-rn-2.2.0.tgz#347946cfce9ca01d668db1756f0663f607f7d29c"
+antd-mobile-rn@^2.2.1:
+  version "2.2.1"
+  resolved "http://registry.npm.taobao.org/antd-mobile-rn/download/antd-mobile-rn-2.2.1.tgz#fd1909f0a3b7c15185f76f5f24e5e09f53a18480"
   dependencies:
     array-tree-filter "~2.1.0"
     babel-runtime "6.x"
+    normalize-css-color "^1.0.2"
     rc-swipeout "~2.0.0"
     react-native-camera-roll-picker "^1.2.1"
     react-native-collapsible "^0.9.0"
@@ -4214,6 +4215,10 @@ nopt@^4.0.1:
   dependencies:
     abbrev "1"
     osenv "^0.1.4"
+
+normalize-css-color@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/normalize-css-color/download/normalize-css-color-1.0.2.tgz#02991e97cccec6623fe573afbbf0de6a1f3e9f8d"
 
 normalize-package-data@^2.3.2:
   version "2.4.0"

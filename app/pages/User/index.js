@@ -11,35 +11,13 @@ import {
     ScrollView,
 } from 'react-native';
 
+
 import {deviceWidth} from '../../styles/common'
 import {user} from '../../config/image'
 import {px2dp} from "../../utils";
 import {common} from '../../styles'
 import {connect} from "../../utils/dva";
-
-const orderlist=[
-    {img:user.dfk, text:'待付款'},
-    {img:user.dsh,text:'待收货'},
-    {img:user.ywc,text:'已完成'},
-];
-const zclist=[
-    {data:1000.00,text:'娱乐宝',page:'MyYlb'},
-    {data:10000.02,text:'积分',page:'Points'},
-    {data:200.09,text:'好友',page:'Points'},
-]
-const yslist=[
-    {img:user.wdsc,text:'我的收藏',page:'Collection'},
-    {img:user.yjfk,text:'意见反馈',page:'Feedback'},
-    {img:user.cjwt,text:'常见问题',page:'Collection'},
-    {img:user.kfzx,text:'客服中心',page:'Collection'},
-];
-const h5list=[
-    {img:user.jfrw,text:'积分任务'},
-    {img:user.qdwb,text:'签到挖宝'},
-    {img:user.yqyj,text:'邀请有奖'},
-    {img:user.gfylb,text:'瓜分娱乐宝'},
-]
-
+import { ListItem,List } from '../../components/ListItem'
 
 @connect(({User})=>({User}))
 export default class Users extends PureComponent {
@@ -70,7 +48,7 @@ export default class Users extends PureComponent {
     }
     render() {
         return (
-            <ScrollView style = {{flex:1,backgroundColor:'#fff'}}
+            <ScrollView style = {{flex:1,backgroundColor:'#f1f1f1'}}
                         refreshControl={  //设置下拉刷新组件
                             <RefreshControl
                                 refreshing={this.state.isRefreshing}
@@ -83,10 +61,10 @@ export default class Users extends PureComponent {
             >
                 <View style={styles.container}>
                     <ImageBackground
-                        style={[{width:deviceWidth,height:px2dp(157),paddingTop:px2dp(50)}]}
+                        style={[{width:deviceWidth,height:px2dp(280),paddingTop:px2dp(50)}]}
                         source={user.topbanner}
                     >
-                        <TouchableOpacity
+                       {/* <TouchableOpacity
                             activeOpacity={0.9}
                             style={styles.User_top_img}
                             onPress={()=>this.onPushPage('Settings')}
@@ -96,15 +74,15 @@ export default class Users extends PureComponent {
                                     height:px2dp(18),}}
                                 source={user.sz}
                             />
-                        </TouchableOpacity>
+                        </TouchableOpacity>*/}
 
                         <View style={styles.User_top}>
                             <TouchableOpacity
-                                onPress={()=>this.onPushPage('Login')}
+                                onPress={()=>this.onPushPage('SetUser')}
                                 activeOpacity={0.9}
                             >
                                 <Image
-                                    style={{width:px2dp(60),height:px2dp(60),marginRight:px2dp(20)}}
+                                    style={{width:px2dp(90),height:px2dp(90)}}
                                     source={user.tx}
                                 />
                             </TouchableOpacity>
@@ -112,124 +90,62 @@ export default class Users extends PureComponent {
                                 <TouchableOpacity
                                     onPress={()=>this.onPushPage('Login')}
                                 >
-                                    <Text style={[common.font_h1,{color:common.fff}]}>
+                                    <Text style={[common.font_h1,{
+                                        color:common.fff,
+                                        textAlign:'center',
+                                        marginTop:px2dp(10),
+                                        marginBottom:px2dp(6)
+                                    }]}>
                                         点击登录
                                     </Text>
                                 </TouchableOpacity>
                                 <Text style={[common.font_h3,{color:common.fff}]}>
-                                    欢迎来到小娱商城
+                                    登陆后可享受更多服务
                                 </Text>
                             </View>
                         </View>
+                        <View style={styles.top_list}>
+                           <View style={[styles.top_item,{borderLeftWidth:0}]}>
+                               <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>搜索令牌</Text>
+
+                               <Text style={styles.top_text}>0</Text>
+                           </View>
+                            <View style={styles.top_item}>
+                                <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>等级</Text>
+
+                                <Text style={styles.top_text}>0</Text>
+                            </View>
+                            <View style={styles.top_item}>
+                                <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>邀请好友</Text>
+                                <Text style={styles.top_text}>0</Text>
+                            </View>
+                        </View>
                     </ImageBackground>
+                    <List
+                        border={false}
+                        styles={{marginTop:px2dp(10)}}>
+                        <ListItem
+                            hasborder
+                            onClick={()=>this.onPushPage('AboutUS')}
+                            Icons={'right'}>
+                            联系我们
+                        </ListItem>
+                        <ListItem
+                            onClick={()=>this.onPushPage('FeedBack')}
+                        >
+                            意见反馈
+                        </ListItem>
+                    </List>
+                    <List
+                        border={false}
+                        styles={{marginTop:px2dp(10)}}>
+                        <ListItem
+                            onClick={()=>this.onPushPage('Settings')}
+                        >
+                            设置
+                        </ListItem>
+                    </List>
 
-                    <View style={[styles.User_mon_wrap,{marginBottom:px2dp(10)}]}>
-                        <View style={styles.User_mon}>
-                            {
-                                orderlist.map((item,index)=>{
-                                    return (
-                                        <TouchableHighlight
-                                            onPress={()=>this.onPushPage(item.page)}
-                                            underlayColor={common.f1}
-                                            activeOpacity={0.9}
-                                            key={index}>
-                                            <View style={styles.User_mon_li}>
-                                                <Image style={{height:px2dp(18),width:px2dp(18),marginBottom:px2dp(10)}} source={item.img}/>
-                                                <Text>{item.text}</Text>
-                                            </View>
-                                        </TouchableHighlight>
-                                    )
-                                })
-                            }
-                            <Image style={{height:px2dp(42),width:px2dp(3)}} source={user.line}/>
-                            <TouchableHighlight
-                                onPress={this.onPushPage}
-                                underlayColor={common.f1}
-                                activeOpacity={0.9}
-                            >
-                                <View style={styles.User_mon_li}>
-                                    <Image style={{height:px2dp(18),width:px2dp(16),marginBottom:px2dp(10)}} source={user.wddd}/>
-                                    <Text>{'我的订单'}</Text>
-                                </View>
-                            </TouchableHighlight>
-                        </View>
-
-                        <View style={[styles.User_mon]}>
-                            {
-                                zclist.map((item,index)=>{
-                                    return (
-                                        <TouchableHighlight
-                                            onPress={()=>this.onPushPage(item.page)}
-                                            underlayColor={common.f1}
-                                            activeOpacity={0.9}
-                                            key={index}>
-                                            <View style={styles.User_mon_li}>
-                                                <Text style={{marginBottom:px2dp(10)}}>{item.data}</Text>
-                                                <Text>{item.text}</Text>
-                                            </View>
-                                        </TouchableHighlight>
-                                    )
-                                })
-                            }
-                            <Image style={{height:px2dp(42),width:px2dp(3)}} source={user.line}/>
-                            <TouchableHighlight
-                                onPress={()=>this.onPushPage('MyAsset')}
-                                underlayColor={common.f1}
-                                activeOpacity={0.9}
-                            >
-                                <View style={styles.User_mon_li}>
-                                    <Image style={{height:px2dp(18),width:px2dp(16),marginBottom:px2dp(10)}} source={user.wdzc}/>
-                                    <Text>{'我的资产'}</Text>
-                                </View>
-                            </TouchableHighlight>
-                        </View>
-                    </View>
-                    <TouchableOpacity
-                        style={{width:deviceWidth-px2dp(20),height:px2dp(55),justifyContent:'center'}}
-                        activeOpacity={0.9}
-                    >
-                        <Image style={{width:deviceWidth-px2dp(20),resizeMode: Image.resizeMode.contain}}  source={user.banner}/>
-                    </TouchableOpacity>
-
-                    <View style={[styles.User_mon_wrap,{marginTop:px2dp(10)}]}>
-                        <View style={styles.User_mon}>
-                            {
-                                yslist.map((item,index)=>{
-                                    return (
-                                        <TouchableHighlight
-                                            onPress={()=>this.onPushPage(item.page)}
-                                            underlayColor={common.f1}
-                                            activeOpacity={0.9}
-                                            key={index}>
-                                            <View style={styles.User_mon_li}>
-                                                <Image style={{height:px2dp(28),width:px2dp(28),marginBottom:px2dp(10)}} source={item.img}/>
-                                                <Text>{item.text}</Text>
-                                            </View>
-                                        </TouchableHighlight>
-                                    )
-                                })
-                            }
-                        </View>
-
-                        <View style={[styles.User_mon,{marginBottom:px2dp(10)}]}>
-                            {
-                                h5list.map((item,index)=>{
-                                    return (
-                                        <TouchableHighlight
-                                            onPress={this.onPushPage}
-                                            underlayColor={common.f1}
-                                            activeOpacity={0.9}
-                                            key={index}>
-                                            <View style={styles.User_mon_li}>
-                                                <Image style={{height:px2dp(28),width:px2dp(28),marginBottom:px2dp(10)}} source={item.img}/>
-                                                <Text>{item.text}</Text>
-                                            </View>
-                                        </TouchableHighlight>
-                                    )
-                                })
-                            }
-                        </View>
-                    </View>
                 </View>
             </ScrollView>
         );
@@ -240,42 +156,41 @@ const styles = StyleSheet.create({
     container: {
         paddingBottom:px2dp(30),
         alignItems:'center',
-        backgroundColor: '#fff',
+        //backgroundColor: '#fff',
     },
-    User_mon_wrap:{
-        marginTop:px2dp(10),
-        paddingVertical:px2dp(10),
-        paddingHorizontal:px2dp(10),
-        width:deviceWidth-px2dp(20),
-        backgroundColor:common.fff,
-        shadowColor:common.gary_e,
-        shadowOffset:{h:10,w:10},
-        shadowOpacity:1
-    },
-    User_mon:{
-        flexDirection:'row',
-        flexWrap:"nowrap",
-        alignItems:'center',
-    },
-    User_mon_li:{
-        overflow:'hidden',
-        borderRadius:8,
-        alignItems:'center',
-        justifyContent:'center',
-        width:(deviceWidth-px2dp(40))/4,
-        height:px2dp(80)
-    },
+
     User_top_img:{
         position:'absolute',
         right:px2dp(27),
         top:px2dp(25),
 
     },
+    top_list:{
+        paddingTop:px2dp(20),
+        flexDirection:'row',
+        paddingLeft:px2dp(20),
+        paddingRight:px2dp(20),
+        justifyContent:'space-between'
+    },
+    top_item:{
+        flex:1,
+        justifyContent:'center',
+        borderLeftColor:'#fff',
+        borderLeftWidth:0.4
+    },
+    top_text:{
+      color:'#fff',
+      textAlign:'center',
+
+        fontSize:px2dp(16)
+    },
     User_top:{
         marginLeft:px2dp(25),
-        flexDirection:'row',
+        flexDirection:'column',
+        alignItems:'center'
     },
     User_top_view:{
-        justifyContent:'space-around',
+        justifyContent:'center'
+        //justifyContent:'space-around',
     }
 });

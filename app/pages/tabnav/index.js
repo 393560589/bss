@@ -33,6 +33,25 @@ import Page from '../../router'
 
 const YuTab = createBottomTabNavigator(
     {
+        Recommend:{
+            screen:Recommend,
+            navigationOptions:({navigation})=>({
+                // headerTitle: "推荐",
+                header:null,
+                tabBarLabel: "币讯",
+                headerBackTitle: null,
+                tabBarIcon: ({ tintColor }) => (
+                    <Image
+                        style={{width:px2dp(14),height:px2dp(17)}}
+                        source={
+                            tintColor !== common.theme ?
+                                require('../../image/tab/Icon_tj.png'):
+                                require('../../image/tab/Icon_tj_mr.png')
+                        }
+                    />
+                )
+            })
+        },
         Home:{
             screen:Home,
             navigationOptions: {
@@ -53,26 +72,8 @@ const YuTab = createBottomTabNavigator(
                 )
             }
         },
-        Recommend:{
-            screen:Recommend,
-            navigationOptions:({navigation})=>({
-                // headerTitle: "推荐",
-                header:null,
-                tabBarLabel: "推荐",
-                headerBackTitle: null,
-                 tabBarIcon: ({ tintColor }) => (
-                     <Image
-                         style={{width:px2dp(14),height:px2dp(17)}}
-                         source={
-                             tintColor !== common.theme ?
-                            require('../../image/tab/Icon_tj.png'):
-                             require('../../image/tab/Icon_tj_mr.png')
-                         }
-                     />
-                 )
-            })
-        },
-        Integral:{
+
+       /* Integral:{
             screen:Intergral,
             navigationOptions:({navigation})=>({
                 header:null,
@@ -91,8 +92,8 @@ const YuTab = createBottomTabNavigator(
                      />
                  )
             })
-        },
-        Cart:{
+        },*/
+        /*Cart:{
             screen: createStackNavigator({
                 Cart: {
                     screen: Cart,
@@ -115,7 +116,7 @@ const YuTab = createBottomTabNavigator(
                      />
                  )
             })
-        },
+        },*/
         user:{
             screen:User,
             navigationOptions:({navigation})=>({

@@ -8,7 +8,7 @@ import {
   FlatList
 } from 'react-native';
 import { px2p } from '../../utils';
-import { NoticeBar } from '../../../node_modules/antd-mobile-rn';
+import { NoticeBar } from 'antd-mobile-rn';
 import CartItem from './components/CartItem';
 import { connect } from '../../utils/dva';
 

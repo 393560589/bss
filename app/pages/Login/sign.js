@@ -4,50 +4,79 @@ import {
     Text,
     View
 } from 'react-native';
-import { List,InputItem,Button } from 'antd-mobile-rn'
+import { InputItem,Button,WhiteSpace,Checkbox } from 'antd-mobile-rn'
+import {List } from '../../components/ListItem'
 import { createForm } from 'rc-form'
 import {common,deviceWidth} from "../../styles";
 import {px2dp} from "../../utils";
 import {commonStyle} from "../../styles/common";
+const AgreeItem = Checkbox.AgreeItem;
 
 class Sign extends PureComponent {
+    componentDidMount(){
 
+    }
     render() {
         const { getFieldProps } = this.props.form;
         return (
             <View style={styles.container}>
-                <View style={styles.sign_input_wrap}>
-                    <List>
+                <View style={styles.f_input_wrap}>
+
+                    <WhiteSpace/>
+
+                    <List border={false}>
                         <InputItem
                             {...getFieldProps('phone')}
                             type="phone"
                             clear
-                            labelNumber={5}
-
+                            labelNumber={3}
                             placeholder="输入手机号"
-                        >手机号</InputItem>
+                        ><Text style={{color:'#666'}}>+86 |</Text> </InputItem>
+                        <WhiteSpace/>
                         <InputItem
                             {...getFieldProps('code')}
                             type="number"
-                            labelNumber={5}
                             placeholder="输入四位数字验证码"
-                            extra={<Text style={{fontSize:px2dp(12),color:common.theme}}>获取验证码</Text>}
+                            extra={<Text style={{fontSize:px2dp(12),color:'#666'}}>| 获取验证码</Text>}
                             onExtraClick={()=>this.getCode()}
 
-                        >验证码</InputItem>
+                        />
+                        <WhiteSpace/>
                         <InputItem
                             {...getFieldProps('pwd')}
                             type="password"
-                            clear
-                            labelNumber={5}
 
-                            placeholder="输入登录密码"
-                        >登录密码</InputItem>
+                            placeholder="请输入新密码"
+                        />
+                        <WhiteSpace/>
+                        <InputItem
+                            {...getFieldProps('pwdt')}
+                            type="password"
+                            clear
+
+                            placeholder="确认密码"
+                        />
                     </List>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+                    <AgreeItem onChange={e => console.log('checkbox', e)}>
+                        <Text style={{color:'#666'}}>
+                            我已阅读并接受
+                        </Text>
+                        <Text
+                            style={{color:'#F29600'}}
+                            onPress={(e) => { e.preventDefault(); alert('agree it'); }}>币搜索服务条款</Text>
+                    </AgreeItem>
+
+                    <View style={commonStyle.btn_wrap}>
+                        <Button style={styles.setbtn}>
+                            <Text style={{color:'#fff',fontSize:px2dp(18)}}>
+                                注册
+                            </Text>
+                        </Button>
+                    </View>
                 </View>
-                <View style={commonStyle.btn_wrap}>
-                    <Button type={'primary'} style={commonStyle.btn}>立即注册</Button>
-                </View>
+
             </View>
         );
     }
@@ -56,11 +85,33 @@ class Sign extends PureComponent {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    sign_input_wrap:{
-        marginTop:px2dp(6),
-        marginBottom:px2dp(30)
-    },
+        //
 
+    },
+    f_input_wrap:{
+        flex:1,
+        backgroundColor:'#fff',
+        paddingLeft:px2dp(20),
+        paddingRight:px2dp(20),
+        marginTop:px2dp(6),
+    },
+    f_tip_wrap:{
+        alignItems:'flex-start',
+        marginVertical:px2dp(8)
+    },
+    f_tip:{
+        paddingLeft:px2dp(10),
+        paddingRight:px2dp(10),
+        lineHeight:px2dp(15),
+        color:'#333',
+        fontSize:px2dp(13),
+    },
+    setbtn:{
+        borderWidth:0,
+        backgroundColor:'#F29600',
+        color:'#fff',
+        marginTop:px2dp(40),
+        width:deviceWidth-180
+    }
 });
 export default createForm()(Sign)

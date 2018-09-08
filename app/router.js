@@ -22,6 +22,8 @@ import Invoice from "./pages/User/invoice";
 import GoodItem from './pages/GoodDetail'
 import ImageViewer from './pages/GoodDetail/components/ImageViewer';
 import GoodDetailInfo from './pages/GoodDetailInfo';
+import FeedBack from "./pages/User/feedback";
+import DataPush from "./pages/User/datapush";
 
 
 function clickListenerCreater() {
@@ -40,34 +42,21 @@ const onHeaderRightClick = clickListenerCreater()
 const headerRightDot = (navigation, key) => (<TouchableOpacity onPress={() => onHeaderRightClick(navigation)} style={{padding: px2p(15)}}><Image source={require('./image/headerRight/Icon_more.png')} style={{width: px2p(24), height: px2p(5)}}/></TouchableOpacity>)
 
 export default {
-    Login:{
-        screen:Login,
-        navigationOptions:(navigator)=>{
-            return {
-                headerTitle:null,
-                headerTransparent:true,
-                headerRight:(<TouchableOpacity
-                    onPress={()=>{navigator.navigation.navigate('Sign')}}
-                    style={{marginRight:px2dp(20)}}><Text style={common.font_h2}>注册</Text></TouchableOpacity>),
-                headerStyle:{
-                    backgroundColor:'transparent',
-                    elevation: 0,
-                    shadowOpacity: 0
-                },
-                headerTintColor:common.gray_back,
-                headerTitleStyle:{
-                    //color:common.gary_3,
-                    backgroundColor:'transparent',
-
-                }
-            }
-
-        }
+    Login: {
+        screen: Login,
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '登录'})
     },
-
     Collection: {
         screen: Collection,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '我的收藏'})
+    },
+    AboutUS: {
+        screen: AboutUS,
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '联系我们'})
+    },
+    FeedBack:{
+      screen:FeedBack,
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '意见反馈'})
     },
     MyAsset: {
         screen: MyAsset,
@@ -95,21 +84,25 @@ export default {
         screen:Sign,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '注册'})
     },
+    DataPush:{
+        screen:DataPush,
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '推送设置'})
+    },
     Fpassword:{
         screen:Fpassword,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '忘记密码'})
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '找回密码'})
     },
     Settings:{
         screen:Settings,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '账户设置',mode:'card'})
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '设置',mode:'card'})
     },
     SetUser:{
         screen:SetUser,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '个人信息',mode:'card'})
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '个人资料',mode:'card'})
     },
     Setpwd:{
         screen:Setpwd,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '密码管理',mode:'card'})
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '密码设置',mode:'card'})
     },
     Cpassword:{
         screen:Cpassword,
@@ -122,10 +115,6 @@ export default {
     AddAddress:{
         screen:AddAddress,
         navigationOptions:Object.assign({},common.defaultHeader, {title: '新增地址',mode:'card'})
-    },
-    AboutUS:{
-        screen:AboutUS,
-        navigationOptions:Object.assign({},common.defaultHeader, {title: '关于我们',mode:'card'})
     },
     Invoice:{
         screen:Invoice,

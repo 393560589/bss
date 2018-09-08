@@ -6,7 +6,7 @@ import {
     Image,
     ScrollView
 } from 'react-native'
-import { List,Button } from 'antd-mobile-rn'
+import { Button } from 'antd-mobile-rn'
 import {connect} from "../../utils/dva";
 import {px2dp} from "../../utils";
 import {user} from "../../config/image";
@@ -14,8 +14,8 @@ import {common} from "../../styles";
 import {commonStyle} from "../../styles/common";
 import AboutUS from "./aboutus";
 import Invoice from "./invoice";
+import { ListItem,List } from '../../components/ListItem'
 
-const Item = List.Item;
 @connect()
 export default class Setting extends PureComponent{
     onPushPage(page){
@@ -24,34 +24,39 @@ export default class Setting extends PureComponent{
     render(){
         return (
             <View style={{flex:1}}>
-                <View style={{flex:1}}>
+                <View>
 
-                        <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
+                        {/*<List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
                             <Item arrow="horizontal" multipleLine onClick={() => {this.onPushPage('SetUser')}}>
                                 <Image style={{width:px2dp(46),height:px2dp(46)}} source={user.tx}/>
                             </Item>
+                        </List>*/}
+                        <List styles={{marginTop:px2dp(6)}} border={false} renderHeader={'账号设置'}>
+                            <ListItem hasborder onClick={() => {this.onPushPage('Setpwd')}}>
+                                密码设置
+                            </ListItem>
+                            <ListItem onClick={() => {this.onPushPage('DataPush')}}>
+                                推送设置
+                            </ListItem>
                         </List>
-                        <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
-                            <Item arrow="horizontal" multipleLine onClick={() => {this.onPushPage('Setpwd')}}>
-                                <Text style={common.font_h2}>密码管理</Text>
-                            </Item>
-                        </List>
-                        <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
-                            <Item arrow="horizontal" onClick={() => {this.onPushPage('SetAddress')}}>
+                        <List border={false}  styles={{marginTop:px2dp(6),marginBottom:px2dp(6)}}renderHeader={'其他'}>
+                           {/* <Item arrow="horizontal" onClick={() => {this.onPushPage('SetAddress')}}>
                                 <Text style={common.font_h2}>地址管理</Text>
-                            </Item>
-                            <Item arrow="horizontal" onClick={() => {this.onPushPage('Invoice')}}>
-                                <Text style={common.font_h2}>发票助手</Text>
-                            </Item>
+                            </Item>*/}
+                            <ListItem extra={'v1.0.1'} onClick={() => {this.onPushPage('Setpwd')}}>
+                                版本更新
+                            </ListItem>
                         </List>
-                        <List renderHeader={()=>null}>
+                       {/* <List renderHeader={()=>null}>
                             <Item arrow="horizontal" multipleLine onClick={() => {this.onPushPage('AboutUS')}}>
                                 <Text style={common.font_h2}>关于我们</Text>
                             </Item>
-                        </List>
+                        </List>*/}
                 </View>
                 <View style={{height:45}}>
-                    <Button type={'primary'}>退出登录</Button>
+                    <Button><Text style={{color:'red'}}>
+                        退出账号
+                    </Text></Button>
                 </View>
             </View>
         )

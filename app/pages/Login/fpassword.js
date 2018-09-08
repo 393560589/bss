@@ -4,7 +4,8 @@ import {
     Text,
     View
 } from 'react-native';
-import { List,InputItem,Button } from 'antd-mobile-rn'
+import { InputItem,Button,WhiteSpace } from 'antd-mobile-rn'
+import {List } from '../../components/ListItem'
 import { createForm } from 'rc-form'
 import {common,deviceWidth} from "../../styles";
 import {px2dp} from "../../utils";
@@ -19,48 +20,51 @@ class Fpassword extends PureComponent {
         return (
             <View style={styles.container}>
                 <View style={styles.f_input_wrap}>
-                    <List>
+
+                    <WhiteSpace/>
+
+                    <List border={false}>
                         <InputItem
                             {...getFieldProps('phone')}
                             type="phone"
                             clear
-                            labelNumber={5}
-
+                            labelNumber={3}
                             placeholder="输入手机号"
-                        >手机号</InputItem>
+                        ><Text style={{color:'#666'}}>+86 |</Text> </InputItem>
+                        <WhiteSpace/>
                         <InputItem
                             {...getFieldProps('code')}
                             type="number"
-                            labelNumber={5}
-                            placeholder="输入四位数字验证码"
-                            extra={<Text style={{fontSize:px2dp(12),color:common.theme}}>获取验证码</Text>}
+                            placeholder="验证码"
+                            extra={<Text style={{fontSize:px2dp(12),color:'#666'}}>| 获取验证码</Text>}
                             onExtraClick={()=>this.getCode()}
 
-                        >验证码</InputItem>
+                        />
+                        <WhiteSpace/>
                         <InputItem
                             {...getFieldProps('pwd')}
                             type="password"
-                            clear
-                            labelNumber={5}
 
-                            placeholder="输入登录密码"
-                        >新密码</InputItem>
+                            placeholder="请输入新密码"
+                        />
+                        <WhiteSpace/>
                         <InputItem
                             {...getFieldProps('pwdt')}
                             type="password"
                             clear
-                            labelNumber={5}
-                            placeholder="输入登录密码"
-                        >再次输入</InputItem>
-                    </List>
-                    <View style={styles.f_tip_wrap}>
-                        <Text style={styles.f_tip}>提示：长度在8位及以上,密码应包含数字、大小写字母、特殊字符中的两种或两种以上</Text>
-                    </View>
 
+                            placeholder="确认密码"
+                        />
+                    </List>
+                    <View style={commonStyle.btn_wrap}>
+                        <Button style={styles.setbtn}>
+                            <Text style={{color:'#fff',fontSize:px2dp(18)}}>
+                                完成
+                            </Text>
+                        </Button>
+                    </View>
                 </View>
-                <View style={commonStyle.btn_wrap}>
-                    <Button type={'primary'} style={commonStyle.btn}>提交</Button>
-                </View>
+
             </View>
         );
     }
@@ -69,19 +73,33 @@ class Fpassword extends PureComponent {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        //
+
     },
     f_input_wrap:{
+        flex:1,
+        backgroundColor:'#fff',
+        paddingLeft:px2dp(20),
+        paddingRight:px2dp(20),
         marginTop:px2dp(6),
     },
     f_tip_wrap:{
-        alignItems:'center',
+        alignItems:'flex-start',
         marginVertical:px2dp(8)
     },
     f_tip:{
+        paddingLeft:px2dp(10),
+        paddingRight:px2dp(10),
         lineHeight:px2dp(15),
-        width:deviceWidth-20,
-        color:common.theme,
-        fontSize:px2dp(10),
+        color:'#333',
+        fontSize:px2dp(13),
     },
+    setbtn:{
+        borderWidth:0,
+        backgroundColor:'#F29600',
+        color:'#fff',
+        marginTop:px2dp(40),
+        width:deviceWidth-180
+    }
 });
 export default createForm()(Fpassword)

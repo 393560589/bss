@@ -5,29 +5,33 @@ import {
     StyleSheet,
     Image,ScrollView
 } from 'react-native'
-import { List,Modal } from 'antd-mobile-rn'
+import { Modal,Picker } from 'antd-mobile-rn'
+import { List,ListItem } from '../../components/ListItem'
 import {connect} from "../../utils/dva"
 import {px2dp} from "../../utils";
 import {common, deviceWidth} from '../../styles'
 import {user} from "../../config/image"
-
+//import { createForm } from 'rc-form'
+import { pc } from 'antd-mobile-area-data'
 
 const prompt = Modal.prompt;
-const alert = Modal.alert;
-const Item = List.Item;
+const operation = Modal.operation;
+
 @connect(({SetUser})=>({SetUser}))
-export default class SetUser extends PureComponent{
+
+class SetUser extends PureComponent{
     componentDidMount(){
         console.log(this.props)
     }
     render(){
         const {dispatch,SetUser} = this.props;
+        //const { getFieldProps } = this.props.form;
         return (
             <View>
                 <View>
-                    <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
-                        <Item arrow="horizontal"
-                              multipleLine
+                    <List styles={{marginTop:px2dp(6)}}>
+                        <ListItem
+                            styles={{paddingTop:px2dp(4),paddingBottom:px2dp(4)}}
                               extra={ <Image style={{width:px2dp(46),height:px2dp(46)}} source={user.tx}/>}
                               onClick={() => {
                                   dispatch({
@@ -38,8 +42,8 @@ export default class SetUser extends PureComponent{
                                       }
                                   })
                               }}>
-                            <Text style={common.font_h2}>头像</Text>
-                        </Item>
+                           头像
+                        </ListItem>
                     </List>
                     <Animated.View
                         style={{height:this.props.SetUser.imageheight}}
@@ -50,36 +54,56 @@ export default class SetUser extends PureComponent{
                             <Image style={{width:px2dp(65),height:px2dp(65),marginRight:px2dp(5)}} source={user.tx}/>
                         </ScrollView>
                     </Animated.View>
-                    <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
-                        <Item arrow="horizontal"
+                    <List border={false}>
+                        <ListItem
+                            extra={'八九十月'}
+                            hasborder>
+                            <Text style={common.font_h2}>用户名</Text>
+                        </ListItem>
+                        <ListItem
+                            hasborder
                               extra={ <Text style={common.font_h2}>180****889</Text>}
-                              multipleLine onClick={() => prompt('设置', '修改绑定手机号', [
+                               onClick={() => prompt('修改昵称', <Text>{'180****889'}</Text>, [
                             { text: <Text style={{color:common.gary_6}}>取消</Text> },
                             { text: <Text style={{color:common.theme}}>确认</Text>, onPress: value => console.log(`输入的内容:${value}`) },
-                        ], 'default', '180****990')}>
-                            <Text style={common.font_h2}>手机号</Text>
-                        </Item>
-                    </List>
-                    <List style={{marginBottom:px2dp(6)}} renderHeader={()=>null}>
-                        <Item arrow="horizontal"
-                              extra={ <Text style={common.font_h2}>保密</Text>}
-                              onClick={() =>
-                                  alert(<Text>设置</Text>,'修改性别' , [
-                                      { text: <Text style={{color:common.gary_3}}>男</Text>, onPress: () => console.log('第0个按钮被点击了') },
-                                      { text: <Text style={{color:common.gary_3}}>女</Text>, onPress: () => console.log('第1个按钮被点击了') },
-                                      { text: <Text style={{color:common.gary_3}}>保密</Text>, onPress: () => console.log('第2个按钮被点击了') },
-                                  ])
-                              }>
+                        ], 'default', '')}>
+                            <Text style={common.font_h2}>修改昵称</Text>
+                        </ListItem>
+
+                        <ListItem
+                            hasborder
+                              extra={'男'}
+                            onClick={() => operation([
+                                { text: '男', onPress: () => console.log('标为未读被点击了') },
+                                { text: '女', onPress: () => console.log('置顶聊天被点击了') },
+                            ])}>
                             <Text style={common.font_h2}>性别</Text>
-                        </Item>
-                        <Item
-                            extra={ <Text style={common.font_h2}>无</Text>}
-                            arrow="horizontal" onClick={() => prompt('设置', '修改用户昵称', [
+                        </ListItem>
+                        <ListItem
+                            extra={'无'}
+                            hasborder
+                           onClick={() => prompt('设置', '修改用户昵称', [
                             { text: <Text style={{color:common.gary_6}}>取消</Text> },
                             { text: <Text style={{color:common.theme}}>确认</Text>, onPress: value => console.log(`输入的内容:${value}`) },
                         ], 'default', '无')}>
                             <Text style={common.font_h2}>昵称</Text>
-                        </Item>
+                        </ListItem>
+                        <Picker extra={<Text style={[common.font_h2]}>请选择</Text> }
+                                data={pc}
+                                cols={2}
+                                title={<Text style={common.font_h2}>地区选择</Text>}
+                                indicatorStyle={common.font_h2}
+                                itemStyle={common.font_h2}
+                                //value={this.state.sValue}
+                                okText={<Text style={[common.font_h2,{color:common.theme_2}]}>确定</Text>}
+                                dismissText={<Text style={[common.font_h2,{color:common.gary_6}]}>取消</Text>}
+                                onOk={e => console.log(e)}
+                                onDismiss={e => console.log('dismiss', e)}
+                        >
+                            <ListItem arrow="horizontal">
+                                <Text style={common.font_h2}>选择地址</Text>
+                            </ListItem>
+                        </Picker>
                     </List>
                 </View>
 
@@ -98,3 +122,5 @@ const styles = StyleSheet.create({
         flexDirection:'row'
     }
 })
+
+export default SetUser

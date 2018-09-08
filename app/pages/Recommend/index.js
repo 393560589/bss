@@ -78,7 +78,7 @@ export default class Recommend extends React.Component {
   render() {
     return (
       <SafeAreaView backgroundColor='#fff'>
-        <ScrollView backgroundColor={common.gray_bg}>
+      {/*  <ScrollView backgroundColor={common.gray_bg}>
           <Image style={styles.banner} source={require('../../image/recommend/img_banner.png')}/>
           <View style={styles.title}>
             <Image style={styles.titleImg} source={require('../../image/recommend/img_wntj.png')}/>
@@ -87,7 +87,7 @@ export default class Recommend extends React.Component {
             data={this.testData}
             renderItem={GoodItem}>
           </FlatList>
-        </ScrollView>
+        </ScrollView>*/}
       </SafeAreaView>
     )
   }
