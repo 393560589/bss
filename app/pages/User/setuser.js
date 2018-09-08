@@ -88,22 +88,7 @@ class SetUser extends PureComponent{
                         ], 'default', '无')}>
                             <Text style={common.font_h2}>昵称</Text>
                         </ListItem>
-                        <Picker extra={<Text style={[common.font_h2]}>请选择</Text> }
-                                data={pc}
-                                cols={2}
-                                title={<Text style={common.font_h2}>地区选择</Text>}
-                                indicatorStyle={common.font_h2}
-                                itemStyle={common.font_h2}
-                                //value={this.state.sValue}
-                                okText={<Text style={[common.font_h2,{color:common.theme_2}]}>确定</Text>}
-                                dismissText={<Text style={[common.font_h2,{color:common.gary_6}]}>取消</Text>}
-                                onOk={e => console.log(e)}
-                                onDismiss={e => console.log('dismiss', e)}
-                        >
-                            <ListItem arrow="horizontal">
-                                <Text style={common.font_h2}>选择地址</Text>
-                            </ListItem>
-                        </Picker>
+
                     </List>
                 </View>
 
