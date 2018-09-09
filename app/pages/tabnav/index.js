@@ -171,7 +171,7 @@ export const AppNavigator = createStackNavigator(
     },
     {
         initialRouteName:'Main',
-        headerMode:'float',
+        headerMode:'screen',
         mode:'card',
 
         navigationOptions:{

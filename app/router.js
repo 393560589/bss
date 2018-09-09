@@ -16,22 +16,8 @@ import AboutUS from "./pages/User/aboutus";
 import Invoice from "./pages/User/invoice";
 import FeedBack from "./pages/User/feedback";
 import DataPush from "./pages/User/datapush";
+import Search from './pages/Search'
 
-
-function clickListenerCreater() {
-    let isMenuVisible = false
-    return function (navigation, key) {
-        isMenuVisible = !isMenuVisible
-        navigation.navigation.setParams({
-            isMenuVisible,
-            key
-        })
-    }
-}
-
-const onHeaderRightClick = clickListenerCreater()
-
-const headerRightDot = (navigation, key) => (<TouchableOpacity onPress={() => onHeaderRightClick(navigation)} style={{padding: px2p(15)}}><Image source={require('./image/headerRight/Icon_more.png')} style={{width: px2p(24), height: px2p(5)}}/></TouchableOpacity>)
 
 export default {
     Login: {
@@ -82,6 +68,9 @@ export default {
         screen:Invoice,
         navigationOptions:Object.assign({},common.defaultHeader, {title: '发票助手',mode:'card'})
     },
+    Search: {
+        screen: Search
+    }
 }
 /*
 User:{screen:User},

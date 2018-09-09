@@ -5,9 +5,17 @@ import Home from '../../models/Home'
 import Login from '../../models/login'
 import SetUser from '../../models/setuser'
 import User from '../../models/User'
-import GoodDetail from '../../models/goodDetail'
 import Router, { routerMiddleware, routerReducer } from './'
+import { StorageUtil } from '../../utils/storage';
 // import cart from '../../models/cart';
+
+(async () => {
+    const history = await StorageUtil.get('searchHistoty')
+    console.log(history, 'history')
+    if (!history) {
+        StorageUtil.save('searchHistoty', [])
+    }
+})()
 
 
 const app = dva({
