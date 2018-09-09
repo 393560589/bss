@@ -25,6 +25,7 @@ export default class Users extends PureComponent {
         super(props)
     }
     state={
+        islogin:true,
         isRefreshing:false,
     }
 
@@ -36,7 +37,7 @@ export default class Users extends PureComponent {
     }
     onRefresh(){
         this.setState({isRefreshing: true});
-        console.log("开始新的刷新方法");
+        //console.log("开始新的刷新方法");
         setTimeout(() => {
             //你的刷新逻辑
             //逻辑执行完之后，修改刷新状态为false
@@ -44,9 +45,11 @@ export default class Users extends PureComponent {
         }, 2000);
     }
     onPushPage(page){
-        this.props.navigation.navigate(page)
+        const { islogin } = this.state;
+        islogin ? this.props.navigation.navigate(page):this.props.navigation.navigate('Login')
     }
     render() {
+        const {islogin} = this.state;
         return (
             <ScrollView style = {{flex:1,backgroundColor:'#f1f1f1'}}
                         refreshControl={  //设置下拉刷新组件
@@ -61,21 +64,9 @@ export default class Users extends PureComponent {
             >
                 <View style={styles.container}>
                     <ImageBackground
-                        style={[{width:deviceWidth,height:px2dp(280),paddingTop:px2dp(50)}]}
+                        style={[{width:deviceWidth,height:px2dp(270),paddingTop:px2dp(50)}]}
                         source={user.topbanner}
                     >
-                       {/* <TouchableOpacity
-                            activeOpacity={0.9}
-                            style={styles.User_top_img}
-                            onPress={()=>this.onPushPage('Settings')}
-                        >
-                            <Image
-                                style={{width:px2dp(18),
-                                    height:px2dp(18),}}
-                                source={user.sz}
-                            />
-                        </TouchableOpacity>*/}
-
                         <View style={styles.User_top}>
                             <TouchableOpacity
                                 onPress={()=>this.onPushPage('SetUser')}
@@ -86,38 +77,48 @@ export default class Users extends PureComponent {
                                     source={user.tx}
                                 />
                             </TouchableOpacity>
+
                             <View style={styles.User_top_view}>
                                 <TouchableOpacity
-                                    onPress={()=>this.onPushPage('Login')}
+                                    onPress={() => {
+                                        this.onPushPage('SetUser')
+                                    }}
                                 >
-                                    <Text style={[common.font_h1,{
+
+                                    <Text style={{
                                         color:common.fff,
                                         textAlign:'center',
                                         marginTop:px2dp(10),
+                                        fontSize:px2dp(18),
                                         marginBottom:px2dp(6)
-                                    }]}>
-                                        点击登录
+                                    }}>
+                                        {
+                                           islogin ? 'jane':'点击登录'
+                                        }
                                     </Text>
                                 </TouchableOpacity>
-                                <Text style={[common.font_h3,{color:common.fff}]}>
-                                    登陆后可享受更多服务
-                                </Text>
+                                {
+                                    !islogin &&  <Text style={[common.font_h3,{color:common.fff}]}>
+                                        登陆后可享受更多服务
+                                    </Text>
+                                }
+
                             </View>
                         </View>
                         <View style={styles.top_list}>
-                           <View style={[styles.top_item,{borderLeftWidth:0}]}>
-                               <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>搜索令牌</Text>
-
-                               <Text style={styles.top_text}>0</Text>
+                            <View style={[styles.top_item]}>
+                               <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>签到</Text>
+                              <Image source={user.qd} style={styles.Iconstyle}/>
                            </View>
+                            <Line/>
                             <View style={styles.top_item}>
-                                <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>等级</Text>
-
+                                <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>搜索令牌</Text>
                                 <Text style={styles.top_text}>0</Text>
                             </View>
+                            <Line />
                             <View style={styles.top_item}>
                                 <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>邀请好友</Text>
-                                <Text style={styles.top_text}>0</Text>
+                                <Image source={user.fx} style={styles.Iconstyle}/>
                             </View>
                         </View>
                     </ImageBackground>
@@ -125,12 +126,15 @@ export default class Users extends PureComponent {
                         border={false}
                         styles={{marginTop:px2dp(10)}}>
                         <ListItem
+                            thumb={<Image style={styles.Iconstyle} source={user.contact}/>}
                             hasborder
                             onClick={()=>this.onPushPage('AboutUS')}
-                            Icons={'right'}>
+                            Icons={'arrow'}>
                             联系我们
                         </ListItem>
                         <ListItem
+                            thumb={<Image style={styles.Iconstyle} source={user.feedback}/>}
+                            Icons={'arrow'}
                             onClick={()=>this.onPushPage('FeedBack')}
                         >
                             意见反馈
@@ -140,6 +144,8 @@ export default class Users extends PureComponent {
                         border={false}
                         styles={{marginTop:px2dp(10)}}>
                         <ListItem
+                            thumb={<Image style={styles.Iconstyle} source={user.sz}/>}
+                            Icons={'arrow'}
                             onClick={()=>this.onPushPage('Settings')}
                         >
                             设置
@@ -152,7 +158,16 @@ export default class Users extends PureComponent {
     }
 }
 
+const Line = (props)=>{
+    return (
+        <View style={{width:0.4,height:px2dp(22),backgroundColor:'#eee',marginTop:px2dp(10)}}/>
+    )
+}
 const styles = StyleSheet.create({
+    Iconstyle:{
+        width:px2dp(22),
+        height:px2dp(22),
+    },
     container: {
         paddingBottom:px2dp(30),
         alignItems:'center',
@@ -170,19 +185,20 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         paddingLeft:px2dp(20),
         paddingRight:px2dp(20),
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        height:px2dp(76),
+       // alignItems:'center',
     },
     top_item:{
         flex:1,
-        justifyContent:'center',
-        borderLeftColor:'#fff',
-        borderLeftWidth:0.4
+        //justifyContent:'center',
+        alignItems:'center',
+        //height:px2dp(76)
     },
     top_text:{
       color:'#fff',
       textAlign:'center',
-
-        fontSize:px2dp(16)
+        fontSize:px2dp(15)
     },
     User_top:{
         marginLeft:px2dp(25),

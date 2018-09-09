@@ -42,6 +42,10 @@ export default {
         screen: AboutUS,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '联系我们'})
     },
+    FeedBack: {
+        screen: FeedBack,
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '意见反馈'})
+    },
     Sign:{
         screen:Sign,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '注册'})

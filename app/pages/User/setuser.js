@@ -31,6 +31,7 @@ class SetUser extends PureComponent{
                 <View>
                     <List styles={{marginTop:px2dp(6)}}>
                         <ListItem
+                            Icons={'arrow'}
                             styles={{paddingTop:px2dp(4),paddingBottom:px2dp(4)}}
                               extra={ <Image style={{width:px2dp(46),height:px2dp(46)}} source={user.tx}/>}
                               onClick={() => {
@@ -62,6 +63,7 @@ class SetUser extends PureComponent{
                         </ListItem>
                         <ListItem
                             hasborder
+                            Icons={'arrow'}
                               extra={ <Text style={common.font_h2}>180****889</Text>}
                                onClick={() => prompt('修改昵称', <Text>{'180****889'}</Text>, [
                             { text: <Text style={{color:common.gary_6}}>取消</Text> },
@@ -72,6 +74,7 @@ class SetUser extends PureComponent{
 
                         <ListItem
                             hasborder
+                            Icons={'arrow'}
                               extra={'男'}
                             onClick={() => operation([
                                 { text: '男', onPress: () => console.log('标为未读被点击了') },
@@ -80,6 +83,7 @@ class SetUser extends PureComponent{
                             <Text style={common.font_h2}>性别</Text>
                         </ListItem>
                         <ListItem
+                            Icons={'arrow'}
                             extra={'无'}
                             hasborder
                            onClick={() => prompt('设置', '修改用户昵称', [

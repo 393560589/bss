@@ -3,7 +3,7 @@
 export const user={
     tx:require('../image/user/img_tx.png'),
     topbanner:require('../image/user/img_bj.png'),
-    sz:require('../image/user/Icon_sz.png'),
+    sz:require('../image/user/set_2.png'),
     dfk:require('../image/user/Icon_dfk.png'),
     dsh:require('../image/user/Icon_dsh.png'),
     ywc:require('../image/user/Icon_ywc.png'),
@@ -19,6 +19,11 @@ export const user={
     qdwb:require('../image/user/Icon_yljl.png'),
     yqyj:require('../image/user/Icon_yqyj.png'),
     gfylb:require('../image/user/Icon_gfylb.png'),
+    feedback:require('../image/user/contact.png'),
+    contact:require('../image/user/feedback.png'),
+    fx:require('../image/user/icon_fx.png'),
+    qd:require('../image/user/icon_qd.png')
+
 }
 export const lg={
     banner:require('../image/login/img_login.png'),
@@ -27,6 +32,7 @@ export const lg={
     password:require('../image/login/Icon_password.png'),
 };
 export const img={
+    leftarrow:require('../image/user/z_124_2x.png'),
     arrow:require('../image/common/reture.png')
 };
 export const set={
