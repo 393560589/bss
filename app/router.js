@@ -1,11 +1,6 @@
 import React from 'react'
 import {TouchableOpacity,Text,Image} from 'react-native'
 import Login from './pages/Login'
-import Collection from './pages/Collection'
-import MyAsset from './pages/MyAsset'
-import MyYlb from './pages/MyYlb'
-import Points from './pages/Points'
-import Feedback from './pages/Feedback'
 import {common} from "./styles";
 import {px2dp, px2p} from "./utils";
 import {img} from './config/image'
@@ -19,9 +14,6 @@ import SetAddress from "./pages/User/setAddress";
 import AddAddress from './pages/User/addaddress'
 import AboutUS from "./pages/User/aboutus";
 import Invoice from "./pages/User/invoice";
-import GoodItem from './pages/GoodDetail'
-import ImageViewer from './pages/GoodDetail/components/ImageViewer';
-import GoodDetailInfo from './pages/GoodDetailInfo';
 import FeedBack from "./pages/User/feedback";
 import DataPush from "./pages/User/datapush";
 
@@ -46,40 +38,10 @@ export default {
         screen: Login,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '登录'})
     },
-    Collection: {
-        screen: Collection,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '我的收藏'})
-    },
     AboutUS: {
         screen: AboutUS,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '联系我们'})
     },
-    FeedBack:{
-      screen:FeedBack,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '意见反馈'})
-    },
-    MyAsset: {
-        screen: MyAsset,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '我的资产'})
-    },
-    MyYlb: {
-        screen: MyYlb,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '我的娱乐宝'})
-    },
-
-    Points: {
-        screen: Points,
-        navigationOptions: (navigation) => ({
-            headerTransparent: true,
-            title: '我的积分',
-            headerStyle: {
-                borderBottomWidth: 0
-            },
-            headerTintColor: '#fff',
-            headerRight: (<TouchableOpacity><Text style={{color: '#fff', marginRight: px2p(13), fontSize: px2p(14)}}>积分介绍</Text></TouchableOpacity>)
-        })
-    },
-
     Sign:{
         screen:Sign,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '注册'})
@@ -120,41 +82,6 @@ export default {
         screen:Invoice,
         navigationOptions:Object.assign({},common.defaultHeader, {title: '发票助手',mode:'card'})
     },
-    Feedback: {
-        screen: Feedback,
-        navigationOptions: Object.assign({}, common.defaultHeader, {title: '意见反馈'})
-    },
-    GoodItem: {
-        screen: GoodItem,
-        navigationOptions: (navigation) => ({
-            headerTransparent: true,
-            headerStyle: {
-                borderBottomWidth: 0,
-            },
-            headerTintColor: '#313131',
-            shadowOpacity: 0,
-            headerRight: headerRightDot(navigation, 'GoodItem')
-        })
-    },
-    ImageViewer: {
-        screen: ImageViewer,
-        navigationOptions: {
-            header: null
-        }
-    },
-    GoodDetailInfo: {
-        screen: GoodDetailInfo,
-        navigationOptions: (navigation) => ({
-            // headerTransparent: true, 
-            title: '商品详情',
-            headerStyle: {
-                backgroundColor: common.fff
-            },
-            headerTintColor: '#313131',
-            shadowOpacity: 0,
-            headerRight: headerRightDot(navigation, 'GoodDetailInfo')
-        })
-    }
 }
 /*
 User:{screen:User},

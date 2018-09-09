@@ -7,11 +7,11 @@ import SetUser from '../../models/setuser'
 import User from '../../models/User'
 import GoodDetail from '../../models/goodDetail'
 import Router, { routerMiddleware, routerReducer } from './'
-import cart from '../../models/cart';
+// import cart from '../../models/cart';
 
 
 const app = dva({
-    models:[Home,Login,SetUser, GoodDetail, cart],
+    models:[Home,Login,SetUser],
     extraReducers: { router: routerReducer },
     onAction: [routerMiddleware],
     onError(e){

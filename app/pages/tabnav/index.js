@@ -22,9 +22,7 @@ import Loading from '../../components/loading'
 //import { tabs } from '../../config/image'
 import {common} from '../../styles'
 import {px2dp} from '../../utils'
-import Cart from '../Cart'   // 购物车
 import Recommend from '../Recommend'   // 推荐
-import Intergral from '../Integral' // 积分应用
 import Home from '../Home' // 首页
 import User from '../User' // 用户
 
@@ -72,7 +70,6 @@ const YuTab = createBottomTabNavigator(
                 )
             }
         },
-
        /* Integral:{
             screen:Intergral,
             navigationOptions:({navigation})=>({
@@ -117,7 +114,7 @@ const YuTab = createBottomTabNavigator(
                  )
             })
         },*/
-        user:{
+        User:{
             screen:User,
             navigationOptions:({navigation})=>({
                 header:null,
@@ -136,7 +133,7 @@ const YuTab = createBottomTabNavigator(
             })
         },
     },{
-        initailRouteName:'User',
+        initialRouteName: 'Home',
         // tabBarComponent:TabBarBottom,
         // tabBarPosition:'bottom',  // 位置 底部
         swipeEnabled:true,  //  是否允许在标签页之间滑动
@@ -174,12 +171,12 @@ export const AppNavigator = createStackNavigator(
     },
     {
         initialRouteName:'Main',
-        headerMode:'screen',
+        headerMode:'float',
         mode:'card',
 
         navigationOptions:{
             cardStack:{
-                gestruesEnabled:false  // ios 上为true， 安卓 false 手势关此屏幕
+                gestruesEnabled: true  // ios 上为true， 安卓 false 手势关此屏幕
             }
         }
     }
