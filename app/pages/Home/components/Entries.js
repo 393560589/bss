@@ -12,7 +12,9 @@ const styles = StyleSheet.create({
     paddingRight: px2p(17),
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: common.fff
+    backgroundColor: common.fff,
+    marginTop: px2p(8),
+    marginBottom: px2p(8)
   },
   entry: {
     alignItems: 'center'

@@ -33,7 +33,7 @@ export class StorageUtil{
         return storage.setItem(key,JSON.stringify(value))
     }//存
     static update(key,value){
-        return storage.get(key).then(item=>{
+        return storage.getItem(key).then(item=>{
             value = typeof value === 'string' ? value: Object.assign({},item,value);
             return storage.setItem(key,JSON.stringify(value))
         })
