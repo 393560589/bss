@@ -6,7 +6,8 @@ import {
   Image,
   TouchableWithoutFeedback,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  WebView
 } from 'react-native'
 import Header from '../../components/SearchHeader'
 import { px2p } from '../../utils';
@@ -27,7 +28,8 @@ export default class Search extends PureComponent {
   constructor() {
     super()
     this.state = {
-      historyList: []
+      historyList: [],
+      isInputFocus: true
     }
   }
 
@@ -37,6 +39,10 @@ export default class Search extends PureComponent {
 
  initHistory = (historyList) => {
     this.setState({historyList})
+  }
+
+  toggleInputState = () => {
+    this.setState((prev) => ({isInputFocus: !prev.isInputFocus}))
   }
 
   clearHistory = () => {
@@ -65,6 +71,10 @@ export default class Search extends PureComponent {
           ))}
           <Text style={styles.clear} onPress={this.clearHistory}>清空搜索历史</Text>
         </View>
+        {/* <WebView 
+          onLoadStart={() => console.log('start laod')}
+          source={{uri: 'https://www.baidu.com'}}
+        /> */}
       </View>
     )
   }

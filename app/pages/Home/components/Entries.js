@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 
 export default function Entries(props) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.style]}>
       {
         props.data.map(entry => (
           <View style={styles.entry} key={entry.name}>
