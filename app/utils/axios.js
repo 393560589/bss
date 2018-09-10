@@ -18,7 +18,7 @@ var Buffer = require('buffer').Buffer;
  * @param msg       接口异常提示
  * @param headers   接口所需header配置
  */
-const MOCK_AUTH_ADMIN = 'http://api.xiaoyu518.com/api/';
+const MOCK_AUTH_ADMIN = 'http://recode.ditu.aliyun.com/dist_query?l=39.938133,116.395739 ';
 
 
 const Tool = {

@@ -53,6 +53,7 @@
 		C6939C5D683A4D1AA69CE7B0 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E83EF77829AA4318815116F2 /* libRNVectorIcons.a */; };
 		D3B22467F90B4F8B931B1367 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D713BF299FA49C79F412B21 /* Octicons.ttf */; };
 		F618E4C33323482990D2C867 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 828C6482CF6A49FCB148449F /* Ionicons.ttf */; };
+		FAD70FEA0AF440BBBA181535 /* libRCTAMapLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD2C2CE3B4E74D5C82285B22 /* libRCTAMapLocation.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -357,6 +358,13 @@
 			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
 			remoteInfo = "RNDeviceInfo-tvOS";
 		};
+		C0F42A112146A50F00574A9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 678B321AFEF94FA9A8F3DD88 /* RCTAMapLocation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9F042C311DD56193001BA3C4;
+			remoteInfo = RCTAMapLocation;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -388,6 +396,7 @@
 		3C0AFB2AC3B54D6095C838D0 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		3D927F721EAC43909B16A844 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		678B321AFEF94FA9A8F3DD88 /* RCTAMapLocation.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTAMapLocation.xcodeproj; path = "../node_modules/react-native-smart-amap-location/ios/RCTAMapLocation/RCTAMapLocation.xcodeproj"; sourceTree = "<group>"; };
 		6821DC4A061841BDA92E5172 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		80A9AFB088C24033B9C1AF43 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
@@ -398,6 +407,7 @@
 		C2872A50ED704781ABD45C13 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		C6F0951E45474A61989FDF10 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		C9EB698EDF564D4FAC64E1C7 /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
+		DD2C2CE3B4E74D5C82285B22 /* libRCTAMapLocation.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTAMapLocation.a; sourceTree = "<group>"; };
 		E83EF77829AA4318815116F2 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		ED0AF25823D44520AB70399F /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		EE57DE41D779403C9EF388D6 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
@@ -435,6 +445,7 @@
 				C6939C5D683A4D1AA69CE7B0 /* libRNVectorIcons.a in Frameworks */,
 				61916E1B6EB142CA932A25B5 /* libRNDeviceInfo.a in Frameworks */,
 				9B5E1E280B5C432FB0107F9C /* libRNImagePicker.a in Frameworks */,
+				FAD70FEA0AF440BBBA181535 /* libRCTAMapLocation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +654,7 @@
 				1DFE0405527942BF955C2E0A /* RNVectorIcons.xcodeproj */,
 				6821DC4A061841BDA92E5172 /* RNDeviceInfo.xcodeproj */,
 				EE57DE41D779403C9EF388D6 /* RNImagePicker.xcodeproj */,
+				678B321AFEF94FA9A8F3DD88 /* RCTAMapLocation.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -707,6 +719,7 @@
 				80A9AFB088C24033B9C1AF43 /* libRNDeviceInfo.a */,
 				F9AE0790AAFB4721B4CE489C /* libRNDeviceInfo-tvOS.a */,
 				C9EB698EDF564D4FAC64E1C7 /* libRNImagePicker.a */,
+				DD2C2CE3B4E74D5C82285B22 /* libRCTAMapLocation.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -724,6 +737,14 @@
 			children = (
 				C0C85EBE20E32A6500E2E9D8 /* libRNDeviceInfo.a */,
 				C0C85EC020E32A6500E2E9D8 /* libRNDeviceInfo-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C0F42A0E2146A50F00574A9A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0F42A122146A50F00574A9A /* libRCTAMapLocation.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -842,6 +863,10 @@
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
+				},
+				{
+					ProductGroup = C0F42A0E2146A50F00574A9A /* Products */;
+					ProjectRef = 678B321AFEF94FA9A8F3DD88 /* RCTAMapLocation.xcodeproj */;
 				},
 				{
 					ProductGroup = 5E91572E1DD0AC6500FF2AA8 /* Products */;
@@ -1198,6 +1223,13 @@
 			remoteRef = C0C85EBF20E32A6500E2E9D8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		C0F42A122146A50F00574A9A /* libRCTAMapLocation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTAMapLocation.a;
+			remoteRef = C0F42A112146A50F00574A9A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1357,6 +1389,7 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-smart-amap-location/ios/RCTAMapLocation/RCTAMapLocation/**",
 				);
 				INFOPLIST_FILE = yuappTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1367,6 +1400,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1396,6 +1430,7 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-smart-amap-location/ios/RCTAMapLocation/RCTAMapLocation/**",
 				);
 				INFOPLIST_FILE = yuappTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1406,6 +1441,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1434,6 +1470,7 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-smart-amap-location/ios/RCTAMapLocation/RCTAMapLocation/**",
 				);
 				INFOPLIST_FILE = yuapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1463,6 +1500,7 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-smart-amap-location/ios/RCTAMapLocation/RCTAMapLocation/**",
 				);
 				INFOPLIST_FILE = yuapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1498,6 +1536,7 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-smart-amap-location/ios/RCTAMapLocation/RCTAMapLocation/**",
 				);
 				INFOPLIST_FILE = "yuapp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1506,6 +1545,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1541,6 +1581,7 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-smart-amap-location/ios/RCTAMapLocation/RCTAMapLocation/**",
 				);
 				INFOPLIST_FILE = "yuapp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1549,6 +1590,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1583,6 +1625,7 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-smart-amap-location/ios/RCTAMapLocation/RCTAMapLocation/**",
 				);
 				INFOPLIST_FILE = "yuapp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1592,6 +1635,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1626,6 +1670,7 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-smart-amap-location/ios/RCTAMapLocation/RCTAMapLocation/**",
 				);
 				INFOPLIST_FILE = "yuapp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1635,6 +1680,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

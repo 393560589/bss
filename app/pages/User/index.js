@@ -9,15 +9,18 @@ import {
     TouchableHighlight,
     RefreshControl,
     ScrollView,
+
 } from 'react-native';
-
-
+import axios from 'axios'
 import {deviceWidth} from '../../styles/common'
 import {user} from '../../config/image'
 import {px2dp} from "../../utils";
 import {common} from '../../styles'
 import {connect} from "../../utils/dva";
 import { ListItem,List } from '../../components/ListItem'
+import Geolocation from 'Geolocation';
+//import AMapLocation from 'react-native-smart-amap-location'
+
 
 @connect(({User})=>({User}))
 export default class Users extends PureComponent {
@@ -34,6 +37,43 @@ export default class Users extends PureComponent {
         dispatch({
             type:'User/userInfo'
         })
+        this.getlocal()
+    }
+    getlocal() {
+        const {navigation} = this.props;
+        console.log(Geolocation)
+        console.log(this.props);
+        console.log(navigation)
+        Geolocation.getCurrentPosition(
+            val => {
+                let ValInfo =
+                    '速度：' +
+                    val.coords.speed +
+                    '\n经度：' +
+                    val.coords.longitude +
+                    '\n纬度：' +
+                    val.coords.latitude +
+                    '\n准确度：' +
+                    val.coords.accuracy +
+                    '\n行进方向：' +
+                    val.coords.heading +
+                    '\n海拔：' +
+                    val.coords.altitude +
+                    '\n海拔准确度：' +
+                    val.coords.altitudeAccuracy +
+                    '\n时间戳：' +
+                    val.timestamp;
+                this.setState({ LocalPosition: ValInfo });
+                console.log("打印地理位置："+`${val.coords.longitude},${val.coords.latitude}`)
+
+              // console.log(AMapLocation)
+            },
+            val => {
+                let ValInfo = '获取坐标失败：' + val;
+                this.setState({ LocalPosition: ValInfo }); //如果为空的话 没允许开启定位服务
+
+            },
+        );
     }
     onRefresh(){
         this.setState({isRefreshing: true});
@@ -46,7 +86,7 @@ export default class Users extends PureComponent {
     }
     onPushPage(page){
         const { islogin } = this.state;
-        console.log(islogin)
+        //console.log(islogin)
        // islogin ? this.props.navigation.navigate(page):this.props.navigation.navigate('Login')
     }
     render() {
