@@ -314,7 +314,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     alignSelf: 'center',
-    flex: 1
+    flex: 1,
+    elevation: 4,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgb(23, 22, 72)'
   },
   searchBarContainer: {
     // position: 'absolute',
@@ -325,7 +328,8 @@ const styles = StyleSheet.create({
     shadowColor: 'rgb(23, 22, 72)',
     shadowOpacity: 0.2,
     shadowRadius: px2p(5),
-    zIndex: 20
+    zIndex: 20,
+    elevation: 4
   },
   searchItems: {
     // flex: 1,
