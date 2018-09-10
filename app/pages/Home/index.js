@@ -193,21 +193,22 @@ class Home extends Component {
     ]
   }
 
-  renderStaticSearchBar = () => {
-    return (
-      <View style={styles.staticSearchBar}>
-        {this.renderSearchBar()}
-        {this.renderSearchItems()}
-      </View>
-    )
-  }
+  // renderStaticSearchBar = () => {
+  //   return (
+  //     <View style={styles.staticSearchBar}>
+  //       {this.renderSearchBar()}
+  //       {this.renderSearchItems()}
+  //     </View>
+  //   )
+  // }
 
   renderSearchBar = () => {
     return (
       <TouchableOpacity
+          style={styles.searchBarContainer}
           activeOpacity={1}
           onPress={() => this.props.navigation.navigate('Search')}>
-        <View style={styles.searchBarContainer}>
+        <View style={styles.searchBar}>
           <Image source={require('../../image/home/search.png')} style={{width: px2p(22), height: px2p(22), margin: px2p(10)}}/>
           <View style={{width: px2p(1), height: px2p(15), backgroundColor: '#D2D2D2', marginRight: px2p(9)}}></View>
           <Text style={{fontSize: px2p(15), color: '#CCC', fontWeight: '300'}}>搜一下区块链资讯、交易所、项目、百科</Text>
@@ -271,13 +272,15 @@ class Home extends Component {
               paginationStyle={{bottom: px2p(7)}}>
               {
                 this.swipers.map(swiper => (
-                  <Image source={swiper} style={{width: px2p(375)}} key={swiper} resizeMode={'contain'}/>
+                  <Image source={swiper} style={{width: px2p(375)}} key={swiper} resizeMode={'cover'}/>
                 ))
               }
             </Swiper>
-            {this.renderStaticSearchBar()}
+            {/* {this.renderStaticSearchBar()} */}
+            {this.renderSearchBar()}
+            {this.renderSearchItems()}
           </View>
-          <Entires data={this.testHomeData}/>
+          <Entires data={this.testHomeData} style={{top: px2p(-50)}}/>
           {this.renderNews()}
           <View style={styles.loadMoreView}>
             {this.state.isLoading
@@ -300,33 +303,41 @@ const styles = StyleSheet.create({
     marginTop: px2p(8),
     marginBottom: px2p(8)
   },
-  staticSearchBar: {
-    height: px2p(105),
-    padding: px2p(15),
-    paddingTop: px2p(38),
-    backgroundColor: '#fff'
-  },
-  searchBarContainer: {
-    position: 'absolute',
-    top: px2p(-63),
-    width: px2p(345),
-    height: px2p(50),
+  // staticSearchBar: {
+  //   height: px2p(105),
+  //   padding: px2p(15),
+  //   paddingTop: px2p(38),
+  //   backgroundColor: '#fff'
+  // },
+  searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
+    alignSelf: 'center',
+    flex: 1
+  },
+  searchBarContainer: {
+    // position: 'absolute',
+    top: px2p(-25),
+    width: px2p(345),
+    height: px2p(50),
+    alignSelf: 'center',
     shadowColor: 'rgb(23, 22, 72)',
     shadowOpacity: 0.2,
     shadowRadius: px2p(5),
-    alignSelf: 'center',
     zIndex: 20
   },
   searchItems: {
-    flex: 1,
+    // flex: 1,
+    top: px2p(-50),
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
     alignContent: 'space-between',
-    shadowColor: '#000',
+    backgroundColor: '#fff',
+    height: px2p(105),
+    padding: px2p(15),
+    paddingTop: px2p(38),
   },
   searchItem: {
     fontSize: px2p(12),
@@ -334,8 +345,10 @@ const styles = StyleSheet.create({
     paddingLeft: px2p(10),
     paddingRight: px2p(10),
     textAlign: 'center',
+    
   },
   newsCellContainer: {
+    top: px2p(-50),
     flexDirection: 'row',
     alignItems:'stretch',
     padding: px2p(15),
@@ -352,10 +365,13 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   loadMoreView: {
+    // top: px2p(-50),
     width: '100%',
     height: px2p(39),
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    // paddingBottom: px2p(-50)
+    marginTop: px2p(-50)
   }
 })
 
