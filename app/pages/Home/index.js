@@ -204,7 +204,9 @@ class Home extends Component {
 
   renderSearchBar = () => {
     return (
-      <TouchableOpacity onPress={() => this.props.navigation.navigate('Search')}>
+      <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => this.props.navigation.navigate('Search')}>
         <View style={styles.searchBarContainer}>
           <Image source={require('../../image/home/search.png')} style={{width: px2p(22), height: px2p(22), margin: px2p(10)}}/>
           <View style={{width: px2p(1), height: px2p(15), backgroundColor: '#D2D2D2', marginRight: px2p(9)}}></View>

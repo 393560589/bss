@@ -46,7 +46,8 @@ export default class Users extends PureComponent {
     }
     onPushPage(page){
         const { islogin } = this.state;
-        islogin ? this.props.navigation.navigate(page):this.props.navigation.navigate('Login')
+        console.log(islogin)
+       // islogin ? this.props.navigation.navigate(page):this.props.navigation.navigate('Login')
     }
     render() {
         const {islogin} = this.state;
