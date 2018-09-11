@@ -17,12 +17,18 @@ import Invoice from "./pages/User/invoice";
 import FeedBack from "./pages/User/feedback";
 import DataPush from "./pages/User/datapush";
 import Search from './pages/Search'
+import SetName from './pages/User/setname'
+const prop={
 
-
+}
 export default {
     Login: {
         screen: Login,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '登录'})
+    },
+    SetName: {
+        screen: SetName,
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '设置姓名'})
     },
     AboutUS: {
         screen: AboutUS,
