@@ -211,7 +211,7 @@ class Home extends Component {
         <View style={styles.searchBar}>
           <Image source={require('../../image/home/search.png')} style={{width: px2p(22), height: px2p(22), margin: px2p(10)}}/>
           <View style={{width: px2p(1), height: px2p(15), backgroundColor: '#D2D2D2', marginRight: px2p(9)}}></View>
-          <Text style={{fontSize: px2p(15), color: '#CCC', fontWeight: '300'}}>搜一下区块链资讯、交易所、项目、百科</Text>
+          <Text style={{fontSize: px2p(12), color: '#CCC'}}>搜一下区块链资讯、交易所、项目、百科</Text>
         </View>
       </TouchableOpacity>
     )
@@ -221,9 +221,9 @@ class Home extends Component {
     return (
       <View style={styles.searchItems}>
         {
-          this.searchItems.map(searchItem => (
+          this.searchItems.map((searchItem,index) => (
             <View
-              key={searchItem}
+              key={index}
               style={{borderRadius: px2p(11), height: px2p(22), backgroundColor: '#F2F2F5', marginRight: px2p(10)}}>
               <Text style={[styles.searchItem, searchItem.isPrimary && {color: '#F29600'}]}>{searchItem.text}</Text>
             </View>
@@ -250,15 +250,23 @@ class Home extends Component {
 
   renderNews = () => {
     return (
-      this.newsList.map(news => (
-        <View key={news}>
+      this.newsList.map((news,index) => (
+        <View key={index}>
           {this.renderNewsCell({...news})}
         </View>
       ))
     )
     
   }
-  
+  componentDidMount(){
+    const {dispatch} = this.props;
+    dispatch({
+        type:'home/getBanner',
+        callback:(data)=>{
+          console.log(data)
+        }
+    })
+  }
   render() {
     return (
       <SafeAreaView backgroundColor='#fff'>
@@ -271,8 +279,8 @@ class Home extends Component {
               activeDotColor={common.theme}
               paginationStyle={{bottom: px2p(7)}}>
               {
-                this.swipers.map(swiper => (
-                  <Image source={swiper} style={{width: px2p(375)}} key={swiper} resizeMode={'cover'}/>
+                this.swipers.map((swiper,index) => (
+                  <Image source={swiper} style={{width: px2p(375)}} key={index} resizeMode={'cover'}/>
                 ))
               }
             </Swiper>
@@ -316,14 +324,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flex: 1,
     elevation: 4,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgb(23, 22, 72)'
+    //borderBottomWidth: StyleSheet.hairlineWidth,
+    //borderColor: 'rgb(23, 22, 72)'
   },
   searchBarContainer: {
     // position: 'absolute',
     top: px2p(-25),
-    width: px2p(345),
-    height: px2p(50),
+    width: px2p(355),
+    height: px2p(44),
     alignSelf: 'center',
     shadowColor: 'rgb(23, 22, 72)',
     shadowOpacity: 0.2,

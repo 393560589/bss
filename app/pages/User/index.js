@@ -19,7 +19,7 @@ import {common} from '../../styles'
 import {connect} from "../../utils/dva";
 import { ListItem,List } from '../../components/ListItem'
 import Geolocation from 'Geolocation';
-//import AMapLocation from 'react-native-smart-amap-location'
+
 
 
 @connect(({User})=>({User}))
@@ -66,7 +66,6 @@ export default class Users extends PureComponent {
                 this.setState({ LocalPosition: ValInfo });
                 console.log("打印地理位置："+`${val.coords.longitude},${val.coords.latitude}`)
 
-              // console.log(AMapLocation)
             },
             val => {
                 let ValInfo = '获取坐标失败：' + val;
@@ -87,7 +86,7 @@ export default class Users extends PureComponent {
     onPushPage(page){
         const { islogin } = this.state;
         //console.log(islogin)
-       // islogin ? this.props.navigation.navigate(page):this.props.navigation.navigate('Login')
+        islogin ? this.props.navigation.navigate(page):this.props.navigation.navigate('Login')
     }
     render() {
         const {islogin} = this.state;
@@ -187,7 +186,7 @@ export default class Users extends PureComponent {
                         <ListItem
                             thumb={<Image style={styles.Iconstyle} source={user.sz}/>}
                             Icons={'arrow'}
-                            onClick={()=>this.onPushPage('Settings')}
+                            //onClick={()=>this.onPushPage('Settings')}
                         >
                             设置
                         </ListItem>

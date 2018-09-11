@@ -2,16 +2,16 @@ import React from 'react'
 import {TouchableOpacity,Text,Image} from 'react-native'
 import Login from './pages/Login'
 import {common} from "./styles";
-import {px2dp, px2p} from "./utils";
-import {img} from './config/image'
+//import {px2dp, px2p} from "./utils";
+//import {img} from './config/image'
 import Sign from "./pages/Login/sign";
 import Fpassword from './pages/Login/fpassword'
 import Cpassword from './pages/User/Cpassword'
 import Settings from './pages/User/setting'
 import SetUser from "./pages/User/setuser";
 import Setpwd from "./pages/User/setpassword";
-import SetAddress from "./pages/User/setAddress";
-import AddAddress from './pages/User/addaddress'
+import ProAddress from "./pages/User/ProAddress";
+import CityAddress from './pages/User/cityaddress'
 import AboutUS from "./pages/User/aboutus";
 import Invoice from "./pages/User/invoice";
 import FeedBack from "./pages/User/feedback";
@@ -60,13 +60,13 @@ export default {
         screen:Cpassword,
         navigationOptions: Object.assign({},common.defaultHeader, {title: '修改密码',mode:'card'})
     },
-    SetAddress:{
-        screen:SetAddress,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '地址管理',mode:'card'})
+    ProAddress:{
+        screen:ProAddress,
+        navigationOptions: Object.assign({},common.defaultHeader, {title: '城市选择',mode:'card'})
     },
-    AddAddress:{
-        screen:AddAddress,
-        navigationOptions:Object.assign({},common.defaultHeader, {title: '新增地址',mode:'card'})
+    CityAddress:{
+        screen:CityAddress,
+        navigationOptions:Object.assign({},common.defaultHeader, {title: '设置地址',mode:'card'})
     },
     Invoice:{
         screen:Invoice,

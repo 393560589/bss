@@ -1,3 +1,4 @@
+import * as server from '../servers/index'
 export default {
     namespace: 'home',
     state: {
@@ -18,19 +19,10 @@ export default {
          * 主要使用redux-saga
          * 语法就是 es6 generator
          */
-            * forplay({ payload }, { call, put, select }) {
-            /**
-             * call 调用自己定义的业务方法
-             * put 发起action
-             * select 选择某个namespace的state
-             */
-            //const name = yield call(fetchHomeName);
-            const name =1;
-            console.log(name);
-            yield put({
-               // type: SET_HOME_NAME,
-                payload: { name },
-            })
+         *getBanner({ payload,callback=()=>{} }, { call, put, select }) {
+            const response = yield call(server.swiper,payload);
+            console.log(response);
+            callback(response)
         }
     },
 }

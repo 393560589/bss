@@ -3,7 +3,7 @@ import {Animated, Easing} from 'react-native'
 export default {
     namespace: 'User',
     state: {
-
+        citylist:[]
     },
     reducers: {
         /**

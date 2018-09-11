@@ -26,7 +26,6 @@ export const List =(props)=>{
                     paddingLeft:px2dp(10),
                     paddingRight:px2dp(10),
                     justifyContent:'center',
-
                     minHeight:px2dp(40),backgroundColor:'#fff'}}>
                     <Text style={{ color: '#4E8CEE'}}>{renderHeader}</Text>
                 </View>

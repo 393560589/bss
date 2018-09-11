@@ -19,7 +19,7 @@ import { StorageUtil } from '../../utils/storage';
 
 
 const app = dva({
-    models:[Home,Login,SetUser],
+    models:[Home,Login,SetUser,User],
     extraReducers: { router: routerReducer },
     onAction: [routerMiddleware],
     onError(e){

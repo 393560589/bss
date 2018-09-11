@@ -22,7 +22,8 @@ export const user={
     feedback:require('../image/user/contact.png'),
     contact:require('../image/user/feedback.png'),
     fx:require('../image/user/icon_fx.png'),
-    qd:require('../image/user/icon_qd.png')
+    qd:require('../image/user/icon_qd.png'),
+    gps:require('../image/user/gps.png')
 
 }
 export const lg={

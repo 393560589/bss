@@ -23,6 +23,9 @@ class SetUser extends PureComponent{
     componentDidMount(){
         console.log(this.props)
     }
+    onPushPage(page){
+       this.props.navigation.navigate(page)
+    }
     render(){
         const {dispatch,SetUser} = this.props;
         //const { getFieldProps } = this.props.form;
@@ -92,7 +95,13 @@ class SetUser extends PureComponent{
                         ], 'default', '无')}>
                             <Text style={common.font_h2}>昵称</Text>
                         </ListItem>
-
+                        <ListItem
+                            Icons={'arrow'}
+                            extra={'无'}
+                            hasborder
+                            onClick={()=>this.onPushPage('CityAddress')}>
+                            <Text style={common.font_h2}>昵称</Text>
+                        </ListItem>
                     </List>
                 </View>
 
