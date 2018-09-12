@@ -35,6 +35,8 @@ export const common={
     defaultHeader: {
         headerTintColor: '#313131',
         headerStyle: {
+            fontSize:px2dp(16),
+            fontWeight:'normal',
             backgroundColor: '#fff',
             elevation: 0,
             shadowOpacity: 0,

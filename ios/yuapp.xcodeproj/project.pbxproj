@@ -706,7 +706,7 @@
 				80A9AFB088C24033B9C1AF43 /* libRNDeviceInfo.a */,
 				F9AE0790AAFB4721B4CE489C /* libRNDeviceInfo-tvOS.a */,
 				C9EB698EDF564D4FAC64E1C7 /* libRNImagePicker.a */,
-				DD2C2CE3B4E74D5C82285B22 /* libRCTAMapLocation.a */,
+				B088559027EF4A89BDEE4EAC /* libimageCropPicker.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";

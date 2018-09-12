@@ -12,6 +12,7 @@ import {
 
 } from 'react-native';
 import axios from 'axios'
+import {ActionSheet,Toast} from 'antd-mobile-rn'
 import {deviceWidth} from '../../styles/common'
 import {user} from '../../config/image'
 import {px2dp} from "../../utils";
@@ -40,10 +41,10 @@ export default class Users extends PureComponent {
         this.getlocal()
     }
     getlocal() {
-        const {navigation} = this.props;
-        console.log(Geolocation)
-        console.log(this.props);
-        console.log(navigation)
+        //const {navigation} = this.props;
+       // console.log(Geolocation)
+        //console.log(this.props);
+        //console.log(navigation)
         Geolocation.getCurrentPosition(
             val => {
                 let ValInfo =
@@ -64,7 +65,7 @@ export default class Users extends PureComponent {
                     '\n时间戳：' +
                     val.timestamp;
                 this.setState({ LocalPosition: ValInfo });
-                console.log("打印地理位置："+`${val.coords.longitude},${val.coords.latitude}`)
+               // console.log("打印地理位置："+`${val.coords.longitude},${val.coords.latitude}`)
 
             },
             val => {
@@ -88,6 +89,32 @@ export default class Users extends PureComponent {
         //console.log(islogin)
         islogin ? this.props.navigation.navigate(page):this.props.navigation.navigate('Login')
     }
+    dataList = [
+        { url: 'OpHiXAcYzmPQHcdlLFrc', title: '发送给朋友' },
+        { url: 'wvEzCMiDZjthhAOcwTOu', title: '新浪微博' },
+        { url: 'cTTayShKtEIdQVEMuiWt', title: '生活圈' },
+        { url: 'umnHwvEgSyQtXlZjNJTt', title: '微信好友' },
+        { url: 'SxpunpETIwdxNjcJamwB', title: 'QQ' },
+    ].map(obj => ({
+        icon: <Image source={`https://gw.alipayobjects.com/zos/rmsportal/${obj.url}.png`} alt={obj.title} style={{ width: 36 }} />,
+        title: obj.title,
+    }));
+    showShareActionSheet = () => {
+        ActionSheet.showShareActionSheetWithOptions({
+                options: this.dataList,
+                // title: 'title',
+                message: 'I am description, description, description',
+            },
+            (buttonIndex) => {
+                this.setState({ clicked1: buttonIndex > -1 ? this.dataList[buttonIndex].title : 'cancel' });
+                // also support Promise
+                return new Promise((resolve) => {
+                    Toast.info('closed after 1000ms');
+                    setTimeout(resolve, 1000);
+                });
+            });
+    }
+
     render() {
         const {islogin} = this.state;
         return (
@@ -146,20 +173,25 @@ export default class Users extends PureComponent {
                             </View>
                         </View>
                         <View style={styles.top_list}>
-                            <View style={[styles.top_item]}>
+                            <TouchableOpacity
+                                activeOpacity={0.9}
+                                style={[styles.top_item]}>
                                <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>签到</Text>
                               <Image source={user.qd} style={styles.Iconstyle}/>
-                           </View>
+                           </TouchableOpacity>
                             <Line/>
                             <View style={styles.top_item}>
                                 <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>搜索令牌</Text>
                                 <Text style={styles.top_text}>0</Text>
                             </View>
                             <Line />
-                            <View style={styles.top_item}>
+                            <TouchableOpacity
+                                activeOpacity={0.9}
+                                onPress={()=>this.showShareActionSheet()}
+                                style={styles.top_item}>
                                 <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>邀请好友</Text>
                                 <Image source={user.fx} style={styles.Iconstyle}/>
-                            </View>
+                            </TouchableOpacity>
                         </View>
                     </ImageBackground>
                     <List
@@ -196,6 +228,7 @@ export default class Users extends PureComponent {
             </ScrollView>
         );
     }
+
 }
 
 const Line = (props)=>{

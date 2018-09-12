@@ -6,19 +6,22 @@ import {
     Image,
     View
 } from 'react-native';
-import { InputItem,Button,Picker,Switch } from 'antd-mobile-rn'
+import { Radio,List } from 'antd-mobile-rn'
 
 import {px2dp} from "../../utils";
-import {commonStyle} from "../../styles/common";
-import { pc } from 'antd-mobile-area-data'
-import { List,ListItem } from '../../components/ListItem'
+//import {commonStyle} from "../../styles/common";
+//import { pc } from 'antd-mobile-area-data'
+//import { ,ListItem } from '../../components/ListItem'
 
 import {connect} from "../../utils/dva";
-
+const RadioItem = Radio.RadioItem;
 @connect(({User})=>({...User}))
 export default class ProAddress extends PureComponent {
     constructor(props){
         super(props)
+        this.state={
+            value:''
+        }
     }
     componentDidMount(){
         //console.log(this.state.data)
@@ -31,24 +34,23 @@ export default class ProAddress extends PureComponent {
     }
     render() {
         //const { getFieldProps } = this.props.form;
-        console.log(this.props)
+       const { value } = this.state;
        const { citylist } = this.props;
         return (
             <ScrollView style={styles.container}>
-                <Text style={styles.textStyle}>
-                    全部
-                </Text>
-                <List>
+                <List renderHeader={()=>'全部'}>
                     {
-                        citylist.children.map((item,index)=>{
+                        citylist.children.map((i)=>{
                             return (
-                                <ListItem
-                                    key={index}
-                                    hasborder
-                                    onClick={()=>this.ChooseCity(item)}
+                                <RadioItem
+                                    key={i.value}
+                                    checked={value === i.label}
+                                    onChange={()=>this.setState({
+                                        value:i.label
+                                    })}
                                 >
-                                    {item.label}
-                                </ListItem>
+                                    {i.label}
+                                </RadioItem>
                             )
                         })
                     }

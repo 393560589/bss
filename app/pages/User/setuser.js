@@ -5,17 +5,17 @@ import {
     StyleSheet,
     Image,ScrollView
 } from 'react-native'
-import { Modal,Picker } from 'antd-mobile-rn'
+import { Modal,Picker,ActionSheet } from 'antd-mobile-rn'
 import { List,ListItem } from '../../components/ListItem'
 import {connect} from "../../utils/dva"
 import {px2dp} from "../../utils";
 import {common, deviceWidth} from '../../styles'
 import {user} from "../../config/image"
-//import { createForm } from 'rc-form'
-import { pc } from 'antd-mobile-area-data'
 
+import ImagePicker from 'react-native-image-picker'
 const prompt = Modal.prompt;
 const operation = Modal.operation;
+
 
 @connect(({SetUser})=>({SetUser}))
 
@@ -25,6 +25,34 @@ class SetUser extends PureComponent{
     }
     onPushPage(page){
        this.props.navigation.navigate(page)
+    }
+    chooseAction = () => {
+        const options = {
+            title: '选择方式',
+            quality: 1.0,
+            maxWidth: 500,
+            maxHeight: 500,
+            storageOptions: {
+                skipBackup: true,
+                // waitUntilSaved: true,
+                // cameraRoll: true,
+            },
+            cancelButtonTitle: '取消',
+            takePhotoButtonTitle: '打开相册',
+            chooseFromLibraryButtonTitle: '打开相机',
+        };
+        ImagePicker.showImagePicker(options, (response) => {
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            } else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            } else {
+              /*  this.resetErrorState();
+                this.props.dispatch(uploadProfilePic(response));*/
+            }
+        });
     }
     render(){
         const {dispatch,SetUser} = this.props;
@@ -37,44 +65,17 @@ class SetUser extends PureComponent{
                             Icons={'arrow'}
                             styles={{paddingTop:px2dp(4),paddingBottom:px2dp(4)}}
                               extra={ <Image style={{width:px2dp(46),height:px2dp(46)}} source={user.tx}/>}
-                              onClick={() => {
-                                  dispatch({
-                                      type:'SetUser/animaed',
-                                      payload:{
-                                          imageheight:SetUser.imageheight,
-                                          isShow:!SetUser.isShow
-                                      }
-                                  })
-                              }}>
+                              onClick={() => {this.chooseAction()}}>
                            头像
                         </ListItem>
                     </List>
-                    <Animated.View
-                        style={{height:this.props.SetUser.imageheight}}
-                    >
-                        <ScrollView
-                            horizontal={true}
-                            style={styles.imgbox}>
-                            <Image style={{width:px2dp(65),height:px2dp(65),marginRight:px2dp(5)}} source={user.tx}/>
-                        </ScrollView>
-                    </Animated.View>
+
                     <List border={false}>
                         <ListItem
                             extra={'八九十月'}
                             hasborder>
                             <Text style={common.font_h2}>用户名</Text>
                         </ListItem>
-                        <ListItem
-                            hasborder
-                            Icons={'arrow'}
-                              extra={ <Text style={common.font_h2}>180****889</Text>}
-                               onClick={() => prompt('修改昵称', <Text>{'180****889'}</Text>, [
-                            { text: <Text style={{color:common.gary_6}}>取消</Text> },
-                            { text: <Text style={{color:common.theme}}>确认</Text>, onPress: value => console.log(`输入的内容:${value}`) },
-                        ], 'default', '')}>
-                            <Text style={common.font_h2}>修改昵称</Text>
-                        </ListItem>
-
                         <ListItem
                             hasborder
                             Icons={'arrow'}
@@ -89,10 +90,7 @@ class SetUser extends PureComponent{
                             Icons={'arrow'}
                             extra={'无'}
                             hasborder
-                           onClick={() => prompt('设置', '修改用户昵称', [
-                            { text: <Text style={{color:common.gary_6}}>取消</Text> },
-                            { text: <Text style={{color:common.theme}}>确认</Text>, onPress: value => console.log(`输入的内容:${value}`) },
-                        ], 'default', '无')}>
+                            onClick={()=>this.onPushPage('SetName')}>
                             <Text style={common.font_h2}>昵称</Text>
                         </ListItem>
                         <ListItem
@@ -100,7 +98,7 @@ class SetUser extends PureComponent{
                             extra={'无'}
                             hasborder
                             onClick={()=>this.onPushPage('CityAddress')}>
-                            <Text style={common.font_h2}>昵称</Text>
+                            <Text style={common.font_h2}>地址设置</Text>
                         </ListItem>
                     </List>
                 </View>
