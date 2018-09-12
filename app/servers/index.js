@@ -11,5 +11,8 @@ export const login=(params)=>{
     return instance.post(API.login,params)
 }
 export const swiper=(params)=>{
-    return instance.post(API.banner,params)
+    return instance.get(API.banner,params)
+}
+export const navigatioin = (params) => {
+    return instance.get(API.navigation, params)
 }
