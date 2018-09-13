@@ -20,31 +20,36 @@ import {common} from '../../styles'
 import {connect} from "../../utils/dva";
 import { ListItem,List } from '../../components/ListItem'
 import Geolocation from 'Geolocation';
+import {StorageUtil} from "../../utils/storage";
 
 
 
-@connect(({User})=>({User}))
+@connect(({User})=>({...User}))
 export default class Users extends PureComponent {
     constructor(props){
         super(props)
     }
     state={
-        islogin:true,
         isRefreshing:false,
     }
 
     componentDidMount(){
-        const {dispatch} = this.props
-        dispatch({
-            type:'User/userInfo'
+        const {dispatch} = this.props;
+
+        StorageUtil.get('phone').then(res=>{
+           dispatch({
+               type:'User/userInfo',
+               payload:{
+                   phone:res
+               },
+               callback:(data)=>{
+                   console.log(data)
+               }
+           })
         })
         this.getlocal()
     }
     getlocal() {
-        //const {navigation} = this.props;
-       // console.log(Geolocation)
-        //console.log(this.props);
-        //console.log(navigation)
         Geolocation.getCurrentPosition(
             val => {
                 let ValInfo =
@@ -85,8 +90,7 @@ export default class Users extends PureComponent {
         }, 2000);
     }
     onPushPage(page){
-        const { islogin } = this.state;
-        //console.log(islogin)
+        const { islogin } = this.props;
         islogin ? this.props.navigation.navigate(page):this.props.navigation.navigate('Login')
     }
     dataList = [
@@ -96,7 +100,7 @@ export default class Users extends PureComponent {
         { url: 'umnHwvEgSyQtXlZjNJTt', title: '微信好友' },
         { url: 'SxpunpETIwdxNjcJamwB', title: 'QQ' },
     ].map(obj => ({
-        icon: <Image source={`https://gw.alipayobjects.com/zos/rmsportal/${obj.url}.png`} alt={obj.title} style={{ width: 36 }} />,
+        icon: <Image alt={obj.title} style={{ width: 36 }} />,
         title: obj.title,
     }));
     showShareActionSheet = () => {
@@ -116,7 +120,7 @@ export default class Users extends PureComponent {
     }
 
     render() {
-        const {islogin} = this.state;
+        const {islogin,userInfo} = this.props;
         return (
             <ScrollView style = {{flex:1,backgroundColor:'#f1f1f1'}}
                         refreshControl={  //设置下拉刷新组件
@@ -151,7 +155,6 @@ export default class Users extends PureComponent {
                                         this.onPushPage('SetUser')
                                     }}
                                 >
-
                                     <Text style={{
                                         color:common.fff,
                                         textAlign:'center',
@@ -160,7 +163,7 @@ export default class Users extends PureComponent {
                                         marginBottom:px2dp(6)
                                     }}>
                                         {
-                                           islogin ? 'jane':'点击登录'
+                                           islogin ? userInfo.username:'点击登录'
                                         }
                                     </Text>
                                 </TouchableOpacity>
@@ -182,7 +185,7 @@ export default class Users extends PureComponent {
                             <Line/>
                             <View style={styles.top_item}>
                                 <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>搜索令牌</Text>
-                                <Text style={styles.top_text}>0</Text>
+                                <Text style={styles.top_text}>{userInfo.integral}</Text>
                             </View>
                             <Line />
                             <TouchableOpacity
@@ -218,7 +221,7 @@ export default class Users extends PureComponent {
                         <ListItem
                             thumb={<Image style={styles.Iconstyle} source={user.sz}/>}
                             Icons={'arrow'}
-                            //onClick={()=>this.onPushPage('Settings')}
+                            onClick={()=>this.onPushPage('Settings')}
                         >
                             设置
                         </ListItem>

@@ -11,7 +11,9 @@ import { createForm } from 'rc-form'
 import {common,deviceWidth} from "../../styles";
 import {px2dp} from "../../utils";
 import {commonStyle} from "../../styles/common";
+
 import { pc } from 'antd-mobile-area-data'
+
 import { List,ListItem } from '../../components/ListItem'
 import {user} from "../../config/image";
 import {connect} from "../../utils/dva";

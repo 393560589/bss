@@ -18,16 +18,11 @@ let storage = new Storage({
 
 export class StorageUtil{
     static get(key){
-       return storage.getItem(key).then(value=>{
-           if(value && value != ''){
-               const jsonValue = JSON.parse(value);
-               return jsonValue
-           }else{
-               return null
-           }
-       }).catch(()=>{
-           return null
-       })
+
+        return storage.getItem(key).then((value) => {
+                const jsonValue = JSON.parse(value);
+                return jsonValue;
+           });
     }//读
     static save(key,value){
         return storage.setItem(key,JSON.stringify(value))

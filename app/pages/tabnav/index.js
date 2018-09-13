@@ -35,10 +35,10 @@ const YuTab = createBottomTabNavigator(
         Recommend:{
             screen:Recommend,
             navigationOptions:({navigation})=>({
-                // headerTitle: "推荐",
-                header:null,
-                tabBarLabel: "币讯",
-                headerBackTitle: null,
+                headerTitle: "推荐",
+                header:'币讯',
+                //tabBarLabel: "币讯",
+                //headerBackTitle: null,
                 tabBarIcon: ({ tintColor }) => (
                     <Image
                         style={{width:px2dp(14),height:px2dp(17)}}

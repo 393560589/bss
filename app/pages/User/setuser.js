@@ -16,10 +16,20 @@ import ImagePicker from 'react-native-image-picker'
 const prompt = Modal.prompt;
 const operation = Modal.operation;
 
+const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+let wrapProps;
+if (isIPhone) {
+    wrapProps = {
+        onTouchStart: e => e.preventDefault(),
+    };
+}
 
 @connect(({SetUser})=>({SetUser}))
 
 class SetUser extends PureComponent{
+    state={
+        sex:'男'
+    }
     componentDidMount(){
         console.log(this.props)
     }
@@ -29,7 +39,7 @@ class SetUser extends PureComponent{
     chooseAction = () => {
         const options = {
             title: '选择方式',
-            quality: 1.0,
+            quality:0.5,
             maxWidth: 500,
             maxHeight: 500,
             storageOptions: {
@@ -41,18 +51,37 @@ class SetUser extends PureComponent{
             takePhotoButtonTitle: '打开相册',
             chooseFromLibraryButtonTitle: '打开相机',
         };
-        ImagePicker.showImagePicker(options, (response) => {
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
-            } else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            } else if (response.customButton) {
-                console.log('User tapped custom button: ', response.customButton);
-            } else {
-              /*  this.resetErrorState();
-                this.props.dispatch(uploadProfilePic(response));*/
+        const BUTTONS = ['拍照', '相册', '取消'];
+        ActionSheet.showActionSheetWithOptions({
+                options: BUTTONS,
+                cancelButtonIndex: BUTTONS.length - 1,
+                //destructiveButtonIndex: BUTTONS.length - 1,
+                title: '选择方式',
+                message: '',
+                maskClosable: true,
+                'data-seed': 'logId',
+                wrapProps,
+            },
+            (buttonIndex) => {
+                console.log(buttonIndex)
+            if(buttonIndex === 0){
+                ImagePicker.launchCamera(options, (response)  => {
+                    // Same code as in above section!
+                    console.log(response)
+                });
             }
-        });
+            if(buttonIndex === 1){
+                ImagePicker.launchImageLibrary(options, (response)  => {
+                    // Same code as in above section!
+                    console.log(response)
+                });
+            }
+
+                //this.setState({ clicked: BUTTONS[buttonIndex] });
+            });
+
+
+
     }
     render(){
         const {dispatch,SetUser} = this.props;
@@ -79,10 +108,14 @@ class SetUser extends PureComponent{
                         <ListItem
                             hasborder
                             Icons={'arrow'}
-                              extra={'男'}
+                              extra={this.state.sex}
                             onClick={() => operation([
-                                { text: '男', onPress: () => console.log('标为未读被点击了') },
-                                { text: '女', onPress: () => console.log('置顶聊天被点击了') },
+                                { text: '男', onPress: () => this.setState({
+                                        sex:'男'
+                                    }) },
+                                { text: '女', onPress: () => this.setState({
+                                        sex:'女'
+                                    }) },
                             ])}>
                             <Text style={common.font_h2}>性别</Text>
                         </ListItem>

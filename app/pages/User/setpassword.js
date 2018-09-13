@@ -21,13 +21,15 @@ class SetPassword extends PureComponent {
             <View style={styles.container}>
                 <View style={styles.f_input_wrap}>
                     <View style={styles.f_tip_wrap}>
-                        <Text style={styles.f_tip}><Text style={{fontWeight:'bold'}}>温馨提示：</Text>
+                        <Text style={styles.f_tip}>
+                            <Text style={{fontWeight:'bold'}}>
+                                温馨提示：
+                            </Text>
                             请设置密码,密码长度至少为6个字符,最长为19个字符,为了您的密码安全,建议使用数字字母组合排列,区分大小写。</Text>
                     </View>
                     <WhiteSpace/>
                     <WhiteSpace/>
                     <WhiteSpace/>
-
                     <List border={false}>
                         <InputItem
                             {...getFieldProps('phone')}
@@ -35,7 +37,9 @@ class SetPassword extends PureComponent {
                             clear
                             labelNumber={3}
                             placeholder="输入手机号"
-                        ><Text style={{color:'#666'}}>+86 |</Text> </InputItem>
+                        >
+                            <Text style={{color:'#666'}}>+86 |</Text>
+                        </InputItem>
                         <WhiteSpace/>
                         <InputItem
                             {...getFieldProps('code')}

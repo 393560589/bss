@@ -1,6 +1,6 @@
 import React from 'react'
 import {TouchableOpacity,Text,Image} from 'react-native'
-import Login from './pages/Login'
+import Login from './pages/Login/index'
 import {common} from "./styles";
 //import {px2dp, px2p} from "./utils";
 //import {img} from './config/image'
@@ -18,9 +18,7 @@ import FeedBack from "./pages/User/feedback";
 import DataPush from "./pages/User/datapush";
 import Search from './pages/Search'
 import SetName from './pages/User/setname'
-const prop={
 
-}
 export default {
     Login: {
         screen: Login,

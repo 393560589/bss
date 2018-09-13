@@ -6,7 +6,7 @@ import {
     Image,
     ScrollView
 } from 'react-native'
-import { Button } from 'antd-mobile-rn'
+import { Button,Toast } from 'antd-mobile-rn'
 import {connect} from "../../utils/dva";
 import {px2dp} from "../../utils";
 import {user} from "../../config/image";
@@ -16,10 +16,25 @@ import AboutUS from "./aboutus";
 import Invoice from "./invoice";
 import { ListItem,List } from '../../components/ListItem'
 
-@connect()
+@connect(({User})=>({...User}))
 export default class Setting extends PureComponent{
     onPushPage(page){
         this.props.navigation.navigate(page)
+    }
+    logout(){
+        const { dispatch,navigation } = this.props;
+        dispatch({
+            type:'User/trylogin',
+            payload:{
+                islogin:false
+            },
+            callback:()=>{
+                Toast.success('登出账号了...')
+                setTimeout(()=>{
+                    navigation.pop()
+                },500)
+            }
+        })
     }
     render(){
         return (
@@ -54,9 +69,13 @@ export default class Setting extends PureComponent{
                         </List>*/}
                 </View>
                 <View style={{height:45}}>
-                    <Button><Text style={{color:'red'}}>
-                        退出账号
-                    </Text></Button>
+                    <Button
+                        onClick={()=>this.logout()}
+                    >
+                        <Text style={{color:'red'}}>
+                            退出账号
+                        </Text>
+                    </Button>
                 </View>
             </View>
         )
