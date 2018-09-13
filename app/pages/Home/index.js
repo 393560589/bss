@@ -22,20 +22,10 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLoading: false
-    }
-    this.tabs = [
-      {
-        title: '平价好货'
-      },
-      {
-        title: '活动精选'
-      }
-    ]
-    this.swipers = [
-      // require('../../image/home/img_banner_tt.png'),
-      require('../../image/home/banner.png')
-    ]
+      isLoading: false,
+      swipers: [],
+      entries: []
+    },
     this.testHomeData = [
       {
         name: '路印协议',
@@ -61,64 +51,6 @@ class Home extends Component {
         name: 'ANT',
           image: require('../../image/home/Icon_jfrw.png'),
         tag: require('../../image/home/img_bq_new.png')
-      }
-    ],
-    this.testGood = [
-      {
-        key: '1',
-        goodImage: require('../../image/home/img_cp1.png'),
-        activityImage: require('../../image/home/img_bq.png'),
-        price: 14.5,
-        sold: 1000,
-        people: [
-          {
-            key: 1,
-            image: require('../../image/home/img_tx1.png')
-          },
-          {
-            key: 2,
-            image: require('../../image/home/img_tx2.png')
-          }
-        ],
-        name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞',
-        btnText: '去购买',
-        onBtnPress: () => { this.props.navigation.navigate('GoodItem') },
-      },
-      {
-        key: '2',
-        goodImage: require('../../image/home/img_cp1.png'),
-        activityImage: require('../../image/home/img_bq.png'),
-        price: 14.5,
-        sold: 1000,
-        people: [
-          {
-            key: 1,
-            image: require('../../image/home/img_tx1.png')
-          },
-          {
-            key: 2,
-            image: require('../../image/home/img_tx2.png')
-          }
-        ],
-        name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞',
-        btnText: '去购买',
-        onBtnPress: () => {},
-      },
-      {
-        key: '3',
-        goodImage: require('../../image/home/img_cp1.png'),
-        activityImage: require('../../image/home/img_bq.png'),
-        price: 14.5,
-        sold: 1000,
-        people: [
-          {
-            key: 1,
-            image: require('../../image/home/img_tx1.png')
-          }
-        ],
-        name: '[2罐装]回音必正宗夏宁中宁甲级枸杞子新货250g/500g中宁红枸杞',
-        btnText: '去购买',
-        onBtnPress: () => {console.log(1233)}
       }
     ],
     this.searchItems = [
@@ -193,6 +125,24 @@ class Home extends Component {
     ]
   }
 
+  componentDidMount(){
+    const {dispatch} = this.props;
+    dispatch({
+        type:'home/getBanner',
+        callback:(data)=>{
+          console.log(data)
+          if (data.status === 200) {
+            this.setState({swipers: data.res})
+          }
+        }
+    })
+
+    dispatch({
+        type: 'home/getNavigation'
+    })
+    console.log(this.props.navigation, this.props.hotKey)
+  }
+
   // renderStaticSearchBar = () => {
   //   return (
   //     <View style={styles.staticSearchBar}>
@@ -221,12 +171,15 @@ class Home extends Component {
     return (
       <View style={styles.searchItems}>
         {
-          this.searchItems.map((searchItem,index) => (
-            <View
-              key={index}
-              style={{borderRadius: px2p(11), height: px2p(22), backgroundColor: '#F2F2F5', marginRight: px2p(10)}}>
-              <Text style={[styles.searchItem, searchItem.isPrimary && {color: '#F29600'}]}>{searchItem.text}</Text>
-            </View>
+          this.props.hotKey.map((searchItem,index) => (
+                <TouchableOpacity
+                    key={searchItem.hot_keyword}
+                    onPress={() => this.props.navigation.navigate('Search', {key: searchItem.hot_keyword})}>
+                    <View
+                    style={{borderRadius: px2p(11), height: px2p(22), backgroundColor: '#F2F2F5', marginRight: px2p(10), marginBottom: px2p(5)}}>
+                    <Text style={[styles.searchItem, index < 3 && {color: '#F29600'}]}>{searchItem.hot_keyword}</Text>
+                    </View>
+                </TouchableOpacity>
           ))
         }
       </View>
@@ -258,15 +211,7 @@ class Home extends Component {
     )
     
   }
-  componentDidMount(){
-    const {dispatch} = this.props;
-    dispatch({
-        type:'home/getBanner',
-        callback:(data)=>{
-          console.log(data)
-        }
-    })
-  }
+  
   render() {
     return (
       <SafeAreaView backgroundColor='#fff'>
@@ -279,8 +224,8 @@ class Home extends Component {
               activeDotColor={common.theme}
               paginationStyle={{bottom: px2p(7)}}>
               {
-                this.swipers.map((swiper,index) => (
-                  <Image source={swiper} style={{width: px2p(375)}} key={index} resizeMode={'cover'}/>
+                this.state.swipers.map((swiper,index) => (
+                  <Image source={{uri: `http://${swiper.img_url}`}} style={{width: px2p(375), height: px2p(211)}} key={swiper.img_url} resizeMode={'cover'}/>
                 ))
               }
             </Swiper>
@@ -288,7 +233,7 @@ class Home extends Component {
             {this.renderSearchBar()}
             {this.renderSearchItems()}
           </View>
-          <Entires data={this.testHomeData} style={{top: px2p(-50)}}/>
+          <Entires data={this.props.nav} style={{top: px2p(-50)}}/>
           {this.renderNews()}
           <View style={styles.loadMoreView}>
             {this.state.isLoading
@@ -303,7 +248,7 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   swiper: {
-    height: px2p(150)
+    height: px2p(211)
   },
   banner: {
     width: px2p(375),
@@ -321,11 +266,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
-    alignSelf: 'center',
+    // alignSelf: 'center',
     flex: 1,
     elevation: 4,
-    //borderBottomWidth: StyleSheet.hairlineWidth,
-    //borderColor: 'rgb(23, 22, 72)'
   },
   searchBarContainer: {
     // position: 'absolute',
@@ -346,8 +289,9 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'center',
     alignContent: 'space-between',
+    // justifyContent: 'space-around',
     backgroundColor: '#fff',
-    height: px2p(105),
+    // height: px2p(105),
     padding: px2p(15),
     paddingTop: px2p(38),
   },
@@ -357,7 +301,7 @@ const styles = StyleSheet.create({
     paddingLeft: px2p(10),
     paddingRight: px2p(10),
     textAlign: 'center',
-    
+    // marginBottom: px2p(10)
   },
   newsCellContainer: {
     top: px2p(-50),

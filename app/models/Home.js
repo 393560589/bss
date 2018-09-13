@@ -4,6 +4,8 @@ export default {
     state: {
         name: 'homeplay', // 名字
         play:'ffff',
+        hotKey: [],
+        nav: []
     },
     reducers: {
         /**
@@ -11,7 +13,11 @@ export default {
          */
         play(state) {
             return { ...state }
+        },
+        update(state, {payload}) {
+            return {...state, ...payload}
         }
+        
     },
     effects: {
         /**
@@ -19,10 +25,26 @@ export default {
          * 主要使用redux-saga
          * 语法就是 es6 generator
          */
-         *getBanner({ payload,callback=()=>{} }, { call, put, select }) {
+        *getBanner({ payload,callback=()=>{} }, { call, put, select }) {
             const response = yield call(server.swiper,payload);
-            console.log(response);
             callback(response)
+        },
+
+        *getNavigation({}, {call, put}) {
+            const res = yield call(server.navigatioin)
+            if (res.status === 200) {
+                yield put({
+                    type: 'update',
+                    payload: {
+                        hotKey: res.res.hotWords,
+                        nav: res.res.nav
+                    }
+                })
+                // yield put({
+                //     type: 'update',
+                //     payload: res.res.nav
+                // })
+            }
         }
-    },
+    }
 }

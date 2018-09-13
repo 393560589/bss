@@ -24,13 +24,6 @@ const styles = StyleSheet.create({
     height: px2p(30),
     marginBottom: px2p(13),
   },
-  tag: {
-    width: px2p(28),
-    height: px2p(16),
-    position: 'absolute',
-    right: px2p(-14),
-    top: px2p(-8)
-  },
   text: {
     textAlign: 'center',
     fontWeight: '500',
@@ -40,16 +33,16 @@ const styles = StyleSheet.create({
 })
 
 export default function Entries(props) {
+  console.log(props)
   return (
     <View style={[styles.container, props.style]}>
       {
-        props.data.map(entry => (
-          <View style={styles.entry} key={entry.name}>
+        props.data && props.data.map(entry => (
+          <View style={styles.entry} key={entry.title}>
             <View>
-              <Image style={styles.image} source={entry.image} resizeMode='contain'/>
-              <Image style={styles.tag} source={entry.tag} resizeMode='contain'/>
+              <Image style={styles.image} source={{uri: entry.logo}} resizeMode='contain'/>
             </View>
-            <Text style={styles.text}>{entry.name}</Text>
+            <Text style={styles.text}>{entry.title}</Text>
           </View>
         ))
       }
