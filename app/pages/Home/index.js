@@ -174,7 +174,8 @@ class Home extends Component {
           this.props.hotKey.map((searchItem,index) => (
                 <TouchableOpacity
                     key={searchItem.hot_keyword}
-                    onPress={() => this.props.navigation.navigate('Search', {key: searchItem.hot_keyword})}>
+                    onPress={() => this.props.navigation.navigate('EditPost', {title: searchItem.hot_keyword})}>
+                    {/* // onPress={() => this.props.navigation.navigate('Search', {key: searchItem.hot_keyword})}> */}
                     <View
                     style={{borderRadius: px2p(11), height: px2p(22), backgroundColor: '#F2F2F5', marginRight: px2p(10), marginBottom: px2p(5)}}>
                     <Text style={[styles.searchItem, index < 3 && {color: '#F29600'}]}>{searchItem.hot_keyword}</Text>

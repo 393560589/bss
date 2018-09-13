@@ -18,4 +18,7 @@ export const sign=(params)=>{
 } // 注册
 export const user=(params)=>{
     return instance.post(API.user,params)
+} // 
+export const navigatioin = (params) => {
+    return instance.get(API.navigation, params)
 }
