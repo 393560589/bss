@@ -5,7 +5,8 @@ export const API = {
     sign:'mobile_interface/register',
     user:'mobile_interface/user_info',
     loginpass:'mobile_interface/normal_login',// 账号密码登录
-    navigation: 'mobile_interface/index_navigation'
+    navigation: 'mobile_interface/index_navigation',
+    indexNews: 'mobile_interface/index_news_list'
 };
 export const StringName={
     USER_INFO:'USERINFO'  //储存登录字段，加密用

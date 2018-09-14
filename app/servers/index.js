@@ -22,3 +22,6 @@ export const user=(params)=>{
 export const navigatioin = (params) => {
     return instance.get(API.navigation, params)
 }
+export const indexNews = (params) => {
+    return instance.get(API.indexNews, {params})
+}
