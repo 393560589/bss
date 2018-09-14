@@ -19,3 +19,6 @@ export const sign=(params)=>{
 export const user=(params)=>{
     return instance.post(API.user,params)
 }
+export const navigatioin = (params)=>{
+    return instance.post(API.navigatioin,params)
+}
