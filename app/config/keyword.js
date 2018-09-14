@@ -4,8 +4,9 @@ export const API = {
     code:'mobile_interface/sendSms',
     sign:'mobile_interface/register',
     user:'mobile_interface/user_info',
-    navigation:'mobile_interface/index_navigation',
-    loginpass:'mobile_interface/normal_login'// 账号密码登录
+    loginpass:'mobile_interface/normal_login',// 账号密码登录
+    navigation: 'mobile_interface/index_navigation'
+
 };
 export const StringName={
     USER_INFO:'USERINFO'  //储存登录字段，加密用

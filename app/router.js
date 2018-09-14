@@ -18,6 +18,7 @@ import FeedBack from "./pages/User/feedback";
 import DataPush from "./pages/User/datapush";
 import Search from './pages/Search'
 import SetName from './pages/User/setname'
+import EditPost from './pages/EditPost'
 
 export default {
     Login: {
@@ -78,6 +79,9 @@ export default {
     },
     Search: {
         screen: Search
+    },
+    EditPost: {
+        screen: EditPost
     }
 }
 /*
