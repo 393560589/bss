@@ -15,6 +15,7 @@ import {commonStyle} from "../../styles/common";
 import AboutUS from "./aboutus";
 import Invoice from "./invoice";
 import { ListItem,List } from '../../components/ListItem'
+import {StorageUtil} from "../../utils/storage";
 
 @connect(({User})=>({...User}))
 export default class Setting extends PureComponent{
@@ -23,13 +24,16 @@ export default class Setting extends PureComponent{
     }
     logout(){
         const { dispatch,navigation } = this.props;
+
         dispatch({
-            type:'User/trylogin',
+            type:'User/logout',
             payload:{
+                userInfo:undefined,
                 islogin:false
             },
             callback:()=>{
-                Toast.success('登出账号了...')
+                Toast.success('登出账号了...');
+                StorageUtil.delete('phone');
                 setTimeout(()=>{
                     navigation.pop()
                 },500)

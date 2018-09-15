@@ -13,15 +13,30 @@ import {set, user} from "../../config/image";
 import {common} from "../../styles";
 import {WhiteSpace,Button} from 'antd-mobile-rn'
 import {commonStyle,deviceWidth} from "../../styles/common";
+//import User from "../../models/User";
 
 
-@connect()
+@connect(({User})=>({...User}))
 export default class FeedBack extends PureComponent{
     state={
         text:''
     }
     onPushPage(page){
         this.props.navigation.navigate(page)
+    }
+    order(){
+        const { dispatch,phone,navigation } = this.props;
+        console.log(phone);
+        phone && dispatch({
+            type:'User/content',
+            payload:{
+                phone:phone,
+                content:this.state.text,
+            },
+            callback:(data)=>{
+                navigation.pop()
+            }
+        })
     }
     render(){
         return (
@@ -45,7 +60,7 @@ export default class FeedBack extends PureComponent{
                     onChangeText={text => this.setState({text})}
                     value={this.state.text}
                 />
-                <Button type={'primary'} onClick={()=>alert('提交成功')}>提交</Button>
+                <Button type={'primary'} onClick={()=>this.order()}>提交</Button>
             </View>
         )
     }

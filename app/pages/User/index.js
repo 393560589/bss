@@ -27,11 +27,22 @@ import {StorageUtil} from "../../utils/storage";
 @connect(({User})=>({...User}))
 export default class Users extends PureComponent {
     constructor(props){
-        super(props)
+        super(props);
+        this.state={
+            isRefreshing:false,
+        }
+        this.dataList = [
+            { url: 'OpHiXAcYzmPQHcdlLFrc', title: '发送给朋友' },
+            { url: 'wvEzCMiDZjthhAOcwTOu', title: '新浪微博' },
+            { url: 'cTTayShKtEIdQVEMuiWt', title: '生活圈' },
+            { url: 'umnHwvEgSyQtXlZjNJTt', title: '微信好友' },
+            { url: 'SxpunpETIwdxNjcJamwB', title: 'QQ' },
+        ].map(obj => ({
+            icon: <Image alt={obj.title} style={{ width: 36 }} />,
+            title: obj.title,
+        }));
     }
-    state={
-        isRefreshing:false,
-    }
+
 
     componentDidMount(){
         const {dispatch} = this.props;
@@ -98,32 +109,36 @@ export default class Users extends PureComponent {
         const { islogin } = this.props;
         islogin ? this.props.navigation.navigate(page):this.props.navigation.navigate('Login')
     }
-    dataList = [
-        { url: 'OpHiXAcYzmPQHcdlLFrc', title: '发送给朋友' },
-        { url: 'wvEzCMiDZjthhAOcwTOu', title: '新浪微博' },
-        { url: 'cTTayShKtEIdQVEMuiWt', title: '生活圈' },
-        { url: 'umnHwvEgSyQtXlZjNJTt', title: '微信好友' },
-        { url: 'SxpunpETIwdxNjcJamwB', title: 'QQ' },
-    ].map(obj => ({
-        icon: <Image alt={obj.title} style={{ width: 36 }} />,
-        title: obj.title,
-    }));
-    showShareActionSheet = () => {
-        ActionSheet.showShareActionSheetWithOptions({
-                options: this.dataList,
-                // title: 'title',
-                message: 'I am description, description, description',
-            },
-            (buttonIndex) => {
-                this.setState({ clicked1: buttonIndex > -1 ? this.dataList[buttonIndex].title : 'cancel' });
-                // also support Promise
-                return new Promise((resolve) => {
-                    Toast.info('closed after 1000ms');
-                    setTimeout(resolve, 1000);
-                });
-            });
-    }
 
+    showShareActionSheet = () => {
+        this.invites();
+
+    }
+    invites(){
+        const { dispatch,phone } = this.props;
+        dispatch({
+            type:'User/invites',
+            payload:{
+                phone:phone
+            },
+            callback:(data)=>{
+                //console.log()
+                ActionSheet.showShareActionSheetWithOptions({
+                        options: this.dataList,
+                        title: '邀请好友',
+                        message: `http://bitss.vip${data.res}`,
+                    },
+                    (buttonIndex) => {
+                        this.setState({ clicked1: buttonIndex > -1 ? this.dataList[buttonIndex].title : 'cancel' });
+                        // also support Promise
+                        return new Promise((resolve) => {
+                            Toast.info('closed after 1000ms');
+                            setTimeout(resolve, 1000);
+                        });
+                    });
+            }
+        })
+    }
     render() {
         const {islogin,userInfo} = this.props;
         return (

@@ -10,13 +10,40 @@ import { createForm } from 'rc-form'
 import {common,deviceWidth} from "../../styles";
 import {px2dp} from "../../utils";
 import {commonStyle} from "../../styles/common";
+import {Toast} from "antd-mobile-rn/lib/index.native";
 
 class Fpassword extends PureComponent {
-    componentDidMount(){
-        console.log(deviceWidth)
+    state={
+        phone:'',
+        code:'',
+        pass:''
+    }
+
+    order(){
+        const { dispatch,navigation } = this.props;
+        dispatch({
+            type:'User/findpass',
+            payload:{
+                phone:this.state.phone,
+                pass:this.state.pass,
+                code:this.state.code
+            },
+            callback:()=>{
+                Toast.info('修改成功',2,null,false)
+                navigation.pop();
+            }
+        })
+    }
+    getCode(){
+        const {dispatch} = this.props;
+        dispatch({
+            type:'User/getcode',
+            payload:{
+                phone:this.state.phone,
+            }
+        })
     }
     render() {
-        const { getFieldProps } = this.props.form;
         return (
             <View style={styles.container}>
                 <View style={styles.f_input_wrap}>
@@ -25,35 +52,37 @@ class Fpassword extends PureComponent {
 
                     <List border={false}>
                         <InputItem
-                            {...getFieldProps('phone')}
-                            type="phone"
+                            type="number"
                             clear
+                            value={this.state.phone}
+                            onChange={(phone)=>{this.setState({phone})}}
                             labelNumber={3}
                             placeholder="输入手机号"
-                        ><Text style={{color:'#666'}}>+86 |</Text> </InputItem>
+                        >
+                            <Text style={{color:'#666'}}>+86 |</Text>
+                        </InputItem>
                         <WhiteSpace/>
                         <InputItem
-                            {...getFieldProps('code')}
                             type="number"
-                            placeholder="验证码"
+                            value={this.state.code}
+                            placeholder="输入四位数字验证码"
                             extra={<Text style={{fontSize:px2dp(12),color:'#666'}}>| 获取验证码</Text>}
                             onExtraClick={()=>this.getCode()}
-
+                            onChange={code=>this.setState({code})}
                         />
                         <WhiteSpace/>
                         <InputItem
-                            {...getFieldProps('pwd')}
-                            type="password"
-
-                            placeholder="请输入新密码"
-                        />
-                        <WhiteSpace/>
-                        <InputItem
-                            {...getFieldProps('pwdt')}
                             type="password"
                             clear
-
-                            placeholder="确认密码"
+                            placeholder="输入登录密码"
+                        />
+                        <WhiteSpace/>
+                        <InputItem
+                            type="password"
+                            clear
+                            value={this.state.pass}
+                            onChange={pass=>this.setState({pass})}
+                            placeholder="再次确认密码"
                         />
                     </List>
                     <View style={commonStyle.btn_wrap}>
@@ -97,9 +126,9 @@ const styles = StyleSheet.create({
     setbtn:{
         borderWidth:0,
         backgroundColor:'#F29600',
-        color:'#fff',
+        //color:'#fff',
         marginTop:px2dp(40),
         width:deviceWidth-180
     }
 });
-export default createForm()(Fpassword)
+export default Fpassword

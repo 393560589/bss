@@ -32,8 +32,7 @@ export default {
     SetName: {
         screen: SetName,
         navigationOptions: Object.assign({},common.defaultHeader, {
-            title: '设置姓名',
-
+            title: '设置姓名'
         })
     },
     AboutUS: {
