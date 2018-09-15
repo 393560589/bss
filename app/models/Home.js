@@ -5,7 +5,8 @@ export default {
         name: 'homeplay', // 名字
         play:'ffff',
         hotKey: [],
-        nav: []
+        nav: [],
+        newsList: []
     },
     reducers: {
         /**
@@ -16,6 +17,9 @@ export default {
         },
         update(state, {payload}) {
             return {...state, ...payload}
+        },
+        updateNewsList(state, { payload }) {
+            return {...state, newsList: [...state.newsList].concat(...payload.newsList)}
         }
         
     },
@@ -44,6 +48,18 @@ export default {
                 //     type: 'update',
                 //     payload: res.res.nav
                 // })
+            }
+        },
+
+        *getNews ({payload}, {call, put}) {
+            const res = yield call(server.indexNews, payload);
+            if (res.status === 200) {
+                yield put({
+                    type: 'updateNewsList',
+                    payload: {
+                        newsList: res.res
+                    }
+                })
             }
         }
     }

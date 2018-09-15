@@ -18,14 +18,15 @@ import { common } from '../../styles';
 import {StorageUtil} from "../../utils/storage";
 // import SearchBar from './components/SearchBar'
 
-@connect(({ home }) => ({ ...home }))
+@connect(({home}) => ({...home}))
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isLoading: false,
       swipers: [],
-      entries: []
+      entries: [],
+      pageIndex: 1
     },
     this.testHomeData = [
       {
@@ -157,7 +158,25 @@ class Home extends Component {
     dispatch({
         type: 'home/getNavigation'
     })
-    console.log(this.props.navigation, this.props.hotKey)
+
+    dispatch({
+      type: 'home/getNews',
+      payload: {
+        page: this.state.pageIndex
+      }
+    })
+  }
+
+  fetchNews = () => {
+    console.log(this.props.loading, 'loading')
+    this.props.dispatch({
+      type: 'home/getNews',
+      payload: this.state.pageIndex
+    })
+  }
+
+  fetchMore = () => {
+    this.setState((prev) => ({pageIndex: prev.pageIndex + 1}), this.fetchNews)
   }
 
   // renderStaticSearchBar = () => {
@@ -204,24 +223,24 @@ class Home extends Component {
     )
   }
 
-  renderNewsCell = ({title, author, time, image}) => {
+  renderNewsCell = ({title, resource, time_num, thubmnail}) => {
     return (
       <View style={styles.newsCellContainer}>
         <View flex={1} style={{justifyContent: 'space-between'}}>
           <Text numberOfLines={2} style={{fontSize: px2p(15), color: '#070002'}}>{title}</Text>
           <View style={{flexDirection: 'row', opacity: 0.6}}>
-            <Text>{author} · </Text>
-            <Text>{time}</Text>
+            <Text>{resource} · </Text>
+            <Text>{time_num}</Text>
           </View>
         </View>
-        {image && <Image source={image} style={{width: 101, height: 64, resizeMode: 'contain', marginLeft: px2p(20)}}/>}
+        {thubmnail && <Image source={thubmnail} style={{width: 101, height: 64, resizeMode: 'contain', marginLeft: px2p(20)}}/>}
       </View>
     )
   }
 
   renderNews = () => {
     return (
-      this.newsList.map((news,index) => (
+      this.props.newsList.map((news,index) => (
         <View key={index}>
           {this.renderNewsCell({...news})}
         </View>
@@ -254,9 +273,9 @@ class Home extends Component {
           <Entires data={this.props.nav} style={{top: px2p(-50)}}/>
           {this.renderNews()}
           <View style={styles.loadMoreView}>
-            {this.state.isLoading
-              ? <ActivityIndicator animating={this.state.isLoading}/>
-              : <Text style={styles.loadMoreText}>点击查看更多</Text>}
+            {this.props.loading
+              ? <ActivityIndicator animating={this.props.loading}/>
+              : <Text style={styles.loadMoreText} onPress={this.fetchMore}>点击查看更多</Text>}
           </View>
         </ScrollView>
       </SafeAreaView>

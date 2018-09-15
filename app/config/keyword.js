@@ -6,7 +6,11 @@ export const API = {
     user:'mobile_interface/user_info',
     loginpass:'mobile_interface/normal_login',// 账号密码登录
     navigation: 'mobile_interface/index_navigation',
-    sexc:'mobile_interface/set_sex'
+
+    sexc:'mobile_interface/set_sex',
+
+
+    indexNews: 'mobile_interface/index_news_list'
 
 };
 export const StringName={
