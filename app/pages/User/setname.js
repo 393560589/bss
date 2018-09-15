@@ -23,6 +23,10 @@ export default class Index extends PureComponent {
             value:''
         }
     }
+  /*  static navigationOptions = ({ navigation }) => ({
+        headerRight: <RightButton onPress={() => console.log(this.props)} />
+    })*/
+
     componentDidMount(){
         //console.log(this.state.data)
     }

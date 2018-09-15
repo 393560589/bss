@@ -66,14 +66,15 @@ class Login extends PureComponent {
         })
     }
     getUser(){
-        const { dispatch} = this.props;
+        const { dispatch,navigation} = this.props;
         dispatch({
             type:'User/userInfo',
             payload:{
                 phone:this.state.phone,
             },
             callback:(data)=>{
-                console.log(data);
+                Toast.success('登录成功')
+                navigation.pop();
             }
         })
     }

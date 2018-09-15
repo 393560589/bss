@@ -35,15 +35,20 @@ export default class Users extends PureComponent {
 
     componentDidMount(){
         const {dispatch} = this.props;
-
         StorageUtil.get('phone').then(res=>{
+            res &&
            dispatch({
                type:'User/userInfo',
                payload:{
                    phone:res
                },
                callback:(data)=>{
-                   console.log(data)
+                   dispatch({
+                       type:'User/update',
+                       payload:{
+                           phone:res
+                       }
+                   })
                }
            })
         })
@@ -163,7 +168,7 @@ export default class Users extends PureComponent {
                                         marginBottom:px2dp(6)
                                     }}>
                                         {
-                                           islogin ? userInfo.username:'点击登录'
+                                           islogin ? userInfo.username : '点击登录'
                                         }
                                     </Text>
                                 </TouchableOpacity>
@@ -185,7 +190,7 @@ export default class Users extends PureComponent {
                             <Line/>
                             <View style={styles.top_item}>
                                 <Text style={[styles.top_text,{fontSize:px2dp(14), marginBottom:px2dp(4),}]}>搜索令牌</Text>
-                                <Text style={styles.top_text}>{userInfo.integral}</Text>
+                                <Text style={styles.top_text}>{ userInfo ? userInfo.integral :0}</Text>
                             </View>
                             <Line />
                             <TouchableOpacity

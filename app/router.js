@@ -19,15 +19,22 @@ import DataPush from "./pages/User/datapush";
 import Search from './pages/Search'
 import SetName from './pages/User/setname'
 import EditPost from './pages/EditPost'
+import {px2dp} from "./utils";
 
 export default {
     Login: {
         screen: Login,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '登录'})
+        navigationOptions: Object.assign({},common.defaultHeader,
+            {
+                title: '登录',
+        },)
     },
     SetName: {
         screen: SetName,
-        navigationOptions: Object.assign({},common.defaultHeader, {title: '设置姓名'})
+        navigationOptions: Object.assign({},common.defaultHeader, {
+            title: '设置姓名',
+
+        })
     },
     AboutUS: {
         screen: AboutUS,

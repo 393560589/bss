@@ -23,3 +23,6 @@ export const user=(params)=>{
 export const navigatioin = (params) => {
     return instance.get(API.navigation, params)
 }
+export const sexc=(params)=>{
+    return instance.post(API.sexc,params)
+}

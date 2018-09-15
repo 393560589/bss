@@ -15,6 +15,7 @@ import Entires from './components/Entries'
 import { connect } from '../../utils/dva';
 import { px2p } from '../../utils';
 import { common } from '../../styles';
+import {StorageUtil} from "../../utils/storage";
 // import SearchBar from './components/SearchBar'
 
 @connect(({ home }) => ({ ...home }))
@@ -136,7 +137,23 @@ class Home extends Component {
           }
         }
     })
-
+      StorageUtil.get('phone').then(res=>{
+          res &&
+          dispatch({
+              type:'User/userInfo',
+              payload:{
+                  phone:res
+              },
+              callback:(data)=>{
+                  dispatch({
+                      type:'User/update',
+                      payload:{
+                          phone:res
+                      }
+                  })
+              }
+          })
+      })
     dispatch({
         type: 'home/getNavigation'
     })

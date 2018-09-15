@@ -13,6 +13,7 @@ import {common, deviceWidth} from '../../styles'
 import {user} from "../../config/image"
 
 import ImagePicker from 'react-native-image-picker'
+import {StorageUtil} from "../../utils/storage";
 const prompt = Modal.prompt;
 const operation = Modal.operation;
 
@@ -24,17 +25,26 @@ if (isIPhone) {
     };
 }
 
-@connect(({SetUser})=>({SetUser}))
+@connect(({User})=>({...User}))
 
 class SetUser extends PureComponent{
-    state={
-        sex:'男'
-    }
+
     componentDidMount(){
         console.log(this.props)
     }
     onPushPage(page){
        this.props.navigation.navigate(page)
+    }
+    changeSex(sex){
+        const {dispatch,phone} = this.props;
+        phone && dispatch({
+            type:'User/sex',
+            payload:{
+                sex:sex,
+                phone:phone
+            }
+        })
+
     }
     chooseAction = () => {
         const options = {
@@ -84,7 +94,7 @@ class SetUser extends PureComponent{
 
     }
     render(){
-        const {dispatch,SetUser} = this.props;
+        const {dispatch,userInfo} = this.props;
         //const { getFieldProps } = this.props.form;
         return (
             <View>
@@ -108,14 +118,10 @@ class SetUser extends PureComponent{
                         <ListItem
                             hasborder
                             Icons={'arrow'}
-                              extra={this.state.sex}
+                              extra={userInfo.sex == 1 ?'男':'女'}
                             onClick={() => operation([
-                                { text: '男', onPress: () => this.setState({
-                                        sex:'男'
-                                    }) },
-                                { text: '女', onPress: () => this.setState({
-                                        sex:'女'
-                                    }) },
+                                { text: '男', onPress: () =>this.changeSex(1)},
+                                { text: '女', onPress: () =>this.changeSex(2)},
                             ])}>
                             <Text style={common.font_h2}>性别</Text>
                         </ListItem>
