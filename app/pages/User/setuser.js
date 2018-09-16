@@ -127,7 +127,7 @@ class SetUser extends PureComponent{
                         </ListItem>
                         <ListItem
                             Icons={'arrow'}
-                            extra={'无'}
+                            extra={ userInfo.username ? userInfo.username:'无'}
                             hasborder
                             onClick={()=>this.onPushPage('SetName')}>
                             <Text style={common.font_h2}>昵称</Text>

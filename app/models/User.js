@@ -21,6 +21,13 @@ export default {
 
     },
     effects: {
+        *logout({callback=()=>{},payload},{put}){
+            yield put({
+                type:'update',
+                payload:payload
+            })
+            callback()
+        },
         *userInfo({callback=()=>{},payload},{call,put}){
             const response = yield call(server.user,payload);
             if(response.status !== 200 ) return Toast.fail(response.message,2,null,false);
@@ -64,7 +71,39 @@ export default {
                     phone:phone
                 }
             })
+        },
+        *setname({callback=()=>{},payload},{call,put,select}){
+            const { phone } = yield select(state => state.User);
+            const response = yield call(server.setname,payload);
+            if(response.status !== 200 ) return Toast.fail(response.message,2,null,false);
+            //console.log(response);
+            yield put({
+                type:'userInfo',
+                payload:{
+                    phone:phone
+                }
+            });
+            Toast.success('修改成功',2,null,false)
+            callback(response);
+        },
+        *content({callback=()=>{},payload},{call}){
+            const response = yield call(server.content,payload);
+            if(response.status !== 200 ) return Toast.fail(response.message,2,null,false);
+            Toast.info('已提提交您的反馈',2,null,false);
+            callback(response);
+        },
+        *invites({callback=()=>{},payload},{call}){
+            const response = yield call(server.invite,payload);
+            //let data = JSON.stringify(response)
+            //console.log(data)
+            //if(response.status !== 200 ) return Toast.fail(response.message,2,null,false);
+            callback(response);
 
+        },
+        *findpass({callback=()=>{},payload},{call,put,select}){
+            const response = yield call(server.findpass,payload);
+            console.log(response)
+            callback(response)
         }
     }
 

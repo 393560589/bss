@@ -22,10 +22,22 @@ export const user=(params)=>{
 }
 export const navigatioin = (params) => {
     return instance.get(API.navigation, params)
-
+}
 export const sexc=(params)=> {
     return instance.post(API.sexc, params)
 }
 export const indexNews = (params) => {
     return instance.get(API.indexNews, {params})
+}
+export const setname = (params) =>{
+    return instance.post(API.setname,params)
+}
+export const content=(params)=>{
+    return instance.post(API.content,params)
+}
+export const invite = (params) =>{
+    return instance.post(API.invite,params)
+}
+export const findpass=(params)=>{
+    return instance.post(API.findpass,params)
 }

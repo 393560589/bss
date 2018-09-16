@@ -1,12 +1,12 @@
 import React,{PureComponent} from 'react';
 import {
     StyleSheet,
-    Text,
+    Text,TouchableOpacity,
     //TextInput,
     Image,
     View
 } from 'react-native';
-import { Radio,List,InputItem } from 'antd-mobile-rn'
+import { Radio,List,InputItem,Button } from 'antd-mobile-rn'
 
 import {px2dp} from "../../utils";
 //import {commonStyle} from "../../styles/common";
@@ -14,24 +14,45 @@ import {px2dp} from "../../utils";
 //import { ,ListItem } from '../../components/ListItem'
 
 import {connect} from "../../utils/dva";
+import {common} from "../../styles";
 
 @connect(({User})=>({...User}))
 export default class Index extends PureComponent {
-    constructor(props){
-        super(props)
-        this.state={
-            value:''
+
+    state={
+        value:''
+    }
+    static navigationOptions =({navigation}) =>{
+        return {
+            headerTitle: '设置姓名',
+            headerRight: (
+                <TouchableOpacity
+                    onPress={navigation.getParam('setName')}
+                    style={{marginRight:px2dp(20)}}>
+                    <Text style={[common.font_h2,{color:common.theme}]}>保存</Text>
+                </TouchableOpacity>
+            ),
         }
     }
-  /*  static navigationOptions = ({ navigation }) => ({
-        headerRight: <RightButton onPress={() => console.log(this.props)} />
-    })*/
-
-    componentDidMount(){
-        //console.log(this.state.data)
+    _setName(){
+        const { dispatch,phone,navigation } = this.props;
+        dispatch({
+            type:'User/setname',
+            payload:{
+                phone:phone,
+                username:this.state.value
+            },
+            callback:(data)=>{
+                navigation.pop();
+            }
+        })
     }
-    ChooseCity(item){
-
+    componentDidMount(){
+        this.props.navigation.setParams({ setName: this._setName.bind(this) });
+        const {userInfo} = this.props;
+        userInfo && this.setState({
+            value:userInfo.username
+        })
     }
     onPushPage(page){
         this.props.navigation.navigate(page)
@@ -45,6 +66,9 @@ export default class Index extends PureComponent {
                      clear={true}
                      defaultValue={'平'}
                      value={this.state.value}
+                     onChange={(text)=>{this.setState({
+                         value:text
+                     })}}
                    />
                </List>
            </View>
